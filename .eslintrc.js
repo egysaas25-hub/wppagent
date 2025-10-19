@@ -1,77 +1,50 @@
-// eslint-disable-next-line no-undef, header/header
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'header'],
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
   ],
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+  },
   rules: {
-    // @todo more restrictive
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
+    // Turn off annoying rules
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-inferrable-types': 'off',
-    '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/prefer-namespace-keyword': 'off',
-    'no-async-promise-executor': 'off',
-    'no-constant-condition': 'off',
-    'no-empty': ['error', { allowEmptyCatch: true }],
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    
+    // Keep only the helpful ones
+    'no-console': 'off', // Allow console.log
+    'no-debugger': 'warn', // Warn about debugger
+    'no-duplicate-imports': 'error', // Prevent duplicate imports
     'no-useless-catch': 'off',
-    'no-useless-escape': 'off',
     'prefer-const': 'off',
-    'header/header': [
-      2,
-      'block',
-      [
-        '',
-        ' * This file is part of WPPConnect.',
-        ' *',
-        ' * WPPConnect is free software: you can redistribute it and/or modify',
-        ' * it under the terms of the GNU Lesser General Public License as published by',
-        ' * the Free Software Foundation, either version 3 of the License, or',
-        ' * (at your option) any later version.',
-        ' *',
-        ' * WPPConnect is distributed in the hope that it will be useful,',
-        ' * but WITHOUT ANY WARRANTY; without even the implied warranty of',
-        ' * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the',
-        ' * GNU Lesser General Public License for more details.',
-        ' *',
-        ' * You should have received a copy of the GNU Lesser General Public License',
-        ' * along with WPPConnect.  If not, see <https://www.gnu.org/licenses/>.',
-        ' ',
-      ],
-      1,
-    ],
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
+  },
+  env: {
+    node: true,
+    es6: true,
   },
   overrides: [
     {
+      // WAPI JavaScript files
       files: ['src/lib/**/*.js'],
       parser: '@babel/eslint-parser',
-      plugins: ['@babel'],
       parserOptions: {
         ecmaVersion: 6,
         sourceType: 'module',
+        requireConfigFile: false,
       },
       env: {
-        amd: true,
-        commonjs: true,
-        es6: true,
         browser: true,
-        node: false,
+        es6: true,
       },
       globals: {
         axios: true,
@@ -81,19 +54,6 @@ module.exports = {
         WPP: true,
         webpackJsonp: true,
         WWebJS: true,
-      },
-      rules: {
-        // @todo more restrictive
-        '@typescript-eslint/no-array-constructor': 'off',
-        'no-prototype-builtins': 'off',
-        'no-redeclare': 'off',
-      },
-    },
-    {
-      files: ['src/lib/**/webpack.*.js', 'src/lib/**/gulpfile.js'],
-      env: {
-        browser: false,
-        node: true,
       },
     },
   ],

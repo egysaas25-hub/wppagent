@@ -2,6 +2,8 @@ import { Whatsapp } from '../api/whatsapp';
 import { create } from '../controllers/initializer';
 import SessionService from './session.service';
 import MessageService from './message.service';
+import ContactModel from '../models/contact.model';
+import ConversationModel from '../models/conversation.model';
 import { SessionStatus, CreateMessageDTO, MessageType } from '../types';
 import logger from '../config/logger';
 import { EventEmitter } from 'events';
@@ -17,10 +19,16 @@ const createDatabaseTokenStore = (): TokenStore => ({
   async getToken(sessionName: string) {
     try {
       const session = SessionService.getByName(sessionName);
-      if (session?.decrypted_token) {
-        return JSON.parse(session.decrypted_token);
+      // Use the token field with proper type checking
+      if (session && session.token && session.token_iv && session.token_auth_tag) {
+        // The token is encrypted in DB, but getByName returns SessionWithDecryptedToken
+        // which has decrypted_token property
+        const sessionWithToken = session as any;
+        if (sessionWithToken.decrypted_token) {
+          return JSON.parse(sessionWithToken.decrypted_token);
+        }
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Error getting token from database', { sessionName, error });
     }
     return null;
@@ -30,18 +38,20 @@ const createDatabaseTokenStore = (): TokenStore => ({
     try {
       SessionService.saveToken(sessionName, JSON.stringify(tokenData));
       logger.debug('Token saved to database', { sessionName });
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Error saving token to database', { sessionName, error });
     }
   },
 
   async removeToken(sessionName: string) {
     try {
-      // Set token fields to null
+      // Set token fields to empty
       SessionService.saveToken(sessionName, '');
       logger.debug('Token removed from database', { sessionName });
-    } catch (error) {
+      return true;
+    } catch (error: any) {
       logger.error('Error removing token from database', { sessionName, error });
+      return false;
     }
   },
 });
@@ -77,8 +87,8 @@ class WhatsAppSessionManager extends EventEmitter {
         devtools: false,
         useChrome: true,
         logQR: false,
-        tokenStore: this.databaseTokenStore, // ← Use database instead of files
-        folderNameToken: './tokens', // Still needed for browser profiles
+        tokenStore: this.databaseTokenStore,
+        folderNameToken: './tokens',
         
         // QR Code callback
         catchQR: (base64Qr, asciiQR, attempt, urlCode) => {
@@ -135,7 +145,7 @@ class WhatsAppSessionManager extends EventEmitter {
             `${hostDevice.id.user}@c.us`
           );
         }
-      } catch (error) {
+      } catch (error: any) {
         logger.warn('Could not get host device info', { sessionName });
       }
 
@@ -144,7 +154,7 @@ class WhatsAppSessionManager extends EventEmitter {
 
       logger.info('Session started successfully', { sessionName });
       SessionService.updateStatus(sessionName, SessionStatus.CONNECTED);
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Failed to start session', {
         sessionName,
         error: error.message,
@@ -174,7 +184,7 @@ class WhatsAppSessionManager extends EventEmitter {
       SessionService.updateStatus(sessionName, SessionStatus.DISCONNECTED);
       
       logger.info('Session stopped', { sessionName });
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Error stopping session', {
         sessionName,
         error: error.message,
@@ -230,7 +240,7 @@ class WhatsAppSessionManager extends EventEmitter {
       };
 
       MessageService.save(messageData);
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Failed to save sent message to database', { 
         sessionName, 
         error: error.message 
@@ -280,24 +290,69 @@ class WhatsAppSessionManager extends EventEmitter {
       });
 
       try {
-        // Save to database
+        // Convert chatId to string
+        const chatId = typeof message.chatId === 'string' 
+          ? message.chatId 
+          : message.chatId._serialized || message.from;
+
+        // Save message to database
         const messageData: CreateMessageDTO = {
           sessionName,
           messageId: message.id,
-          chatId: message.chatId,
+          chatId: chatId,
           fromMe: message.fromMe,
           sender: message.sender?.id || message.from,
           body: message.body || '',
-          type: (message.type as MessageType) || MessageType.TEXT,
+          type: message.type as any || MessageType.TEXT,
           timestamp: message.timestamp || Date.now(),
           ack: message.ack || 0,
         };
 
         MessageService.save(messageData);
 
+        // Update or create conversation
+        ConversationModel.upsert({
+          sessionName,
+          chatId: chatId,
+          lastMessage: message.body || '',
+          lastMessageTime: message.timestamp || Date.now(),
+        });
+
+        // Increment unread count if message is not from us
+        if (!message.fromMe) {
+          ConversationModel.incrementUnread(sessionName, chatId);
+        }
+
+        // Save or update contact
+        if (!message.fromMe) {
+          try {
+            const contact = await client.getContact(message.from);
+            const contactId = typeof contact.id === 'string' 
+              ? contact.id 
+              : (contact.id as any)._serialized || message.from;
+            const phoneNumber = typeof contact.id === 'string'
+              ? contact.id
+              : (contact.id as any).user || '';
+            
+            ContactModel.upsert({
+              sessionName,
+              contactId: contactId,
+              name: contact.name || contact.pushname,
+              phone: phoneNumber,
+              isGroup: (contact as any).isGroup || false,
+            });
+          } catch (error: any) {
+            logger.error('Failed to fetch contact info', {
+              sessionName,
+              from: message.from,
+              error: error.message,
+            });
+          }
+        }
+
         // Emit event for real-time processing
         this.emit('message', { sessionName, message });
-      } catch (error) {
+      } catch (error: any) {
         logger.error('Error saving message', {
           sessionName,
           error: error.message,
@@ -310,7 +365,7 @@ class WhatsAppSessionManager extends EventEmitter {
       try {
         MessageService.updateAck(msg.id, msg.ack);
         this.emit('ack', { sessionName, messageId: msg.id, ack: msg.ack });
-      } catch (error) {
+      } catch (error: any) {
         logger.error('Error updating ACK', { 
           sessionName, 
           error: error.message 
@@ -343,7 +398,7 @@ class WhatsAppSessionManager extends EventEmitter {
         logger.info('Auto-reconnect enabled, restarting session', { sessionName });
         
         setTimeout(() => {
-          this.startSession(sessionName).catch((error) => {
+          this.startSession(sessionName).catch((error: any) => {
             logger.error('Auto-reconnect failed', {
               sessionName,
               error: error.message,
@@ -351,7 +406,7 @@ class WhatsAppSessionManager extends EventEmitter {
           });
         }, 5000);
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Error in disconnection handler', {
         sessionName,
         error: error.message,
@@ -384,7 +439,7 @@ class WhatsAppSessionManager extends EventEmitter {
           // Start session
           try {
             await this.startSession(session.session_name);
-          } catch (error) {
+          } catch (error: any) {
             logger.error('Failed to auto-start session', {
               sessionName: session.session_name,
               error: error.message,
@@ -392,7 +447,7 @@ class WhatsAppSessionManager extends EventEmitter {
           }
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Error initializing sessions', { error: error.message });
     }
   }

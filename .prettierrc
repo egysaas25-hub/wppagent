@@ -1,11 +1,8 @@
 {
   "singleQuote": true,
-  "overrides": [
-    {
-      "files": "*.json5",
-      "options": {
-        "parser": "json"
-      }
-    }
-  ]
+  "semi": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "endOfLine": "auto"
 }
