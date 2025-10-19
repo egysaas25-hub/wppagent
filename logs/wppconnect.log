@@ -1,0 +1,534 @@
+[32minfo[39m:     
+   _       ______  ____  ______                            __ 
+  | |     / / __ \/ __ \/ ____/___  ____  ____  ___  _____/ /_
+  | | /| / / /_/ / /_/ / /   / __ \/ __ \/ __ \/ _ \/ ___/ __/
+  | |/ |/ / ____/ ____/ /___/ /_/ / / / / / / /  __/ /__/ /_  
+  |__/|__/_/   /_/    \____/\____/_/ /_/_/ /_/\___/\___/\__/
+[32minfo[39m:     Checking for updates
+[32minfo[39m:     You're up to date
+[32minfo[39m:     [testSession:browser] Using browser folder 'D:\test\wppconnect\tokens\testSession'
+[32minfo[39m:     [testSession:browser] Initializing browser...
+[33mwarn[39m:     [testSession:browser] Chrome not found, using chromium
+[32mhttp[39m:     [testSession:browser] checking headless...
+[32mhttp[39m:     [testSession:browser] headless option is active, browser hidden
+[32minfo[39m:     [testSession:client] Initializing...
+[36mverbose[39m:  [testSession:client] Setting WhatsApp WEB version to 2.3000.10271x
+[36mverbose[39m:  [testSession:client] Loading WhatsApp WEB
+[36mverbose[39m:  [testSession:page] Page loaded
+[36mverbose[39m:  [testSession:client] Injecting wapi.js
+[36mverbose[39m:  [testSession:client] WhatsApp WEB loaded
+[32mhttp[39m:     [testSession:client] Waiting page load
+[32minfo[39m:     [testSession:session] Session Unpaired
+[36mverbose[39m:  [testSession:client] wapi.js injected
+[34mdebug[39m:    [testSession:client] Exposing onMessage function
+[32minfo[39m:     [testSession:client] Waiting for QRCode Scan (Attempt 1)...:
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █ ▀▀▄█▀▄▀█▀▄▀▄█▀ ▄ ▄▀▄▀▄ █▄██ █ █▄▀ ▀██ ▄▄▄▄▄ █
+█ █   █ █ ▄██▄▄█ ▄█▄█ █ ██ ██▀▀ ▀▄█▄██ █▄  ▀▄▀█ █   █ █
+█ █▄▄▄█ █▀ ▀▄▀██ ▀██▄ █▄▄ ▄▄▄ ▄   ▄█▀ █ █▀  ███ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄▀▄▀▄█ ▀ ▀ ▀▄█ ▀ █▄█ █▄▀▄▀▄█ █▄▀▄▀▄█ █▄▄▄▄▄▄▄█
+█ ▄██▄▄▄██▄▀▄▀▀▀▀▀▄▄▄ ▀▀▀▄▄▄▄ ▀ █▄▀▄█▄▀ ▄▀  ▄▀▀█▄▀ ▄  █
+█▄ ██▄▀▄ ▀▄ ▄▄▀█▄█ ▀▄  █▀▄▀▄▀▄█▀ █▄ █ ▄▄▀▄▄▄▄▀▀██▀ ▄▀▄█
+█▄█▀▀ ▀▄ ▄▀▄▀ ▀▄▄▄█▄▀▀ ▀ ▀█▀▄█▄ ▀ ▄█▄▄▀▀ ▀▀ ▄  ██ ▀▀▄▀█
+█▄█ ▄ ▀▄▀█▄██▀▀█▀▄▄▄█ ▀  ▄ █▀▄▀ █▄██▀ ▀▄▀ ▄▄▀▄ ███▀▄  █
+█ █▄ █▄▄ ▄ ▀ ▀▄ ▄█▀▄ ▀▄▀ ▄▄▀▀▀  ▀▄ ▄▄   ▄█ ▀▀▀██▄▄▄   █
+█▄▀▄   ▄ ▄██▄▀█▀▀ █ █▀▄▀▄▄ ▄▀▄███▀▄▀ ▄  ▄█▄ █▄▀███ ▄█ █
+██   ▄█▄ ▀▄▄█▀ ▄▀█▄▄█▀▀▀▄█▄▄▀   █▄ ▄  █▀ █  ▄▀▀▄▄ █▄▄██
+█▀▄██▀▄▄█ ▀▀▄ ▄ ▄█▄▄███▀▀▄▀▄▀ ▀ ▀▀  ▄▀██▀ ▀▀█▄ ▄█▄▄▄█ █
+██▀ ▄ ▄▄▄ ▀▀ ▀▀▀▀▀ ▄▀▀ ▀▄ ▄▄▄   █▄ ██ ▀ ▄█▀ ▀ ▄▄▄ █▀███
+█ ▀█▄ █▄█ ▀   ▀ ▄█ ▀█▀ ▄█ █▄█ ▄▄  █▄▄█ ▄█▄██▄ █▄█ ▀█▀ █
+█▀ ▄▀▄ ▄ ▄▄▄█▄▀ ▀▄ ▄▀▀ ▀█▄ ▄ ▄   ▄▀▄▄▄█▀ ▀▀▀▄  ▄    ▀▀█
+█▄ ▄▄█▄▄ ▀▀▀▀ ▀██ ▄▀▀▄█  █▀▄▄ ▀▄▄▀ ▀▄█▀▄ █▄▄ ▀█▄▄▄ ▄  █
+█ ██▄ ▄▄▄▀▄▀▀█▄ ▄█▀▄▄▀▄▀ ▀█ ▄  ▀▀ ▀█  ▄ ▄▀ ▀▄ ▄▄█▀▄▄███
+█   █▄ ▄███▄▀ ▄▀▀  ▀█▀▄ ▄ █▀█ ▀▄ ▀▀▀ ▀██ ██▄▀ █ █▀▀█▀▄█
+█▀▀▄▄▄ ▄▀▄██  ▀▄ ▄ ▄▄▀▄▀██▀ ▄█ ▀   ▄▄▄ ▀█▀  ▄█▀▄▀▀▄ ▀▀█
+█▀▀▄▀█ ▄▀██▄▄▀▄ ▄ █▄▄██▄▄▄▀█▄ ██▄ ▄▀█▀▀▄▀▄ ▄▀▀▀ ▄ █▄▄▄█
+█▄▀ ▄▄▀▄██▄  ▀▀▀▀▀█▄█▀▄▀▀▄▄▄ ▄▄▀▀  ▄▄ ▄▀ ██▀   █▄▀█▀▀▀█
+█▄ ▀▄▄▄▄███ ▄▄█▄▄████▀ ▄ ▀▀█▄  ▄█▀▄▄▄ █▀▀ █▄  ▀▄▀▄ ▄▄▄█
+████▄██▄▄ ▀▄█▀▀▄▀█▄▄▄▀▀▀  ▄▄▄ ▀▀▄ ▀▄▄▄█▀▄█ ▀  ▄▄▄ ▄ █▄█
+█ ▄▄▄▄▄ █▀▄ ▀▄▀▀█ ▀▄█▄▀▀▀ █▄█ ▄▀  ▀ ▄█ █ ▀██▀ █▄█  ██ █
+█ █   █ █▄█▀▄▄▀ ██▀▄█  ▀█▄▄  ▄ ▀▀ █▄▄▄▀▀▄▀ ▀ ▄▄▄▄ █  ██
+█ █▄▄▄█ █▀ ▄▄▀ █▀ █▀ ▄▄▄▀██ ▄▀ ▄▀ ▀█▄▀▄▄▄▄ █ ▀ ▀██▀█▀▀█
+█▄▄▄▄▄▄▄█▄██▄█████▄▄██▄█▄▄▄▄▄█▄█▄▄▄██▄▄▄███▄██▄▄█▄██▄██
+ {"code":"2@EvrO3F5QNfVTx9yB4wzR9aghWr7BEjdHFbQ414FG2XqP8n0JOaPwB8pdorGZ4YYcw/iATrGnwIQ8Lg==,Yjy2qb3raf0z5/b/brugEDunI3i1b+FeC01L+wTLGDs=,T9jLUohbbfI4mVegP8F+uwhES/Gb+P2vbQNtWE7NcnY=,63hPnM5usRCWKJvbUnbAf3XKg7A4muglwXxh8+JJi9s=,1"}
+[34mdebug[39m:    [testSession:client] Exposing onAnyMessage function
+[32minfo[39m:     [testSession:client] WhatsApp WEB version: 2.3000.1027191782
+[32minfo[39m:     [testSession:client] WA-JS version: 3.18.6
+[34mdebug[39m:    [testSession:client] Exposing onAck function
+[34mdebug[39m:    [testSession:client] Exposing onMessageEdit function
+[34mdebug[39m:    [testSession:client] Exposing onNotificationMessage function
+[34mdebug[39m:    [testSession:client] Exposing onParticipantsChanged function
+[34mdebug[39m:    [testSession:client] Exposing onStateChange function
+[34mdebug[39m:    [testSession:client] Exposing onStreamChange function
+[34mdebug[39m:    [testSession:client] Exposing onIncomingCall function
+[34mdebug[39m:    [testSession:client] Exposing onInterfaceChange function
+[34mdebug[39m:    [testSession:client] Exposing onPresenceChanged function
+[34mdebug[39m:    [testSession:client] Exposing onLiveLocation function
+[34mdebug[39m:    [testSession:client] Exposing onAddedToGroup function
+[34mdebug[39m:    [testSession:client] Exposing onRevokedMessage function
+[34mdebug[39m:    [testSession:client] Exposing onReactionMessage function
+[34mdebug[39m:    [testSession:client] Exposing onPollResponse function
+[34mdebug[39m:    [testSession:client] Exposing onUpdateLabel function
+[34mdebug[39m:    [testSession:client] Exposing onOrderStatusUpdate function
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: QR (CONNECTING)
+[32mhttp[39m:     [testSession:client] Checking is logged...
+[32minfo[39m:     [testSession:client] Auto close configured to 60s
+[32mhttp[39m:     [testSession:client] Waiting for QRCode Scan...
+[32mhttp[39m:     [testSession:client] Auto close remain: 50s
+[32mhttp[39m:     [testSession:client] Auto close remain: 40s
+[32mhttp[39m:     [testSession:client] Auto close remain: 30s
+[32mhttp[39m:     [testSession:client] Auto close remain: 20s
+[32mhttp[39m:     [testSession:client] Auto close remain: 10s
+[32mhttp[39m:     [testSession:client] Auto close remain: 5s
+[32mhttp[39m:     [testSession:client] Auto close remain: 4s
+[32mhttp[39m:     [testSession:client] Auto close remain: 3s
+[32mhttp[39m:     [testSession:client] Auto close remain: 2s
+[32mhttp[39m:     [testSession:client] Auto close remain: 1s
+[32minfo[39m:     [testSession:client] Waiting for QRCode Scan (Attempt 2)...:
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▀ ▀▄█▄▀▄█▀▄▄▀ ▀ ▄█▀█▄  █▀▀▀▄  █ █▀ ▀██ ▄▄▄▄▄ █
+█ █   █ █▀▀▄ █▄█ ▀ ▀█ ██   █▀█▄█▀▄█▀   █▄██▀▄▀█ █   █ █
+█ █▄▄▄█ █▀█ ██  █▀██▀█ ▄▄ ▄▄▄ ▄ ██▀█▀  █ ▀  ███ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄▀ ▀▄█ ▀▄█▄▀▄█▄█ █▄█ █▄▀▄█ ▀▄█▄█ ▀▄█ █▄▄▄▄▄▄▄█
+█    ▄▀▄▄▄▀▀▄▀▄▄▄▀▄▄▀█▄▀▀▄▄   ▀▀▄▀ █▄ ▀█▀█▀ ▀█▄█▄▀▄▀ ██
+█▄▀██ ▄▄  █▀▀▀▀█▄ █▄▄   ▄▀▄█▀▀▀█▀██▄ ▄█▄▀▀  ▄█   █ ▄█▀█
+█▄▄▄▀ ▀▄█▀█▄█▀▄▀▀▄█▄▄▄█▀ ▀ ▄██▄ ▄█▀█▄▄▄▄█▀▀ ▀████ ▄ ▀▀█
+█▀█▀█▀ ▄██▄  █▀█▀▀▀▀█ ▀██▀ █▀█▄▀█▄█▄ █▀▄▀▀█▀▀▄  ▄  ▄ ██
+█  ▀█▄▀▄███▀ ▀▀█▀█▀▄█▄▀▀ ▄█▄█ ▀▀ ███▀  ██▀  ▄▄ █▄ ▀██ █
+███▄ █▄▄▀█▄ ▀▄█▀▀█ ██▀▄▄▀▀▀▄▀▀▀ ▄▀▄█▄   ▄▀ ▄ ▀▀    ▄███
+███▀▀▄█▄█▄█ ▀▀█▀▄█▄▄ ▄▄▀▄█▀▀     ▀█▄   ▄██  ▀▄▄▄▄  ▀▀██
+█▄▄ █▄▀▄▀ ▀▄█▀▄ ▄ ▀▀███▄▄▀▀▄▀▀▄▀▀▀ ██▄███▀▄▄█▄ ▀▄█ ▄███
+██▄█▀ ▄▄▄ ▄▀ ▀▄▄▄▀ ▄▄▄█▀▄ ▄▄▄    ███▄ ▀▄▄█  ▀ ▄▄▄  ▄▄██
+█▀▄█▄ █▄█ █▄██▀ ▄ █▄█▀ ▀  █▄█  ▀ ▀▄ ▀▀▀██▀ ▀▄ █▄█ ▀█▀██
+█  ▀█▄ ▄▄▄▀█ ▀▄█▄▄ ▄▄▄█▀█▄▄ ▄▄  █▀▄▄▄▄ ▄█▀▀▀▀ ▄▄  ██▄▀█
+█▀  █  ▄▀█▀▄▀ ▀███▀▄▀▄███ █▄▄█▄▀ █▄▄█▄▀  ▄▀▀▀▀▀█ █▀▄ ██
+█   ▀ ▄▄▀▄▀▀▀█▀█▀█▀▄▀▄▀▀ ▀▄▀▀ ▀ ▄▀██  ▄███ ▀▀█▀▄█▀▀  ██
+█ ▀ █▀█▄██▄▄▄█▄▀▀██▄█▀▄██▀█▀█▄█▀   ███▄▄▀▀▀ ▀ ██ ▄▀█▀▀█
+█▄█▀ ▄ ▄   █▀▀▄▀█▄ ▄▀▄▀▀██▄█▀▄ ▀███▄▄▄█▄ ▀  ▀▀  █▀█▀▄▀█
+█▄▀ █▀▄▄  █▀██▄ ▄█ ▀▄██▀▀▀▄▀▄█▄▄▄ ▄ ▄ █▄██▀▀▀▀▀█ █▀▄▄▀█
+█▄▄█▀▄▀▄  ▀  ▀▄▄▄▀█▄ ▄▀▀█▄▄▀█▄▄▀ ▀▄▄▄▄ ██▀▀▀████▄▀▀█▄▀█
+█▄ ▀▄▄▄▄██▄ ▀▀▀ ▄   █▀ ▀▀▄▀██▄█▀▄▀▄  ▄█▀ ▄ ▀▄ ▀▀▄▀ ▄▄▀█
+████▄██▄█▀█▀▀▄█▄▄█▄▄▀▄▄▀▀ ▄▄▄ ▀▀▀█▄▄▄▄ ▄▀█ ▀▀ ▄▄▄ ▀▀ ▄█
+█ ▄▄▄▄▄ █▄▄█▀█▀▀██▄▀█▄▀▄▄ █▄█ █▄ ▄██▀▄▄█  ▄ ▀ █▄█ ▀▄███
+█ █   █ █  ▀▄▄▄█ █▀▄ ██▀█▄ ▄▄▄ ▀▄▀▄▄█  ▄██▀▀█   ▄▄ ████
+█ █▄▄▄█ █  ▄▀▄▄▄▀█ ▄ ▄▄▀ ▄▀▄▄▄▄  ▀   ▄█▄▄▀▄▀ ▀▀█  ▀█▀▄█
+█▄▄▄▄▄▄▄█▄█▄██▄▄▄█▄▄▄▄██▄▄█▄██▄██████▄██▄██▄▄▄█▄██▄▄███
+ {"code":"2@UwKOrjNYo/dLh9JI5Vvm1LQYwFrqkUE3dpPerM1Cd6Ihe4ql5AeNffWnUuBXZbApk+YsvlQy2HffvA==,Yjy2qb3raf0z5/b/brugEDunI3i1b+FeC01L+wTLGDs=,T9jLUohbbfI4mVegP8F+uwhES/Gb+P2vbQNtWE7NcnY=,63hPnM5usRCWKJvbUnbAf3XKg7A4muglwXxh8+JJi9s=,1"}
+[32mhttp[39m:     [testSession:client] Auto close remain: 0s
+[32minfo[39m:     [testSession:client] Closing the page
+[36mverbose[39m:  [testSession:page] Page Closed
+[32mhttp[39m:     [testSession:client] Checking QRCode status...
+[33mwarn[39m:     [testSession:client] Failed to authenticate
+[31merror[39m:    [testSession:client] Auto Close Called
+[32minfo[39m:     [testSession:browser] Using browser folder 'D:\test\wppconnect\tokens\testSession'
+[32minfo[39m:     [testSession:browser] Initializing browser...
+[33mwarn[39m:     [testSession:browser] Chrome not found, using chromium
+[32mhttp[39m:     [testSession:browser] checking headless...
+[32mhttp[39m:     [testSession:browser] headless option is active, browser hidden
+[32minfo[39m:     [testSession:client] Initializing...
+[36mverbose[39m:  [testSession:client] Setting WhatsApp WEB version to 2.3000.10271x
+[36mverbose[39m:  [testSession:client] Loading WhatsApp WEB
+[36mverbose[39m:  [testSession:page] Page loaded
+[36mverbose[39m:  [testSession:client] Injecting wapi.js
+[36mverbose[39m:  [testSession:client] WhatsApp WEB loaded
+[32mhttp[39m:     [testSession:client] Waiting page load
+[32minfo[39m:     [testSession:session] Session Unpaired
+[36mverbose[39m:  [testSession:client] wapi.js injected
+[34mdebug[39m:    [testSession:client] Exposing onMessage function
+[32minfo[39m:     [testSession:client] Waiting for QRCode Scan (Attempt 1)...:
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▀█ ▀ █ ▀█   ▀██▄▄▄▀█▄▄ ▄▄▀▀▄▄ █▀▄▀▄██▄▄ ██ ▄▄▄▄▄ █
+█ █   █ █▀▀▄   █▄▄  ▄██▄  ▀█▄██▀▄▄ ▀▄▀▀ ▄█   █ ▄ ██ █   █ █
+█ █▄▄▄█ █▀██▀█ █▄█▀▀▄ █▄▀ █ ▄▄▄ ▀▀▄▀█  █▀█▄▄▀▄▀▀▄██ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄▀ ▀▄▀▄▀▄▀ ▀ █▄█ █ █▄█ ▀▄█ ▀▄█▄█ █▄▀▄█▄▀▄█▄▄▄▄▄▄▄█
+█▄▄▄▄ █▄▄▄▄▄█  ▀▀▄ ▄▄▄▀█▀▀▄▄▄   ▀█▀█▀▄ ▄ █▀  █▀█   █▄█▄▀ ▀█
+█▄▀▄▄▀▀▄ █▀▀▀ ▄ ▄█▀ ▀▀▀   █▄▄█▀█▀█ ▄ ▄ ▄▀█ ▀▀ ▀▄▄▄▄██▀▀▀▀▀█
+██▀▀  ▀▄▀█▀▄▀▄▄▄██▀  ▄▀▄▀▀  ▀█▀█▄▀▀██ ▀▄█▀▀ ▄▀▄▄▄▀▀▄▀▀█▄▀▄█
+█▄██ ▀ ▄▀▀ ▄▀▀█ ▀▀▄▄██ ▀█▄▀█▀▄█  ▀▀  ▄▀▄▄ ▄▀▀▀ █▀▀███▀ ▀ ▀█
+█ ██▀██▄   ▀█ ▄█▄▄▄  ███   █▀   ▀▀▀▄█  ██▀▀ ▀█ █  ▀▄▄█▀▀█▄█
+█  ▀█ █▄▀ ▀ ▄ ▀█▀▀ █▀▄ ▀▄▀███  ▄▄█▀   █▄ █▀▀  █ ▄██▀▄ ▀▀▄██
+█  ▀█▀ ▄██▄█ ▄▀█▄▀  ▄██▀▀▄  ▀▀▀  ███▄ ▀█▀▀▀ ▀█▄█▄▀▀███ ▀▀ █
+█▀█  ▄█▄ ▀▀ █▄▄▀▄ ▀▀▄█ ▀▀█▀ █   ▄█▄▀▀█ █▀███ ▀ █▄ █ ██▀▀▀▀█
+█▀▄▄█▄█▄ ▄ ██▀  ▄█▄ █▄▀▀  ▀█▀█  ▄  █▄ ▀▄▀▀▀ ▀▀▄█ ▀███▀█ ▄▄█
+███▀  ▄▄▄ ▀▀▀ █▀▄ ▄█ ▀▄██▄█ ▄▄▄  ▄█▄█▄ ▄▀▀▄▄▀▄ █▄ ▄▄▄ ▀ ▄▀█
+█▄▄▀▀ █▄█  ▄▀▄█ ▄█▄▀ ▄▄█▄▀▀ █▄█ ▄██▄   ▄▀▀▀ ▄▀▀█▄ █▄█ ▀████
+█▀▄▄▀▄ ▄ ▄██▀▀▄█▀▄▀ █▀█▀█▀▄     ▄▄█▀██ ▀ ▀█▄█▄█▄▀▄   ▄█ ▄██
+█▀▄▄▄▄▄▄█▄█ ▀▄▄ █▄▄  ▄▀▀▀ ██▄█▀ ▄█▀█▄▄████ ▀ █▄▄██▄█▀▄▄▀█▄█
+█▄ ▀  ▀▄ ▄█  ▀ ▀▀  ▄▄▄██ █▄  ▀▀  █  ▀▄█ ▀ ▀▀ ▀ ▀▀ ▀▀▄▄▀▀▄▀█
+█▀▀ █▀█▄▀█▄▄▄█▄█▀█ ▄▀▀█▀▄ ██▀█▄▄ ▀▄█▀ ▀▄▀▀▀▀█▀█▄▀██ ███▄█ █
+█▀▄ ▀▀▀▄▄▄██ ▄█▄▀█▀▀▀ ▀ ▄ ▄▄▀█▄ ▀▄▀█ ▀ ▄█▀▄▄███▄▄▄▀▀█▀▀▀▄▄█
+█▄▄▀██▄▄  ▀▄██▀▄▄█▄▄▄▄▄▀▀ █▀▄███▀█▀█ ▄▀▄ ▀▀▀ █▄▄▀  ████ ███
+█▄ █ ▀▄▄▄ █ █▀  ▄█▀ ▄▀▀ ▀▀█▀▄▄▄ █▀▄█▀▀██ ▀ ▀  ▄█▀▄ ▀▄█  ▄██
+█▀██▄▄▀▄▄█▄██▄█▄▄▄▀  █▀▄▄▀▄▄████ █▄▄▄▄█▄██   █ █▀▄▀▀██▀▀▄▄█
+█ ▀ ▀▀▄▄▀▄▄▀█  ▄▀█▀ ▄ ▄▀▀ █   ▀▄▄█▄▀▄▀▄    ██▄▀ ▀█▀▀▀ ▄▀▄▀█
+███████▄█  █  ▀▀▄▄▀▄ ██▀▀ ▀ ▄▄▄ ▄▀▄█▄  ▄▀█ ▀ ██▄█ ▄▄▄ ▀█▄██
+█ ▄▄▄▄▄ █▄    ▀▀ ▄▀ █▀▄█▄▄█ █▄█ █ ▀▄▄▄▄▀▀█▀▀███▄▄ █▄█ ▀  ██
+█ █   █ █ ▄ ▄ █ ▄▀▄ ▄█ ▀▀▄     ▄ ██▄▄  █▀█▄▀▄▀█▄▄▄▄ ▄ █▀███
+█ █▄▄▄█ █  ▄▀█ █▄ █▄▄█▄█▀█▀▀▀█▀███▄ ▄ ▀ ▄█▄█▄█▀▄ ▄ █ █▀▀███
+█▄▄▄▄▄▄▄█▄▄▄▄▄█▄█▄█▄█████▄▄██▄█▄▄▄▄▄▄▄█████▄▄██▄▄▄██▄▄█▄▄██
+ {"code":"2@ah66xezuf2A46B56TxEpFfAFgR4m8P17VAkUL1VLhLR4vYOCVRWcxSvWVAA2kyhaJHKl7+SUX36eyP6KqEM00kodmcsUl+TBd9k=,zDG3LZJXsLPrt28gruq+XpuoWqAcIYVHKVrLdUrD9BA=,KwyzRudfW9bkKPZynYd29HSelVXeZ6Nwd0cFHUeBn1I=,5yIb4ND5zLBK6JBMY2J7o+U0FCMK9XxZxR6D3vvLKPw=,1"}
+[34mdebug[39m:    [testSession:client] Exposing onAnyMessage function
+[32mhttp[39m:     [testSession:client] Checking is logged...
+[32minfo[39m:     [testSession:client] WhatsApp WEB version: 2.3000.1027191782
+[32minfo[39m:     [testSession:client] WA-JS version: 3.18.6
+[32minfo[39m:     [testSession:client] Auto close configured to 60s
+[32mhttp[39m:     [testSession:client] Waiting for QRCode Scan...
+[34mdebug[39m:    [testSession:client] Exposing onAck function
+[34mdebug[39m:    [testSession:client] Exposing onMessageEdit function
+[34mdebug[39m:    [testSession:client] Exposing onNotificationMessage function
+[34mdebug[39m:    [testSession:client] Exposing onParticipantsChanged function
+[34mdebug[39m:    [testSession:client] Exposing onStateChange function
+[34mdebug[39m:    [testSession:client] Exposing onStreamChange function
+[34mdebug[39m:    [testSession:client] Exposing onIncomingCall function
+[34mdebug[39m:    [testSession:client] Exposing onInterfaceChange function
+[34mdebug[39m:    [testSession:client] Exposing onPresenceChanged function
+[34mdebug[39m:    [testSession:client] Exposing onLiveLocation function
+[34mdebug[39m:    [testSession:client] Exposing onAddedToGroup function
+[34mdebug[39m:    [testSession:client] Exposing onRevokedMessage function
+[34mdebug[39m:    [testSession:client] Exposing onReactionMessage function
+[34mdebug[39m:    [testSession:client] Exposing onPollResponse function
+[34mdebug[39m:    [testSession:client] Exposing onUpdateLabel function
+[34mdebug[39m:    [testSession:client] Exposing onOrderStatusUpdate function
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: QR (CONNECTING)
+[32mhttp[39m:     [testSession:client] Auto close remain: 50s
+[32mhttp[39m:     [testSession:client] Auto close remain: 40s
+[32mhttp[39m:     [testSession:client] Auto close remain: 30s
+[32mhttp[39m:     [testSession:client] Auto close remain: 20s
+[32mhttp[39m:     [testSession:client] Auto close remain: 10s
+[32mhttp[39m:     [testSession:client] Auto close remain: 5s
+[32mhttp[39m:     [testSession:client] Auto close remain: 4s
+[32mhttp[39m:     [testSession:client] Auto close remain: 3s
+[32mhttp[39m:     [testSession:client] Auto close remain: 2s
+[32mhttp[39m:     [testSession:client] Auto close remain: 1s
+[32minfo[39m:     [testSession:client] Waiting for QRCode Scan (Attempt 2)...:
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █   ▀ ▀█ █ ▀   ▄▄ ▀▄ ▄▄ ▀▀▄█ ██ ▄▀ ▄▄▀▀▄ ██ ▄▄▄▄▄ █
+█ █   █ █ ▀▀█▀ █▄▀███▄█▀██▀█▄  ▄ █ ▄▄█▀ ▄▀██ ▄ ▄ ██ █   █ █
+█ █▄▄▄█ █▀▄▀ ██ ▀█▀▀▀█ ▄▀   ▄▄▄  ▄▀▀ ▄█ ▀▀▄▄▀█▄▀▄██ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄█▄█▄▀▄▀ █▄▀ █ ▀▄█ █▄█ ▀▄█▄█ █▄█▄▀ ▀▄█ █ █▄▄▄▄▄▄▄█
+█▄ ▀▀  ▄█▀ ▀███▄▄▄ ▄▀▀▄█▀▀▀▄    ▄ ▄█▀▄█▀██▀ █ ▄█▀ █▀▄█▄ ▄▄█
+█▀▀▄▄▄█▄██▄█▀█▄ ▄ ▄█▀▀▀███▀█▄ ▄ ▀█▄▀█▀▄ ▀ ▀▄▀ ▀▀▄ █▄▀▄▄▄▀▀█
+██▄▀▄ ▀▄▄▀▄█▀▄▀▀ █▀ █▀▄▄▀▀██ █▀█▀▄ ▄█ ▄▀ ▀▀▀▀▄▄▄▀▀▄▀▄▀▀ ▄▀█
+█▄▀ ▄▄█▄▀  ▀▄▄█ ▀▄█▀██ █ ▀▀█  ▄█ ▀▄▄▀▀██ ▀ ▀█▀██▄▄██▄▄█▄ ▀█
+█▄ ▀███▄███▀█ ▀ ▄▄▄▄▄▀▄▀  █ ▄ █ ▄▄▄██▄▄  █▀ ▀▄▀▄  ▄▀▀█▀▀▄██
+█ ▀  █▄▄▀ ▀█▀█▀█▀▄█ ▄█ ▄ ▄█████ ▄▀▀█ █▄█  ▄▄██▄█▀ ██▄█▄▄█▀█
+█▀▄▄ ▀ ▄  ▀█▄▄▄ ▀▀  ▀  ▀▀▄██▄▀▀ █  █ ▄▄  ▀▀ █▄▀█▄▀▄▀ █ ▀█▄█
+█▄█  ▄▄▄▄█▀▄▄█▀█▄█▄▄▄█ ▄▄ ▀ ██████▄▄▄  █    ▀   ▀█▀ █▄▄▄▀▀█
+█▀▀▀ █▄▄▀█▄▄ ▀█▄▀█▄  ▀▄▀  ▄ ▄█  ▀███▄ ▄▀▄▀▀ ▄▄▀█▀▀█ ███ ▀▀█
+█ █▀  ▄▄▄ ▀▀█▄ █▄█▀  ▀▄  ▀▀ ▄▄▄  ▄▀█ ▀  ▀▄▀▀▀▄▄ ▀ ▄▄▄ ▄█▄▀█
+█▄▀▀█ █▄█ ██▀▄▄█▀█▄▀█▀▀█▄▀▄ █▄█ ▀ ▀▄  ▄ ▄▀▀ ▀▄▀█▄ █▄█     █
+█▄██▄▄ ▄▄▄█ ▄▄▄█▀▀ ▄█▀█▀ ▄▄  ▄▄▄▄▄█▄ ▄▄ ▄  ▀▀  ██▄ ▄  ▄█▄██
+█ ▀▄▀▄▄▄▀   ▀▄▀█▄▄▄ █▀▀▀ ▀   █▀ ▀ ▄█ ▄▄ ▄█   ▄▄▄██▀  █▄  ▀█
+█▄██▄█▄▄▀████▄ ▀▄ █▀█ █ ▀ ▄ ▄▀▄█ ▀ █▀▀▄  ██▄█▀▀█▄█▀▀▄▀▄▄ ██
+█ ▀█ ▀█▄▄ ▀▄ █▀ ▄█ ▄▄▄ ▀▄   ▄█▀▀▄ ▀█▄ ▄▀▄▀▀▀▄▄ ▄▀█ █ ██▄▀██
+█▄▄ ▀▄▄▄▄▄█▄▀▀▀▀▀ ▄▄▀ ▀█▀█▄▄▀ ██ █▀ ▄▄ ▄█▄▀▀▄▄█▀▀▀▀▀█▄▄▄▄▄█
+█▄▀▄ ▀▄▄██▄ ▄██▄▀█▄▄▀▀▀▀▀  ▄▀███▄ ▄█ ▄▄▀█▀▀▀█ ▀▄▀ ▄▄ ██   █
+█▀ █ ▄▄▄▄   ▄ █▄▄ ▄█▄▀▀█▄▄▀▀▄▀▀██▀▄ ▄▄▀█ ▄▀▄  ▄ ▄▀▄▀▄ ▀▄▄██
+█▀  ▄▄ ▄█ ▀██▄ ▄▀▄▀ █ ▄▄▄▀▀  ████ ▀▄▄▄█▀ █ ▀█  █▀▀▄▀ ▄▀▀▀▀█
+█ ▀ ▀▀▄▄▀ ▄▄ █ ▄▀ █▀▄   ▄█▄▄ █▄▀▄█▄▄█  █▄█▀▀▀▄ █ ▀▄▀ █▄█▄▀█
+███████▄█▀██  ▄▄▀█▄▄█▀ ██▀▄ ▄▄▄ ▀▄▀██▄█ ██▀▀█ ▀██ ▄▄▄  █▀▄█
+█ ▄▄▄▄▄ █▀ ███▀▀ █▄█ █▄   █ █▄█ ▀▄▀▀▄ █ ▄▄██▄█▄▀█ █▄█ ▄█▄██
+█ █   █ █▄▀ █▄ █▀▀▄ ▀ █▀▀▄█▄   ▄█▄ ▄  █  █▄▀▀▄ ▄▄▄ ▄  █▀ ▀█
+█ █▄▄▄█ █▀▀▄ ▀▀ ▄█ ▀▄█▄ ▄ ▀▀▀ ▄ ██▄█▀█▀ █ ▀ █▄▀▀█▀ █▄▄▄▄███
+█▄▄▄▄▄▄▄█▄█▄█▄▄▄▄▄█▄▄▄▄██▄█▄▄██▄███▄▄▄▄▄▄██▄█▄▄▄▄▄▄▄▄▄█▄█▄█
+ {"code":"2@S/6RbcnE6c4ejO+KrHCUvcLjLwUxkMGJVCU1hT9TvQXuzj+rTzm0Uzqh7hGjD99xmF7dTzp4mYcenNk8eR2fxizP8QIPXuj7B/M=,zDG3LZJXsLPrt28gruq+XpuoWqAcIYVHKVrLdUrD9BA=,KwyzRudfW9bkKPZynYd29HSelVXeZ6Nwd0cFHUeBn1I=,5yIb4ND5zLBK6JBMY2J7o+U0FCMK9XxZxR6D3vvLKPw=,1"}
+[32mhttp[39m:     [testSession:client] Auto close remain: 0s
+[32minfo[39m:     [testSession:client] Closing the page
+[36mverbose[39m:  [testSession:page] Page Closed
+[32mhttp[39m:     [testSession:client] Checking QRCode status...
+[33mwarn[39m:     [testSession:client] Failed to authenticate
+[31merror[39m:    [testSession:client] Auto Close Called
+[32minfo[39m:     [testSession:browser] Using browser folder 'D:\test\wppconnect\tokens\testSession'
+[32minfo[39m:     [testSession:browser] Initializing browser...
+[33mwarn[39m:     [testSession:browser] Chrome not found, using chromium
+[32mhttp[39m:     [testSession:browser] checking headless...
+[32mhttp[39m:     [testSession:browser] headless option is active, browser hidden
+[32minfo[39m:     [testSession:client] Initializing...
+[36mverbose[39m:  [testSession:client] Setting WhatsApp WEB version to 2.3000.10271x
+[36mverbose[39m:  [testSession:client] Loading WhatsApp WEB
+[36mverbose[39m:  [testSession:page] Page loaded
+[36mverbose[39m:  [testSession:client] Injecting wapi.js
+[36mverbose[39m:  [testSession:client] WhatsApp WEB loaded
+[32mhttp[39m:     [testSession:client] Waiting page load
+[32minfo[39m:     [testSession:session] Session Unpaired
+[36mverbose[39m:  [testSession:client] wapi.js injected
+[34mdebug[39m:    [testSession:client] Exposing onMessage function
+[32minfo[39m:     [testSession:client] Waiting for QRCode Scan (Attempt 1)...:
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▄▄█ ▄▀  █▀█ ▀ ▄▄▄ █▀█  █▄▀█ █▀█  ▄ █  ▄ ██ ▄▄▄▄▄ █
+█ █   █ █  ▀▄█ █▄▄  ▄▄▄▄ ▀ █▄███ ▄██▀ ▀▀▄▄ ▄ █▀▄ ██ █   █ █
+█ █▄▄▄█ █▄ █ ▄█▀▀▀▄  ▀▀▀ █▀ ▄▄▄  ▀▄█ ▄█ ▄▄ ▀▀█▄▀▄██ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄▀▄█▄█▄█▄▀▄▀▄█ ▀▄█ █▄█ ▀ ▀ █ █ █▄▀▄█ ▀▄█ █▄▄▄▄▄▄▄█
+█▄  ▄▀█▄▀ ██ ▀████▄██▄  ▄ █▄▄▄   █ ▄▀▀▀▄▄▄▀ ███▄ ▀ █▀▄▄ █ █
+██▄▄▄▄▀▄▄█ ▀██ ▀ ▄ ██ ▄▄▄▄▄▄▄▀▀▀█ █ ▀██▄▀▀▄▄▀▀▄█▀ ▄ █▄ ▄ ▄█
+██▀ ▄█▀▄█▀▀▀▄▀▄ ▀▄█▄ ▀█▄█▄▄ ███▀ ▀▀█▄ ▄▀█▀ █ █ █▄██ ██▀▄█▀█
+██▀ █▄█▄ ██ ▀ █▄ ▀▀▄▀▄▀█ █▀▄▀█▀███ ▀ ▀█▄▀█▄ ▄▀██ ▀█▄█▄  ▀▀█
+█▄▀▀▄▀█▄  ▀█▀▀▄ ▄ ▀▀██ ▀ ▄██▄▄▀█▄▄▄▀███▄ █▀▄▄ █▀▀█▀▄▄██▄▄▀█
+█▄▀█▄▄█▄▀▀▀█▄█▀▀▄ █ ███▀ █ ▀▀▄  █▄▀     █▀▄█▄▄▀ ▀▀▄▄▄▄▀█▄██
+██▄▀▄▄▀▄█▄  ▀  ██ ▀███▄ ▀█ ▀▄ ▀▀▀▀ ▄ ▀ █    ███▄▄  ▄ ▄ ▄ ▀█
+█▄ ▀ ▄█▄█▄▄▄ ▄ ▀▀▄▄▀ ▄▀▄  █▀ █▄█▀▄ ▄ ▄ ▀▀▀  ▀▄▀ ▀ ▀▀█▄▀▄█ █
+███ ▄ ▀▄ ▄█▄██▄▀ ▄  █ ▀█▄███▄██▄▄▄▄█  ▀▀█▀██▄▀ █▀██ ▀█ █ ▄█
+█▀    ▄▄▄ ▀ ▄ █▀▀█▄▄▀▀█▄▄█▄ ▄▄▄ ▀▄ █▀██▄███▄▀  ▄▀ ▄▄▄ ▀▀ ▀█
+█▀██▄ █▄█ ▄██▄ ▀█ █▄▄█▀▀ ██ █▄█   ▀▀ ██▄ █▀█▀▄  █ █▄█ █▀▀ █
+██▀▄█  ▄  █▀ ▀█▄▀▀██ ▀▀█▀▄ ▄▄▄▄  █▀ ██▀▀ ▄▀ ▄█▄▀▄  ▄▄ ▄▄ ██
+█▀▀▀▄  ▄▄▄█▄ ▄▀█▄▄ ██▄ ▄  ▄▀█▄▀▀▄▀ ▄▄▀▀▄▄ ▀▀▄██▄█▀▄█ █▀▀▄▄█
+█ ▀▀▄ ▄▄▄▄▄█▀█▄▄ ▀▄█   ▀▄  ▀█  ██ █ ▄▀██▀█▄▀█▀▀▄█▀ ▄   ▄▄▄█
+██▀█  ▄▄▄▀▄▄ ▄▄▀██▄▄▀██▀ ▄▄ ██▄ ▄▀ █▄▄▀ ▄▀██▀▀▀█▀▄▀▀▀▄██▄▄█
+██ ▄▀▄ ▄  ██ ▀▄▄ ▄▀█  ██▄▀█▄ ▄▄▀ ▄▀▄ █▄███ ▀▄█▀█ █▀▀█▀ ▀█▄█
+█▄ ▄█▀ ▄ ▄████ ▀▀ ▀█ █▄▀ ▄▀  ▀  █▄▄▀ ▀▄█▄▀ █  ▀  ▀  ▀ ▄ █ █
+█▀█ ▀▄▄▄██▀ ▀█ ▀ ▀█▄▄██ ▄███▄█▄ ▀█ █▄▀ ▄▄ ▄▀▄  ▄  ▄▀▄▀ ▄ ██
+██▀▄▄▄▀▄▄███▄ ▄▀█▄▀▀█▄ █ ▀█▄▄█▄█▀▀▄███▀█▄▄ ▀▀██▄▀█▀▀██  ▄▀█
+█ ▀ ▀▀▄▄█▄▄▀ ▄▀██ ██▄█▀▀▀█ █  ▀██▄▀█ █▄▀▀▄  █▀▀█  ▄▄▀▀▀▄ ▄█
+███████▄▄▀ ▄▄ ▄  ▄▄ ▀ █▀██  ▄▄▄  █ █▄▄ ▀▀███ █▀█▀ ▄▄▄ ▀▀▄██
+█ ▄▄▄▄▄ ██▄▀█ ▄▀▀▄ ▀█  █ ▀█ █▄█ ▀███▀▄  █▄█   ▀█▀ █▄█ ▄ ▀▀█
+█ █   █ █▀▀ ▄▀▀▄▀███ ▄▀█ ▀█         ▄▀▀█▄▀ ▄█     ▄  ▄█  ██
+█ █▄▄▄█ █ ▄▄█▄ █  █▄▄▀▄▄█▀▄ ▀██▀▄▀▀▀▀   ▄▄▄▄▄█▀▄▀▄▀  ▀███▀█
+█▄▄▄▄▄▄▄█▄▄███▄▄██▄███▄▄▄███▄▄███▄██▄██▄▄▄████████▄▄▄▄█████
+ {"code":"2@Y770jfDxuxcDG10bC9MhZ2kU0Mr5ifapwFXskmWERHAxvejsehUAki8ikytpeZ5/mBsyGdihZ7VF/T8mkx/bsxNasWN0wmiPTSY=,gR9JhKwp5siw5PMEFul75wSc0UBM+tdkoB6k8hN0Nno=,mcyD3o7jRYkZW4vN297Ym0GSvUrPvPWUuFlWir6kYHY=,8bcQlbonLss0oujNzP1p8JTTRfnLHBndtHZQCHswo2U=,1"}
+[34mdebug[39m:    [testSession:client] Exposing onAnyMessage function
+[32minfo[39m:     [testSession:client] WhatsApp WEB version: 2.3000.1027191782
+[32minfo[39m:     [testSession:client] WA-JS version: 3.18.6
+[34mdebug[39m:    [testSession:client] Exposing onAck function
+[34mdebug[39m:    [testSession:client] Exposing onMessageEdit function
+[34mdebug[39m:    [testSession:client] Exposing onNotificationMessage function
+[34mdebug[39m:    [testSession:client] Exposing onParticipantsChanged function
+[34mdebug[39m:    [testSession:client] Exposing onStateChange function
+[34mdebug[39m:    [testSession:client] Exposing onStreamChange function
+[34mdebug[39m:    [testSession:client] Exposing onIncomingCall function
+[34mdebug[39m:    [testSession:client] Exposing onInterfaceChange function
+[34mdebug[39m:    [testSession:client] Exposing onPresenceChanged function
+[34mdebug[39m:    [testSession:client] Exposing onLiveLocation function
+[34mdebug[39m:    [testSession:client] Exposing onAddedToGroup function
+[34mdebug[39m:    [testSession:client] Exposing onRevokedMessage function
+[34mdebug[39m:    [testSession:client] Exposing onReactionMessage function
+[34mdebug[39m:    [testSession:client] Exposing onPollResponse function
+[34mdebug[39m:    [testSession:client] Exposing onUpdateLabel function
+[34mdebug[39m:    [testSession:client] Exposing onOrderStatusUpdate function
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: QR (CONNECTING)
+[32mhttp[39m:     [testSession:client] Checking is logged...
+[32minfo[39m:     [testSession:client] Auto close configured to 60s
+[32mhttp[39m:     [testSession:client] Waiting for QRCode Scan...
+[32mhttp[39m:     [testSession:client] Auto close remain: 50s
+[32mhttp[39m:     [testSession:client] Auto close remain: 40s
+[32mhttp[39m:     [testSession:client] Auto close remain: 30s
+[32mhttp[39m:     [testSession:client] Auto close remain: 20s
+[32mhttp[39m:     [testSession:client] Connected
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: MAIN (NORMAL)
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: MAIN (NORMAL)
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: MAIN (NORMAL)
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onMessage event (1 registered)
+[31merror[39m:    Unhandled Rejection: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at EventEmitter.<anonymous> (D:\test\wppconnect\examples\test-bot.js:35:24)
+    at EventEmitter.emit (node:events:518:28)
+    at D:\test\wppconnect\dist\api\layers\listener.layer.js:154:87
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: MAIN (NORMAL)
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: MAIN (NORMAL)
+[34mdebug[39m:    [testSession:client] Emitting onInterfaceChange event (1 registered)
+[32mhttp[39m:     [testSession:client] Current state: MAIN (NORMAL)
+[32mhttp[39m:     [testSession:client] Connected

@@ -1,0 +1,600 @@
+{"level":"info","message":"✅ Database initialized","timestamp":"2025-10-11T14:47:11.550Z"}
+{"level":"info","message":"🚀 WPPConnect Server running on port 3000","timestamp":"2025-10-11T14:47:11.565Z"}
+{"level":"info","message":"📊 API Documentation: http://localhost:3000/health","timestamp":"2025-10-11T14:47:11.566Z"}
+{"level":"info","message":"Creating session: sales","timestamp":"2025-10-11T15:07:02.742Z"}
+{"level":"info","message":"Creating session: sales","timestamp":"2025-10-11T15:07:04.957Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session sales: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:07:05.073Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:07:05.073Z"}
+{"level":"info","message":"Creating session: sales","timestamp":"2025-10-11T15:07:05.468Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session sales: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:07:05.538Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:07:05.538Z"}
+{"level":"info","message":"Creating session: sales","timestamp":"2025-10-11T15:07:05.684Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session sales: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:07:05.749Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:07:05.749Z"}
+{"level":"info","message":"Session sales status: desconnectedMobile","timestamp":"2025-10-11T15:07:08.789Z"}
+{"level":"info","message":"QR Code generated for sales (Attempt 1)","timestamp":"2025-10-11T15:07:09.078Z"}
+{"level":"info","message":"Session sales status: notLogged","timestamp":"2025-10-11T15:07:09.166Z"}
+{"level":"info","message":"Session sales status: qrReadSuccess","timestamp":"2025-10-11T15:07:38.169Z"}
+{"level":"error","message":"Error getting host for sales: client.getHost is not a function","stack":"TypeError: client.getHost is not a function\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:192:35)\n    at async D:\\test\\wppconnect\\api-server\\server.js:387:5","timestamp":"2025-10-11T15:07:39.391Z"}
+{"level":"info","message":"✅ Session sales created successfully","timestamp":"2025-10-11T15:07:39.392Z"}
+{"level":"info","message":"Session sales status: inChat","timestamp":"2025-10-11T15:07:40.896Z"}
+{"level":"info","message":"Message received in sales from status@broadcast","timestamp":"2025-10-11T15:07:46.033Z"}
+{"level":"info","message":"Message received in sales from status@broadcast","timestamp":"2025-10-11T15:07:46.036Z"}
+{"level":"info","message":"Message received in sales from status@broadcast","timestamp":"2025-10-11T15:07:46.038Z"}
+{"level":"info","message":"Message received in sales from status@broadcast","timestamp":"2025-10-11T15:07:46.043Z"}
+{"level":"info","message":"Message received in sales from status@broadcast","timestamp":"2025-10-11T15:07:46.060Z"}
+{"level":"info","message":"Message received in sales from status@broadcast","timestamp":"2025-10-11T15:07:46.063Z"}
+{"level":"info","message":"Message received in sales from status@broadcast","timestamp":"2025-10-11T15:07:46.066Z"}
+{"level":"info","message":"Message received in sales from 201090283743-1576333895@g.us","timestamp":"2025-10-11T15:07:50.933Z"}
+{"level":"info","message":"Message received in sales from 201115885784-1525602880@g.us","timestamp":"2025-10-11T15:07:50.949Z"}
+{"level":"info","message":"Message received in sales from 201201730670-1552328286@g.us","timestamp":"2025-10-11T15:07:50.951Z"}
+{"level":"info","message":"Message received in sales from 201013324955-1569214540@g.us","timestamp":"2025-10-11T15:07:50.954Z"}
+{"level":"info","message":"Message received in sales from 201200422605-1633458639@g.us","timestamp":"2025-10-11T15:07:50.956Z"}
+{"level":"info","message":"Message received in sales from 201032962655-1595343783@g.us","timestamp":"2025-10-11T15:07:50.958Z"}
+{"level":"info","message":"Message received in sales from 120363047259015963@g.us","timestamp":"2025-10-11T15:07:50.961Z"}
+{"level":"info","message":"Message received in sales from 120363152737416085@g.us","timestamp":"2025-10-11T15:07:50.963Z"}
+{"level":"info","message":"Message received in sales from 120363385505149898@g.us","timestamp":"2025-10-11T15:07:50.966Z"}
+{"level":"info","message":"Message received in sales from 120363316042680013@g.us","timestamp":"2025-10-11T15:07:50.970Z"}
+{"level":"info","message":"Message received in sales from 201007816384-1585019509@g.us","timestamp":"2025-10-11T15:07:50.972Z"}
+{"level":"info","message":"Message received in sales from 201008454469-1600973354@g.us","timestamp":"2025-10-11T15:07:50.975Z"}
+{"level":"info","message":"Message received in sales from 201100778944-1565252245@g.us","timestamp":"2025-10-11T15:07:50.978Z"}
+{"level":"info","message":"Message received in sales from 120363045000571365@g.us","timestamp":"2025-10-11T15:07:50.981Z"}
+{"level":"info","message":"Message received in sales from 120363159740458914@g.us","timestamp":"2025-10-11T15:07:50.983Z"}
+{"level":"info","message":"Message received in sales from 201220763267-1574383580@g.us","timestamp":"2025-10-11T15:07:50.986Z"}
+{"level":"info","message":"Message received in sales from 201007816384-1562967010@g.us","timestamp":"2025-10-11T15:07:50.987Z"}
+{"level":"info","message":"Message received in sales from 120363027272550285@g.us","timestamp":"2025-10-11T15:07:50.989Z"}
+{"level":"info","message":"Message received in sales from 201026846614-1555260725@g.us","timestamp":"2025-10-11T15:07:50.991Z"}
+{"level":"info","message":"Message received in sales from 120363315174242352@g.us","timestamp":"2025-10-11T15:07:50.993Z"}
+{"level":"info","message":"Message received in sales from 120363295246668369@g.us","timestamp":"2025-10-11T15:07:50.995Z"}
+{"level":"info","message":"Message received in sales from 120363043206203179@g.us","timestamp":"2025-10-11T15:07:50.997Z"}
+{"level":"info","message":"Message received in sales from 120363200682227672@g.us","timestamp":"2025-10-11T15:07:50.999Z"}
+{"level":"info","message":"Message received in sales from 201100778944-1597616898@g.us","timestamp":"2025-10-11T15:07:51.001Z"}
+{"level":"info","message":"Message received in sales from 201220763267-1626127784@g.us","timestamp":"2025-10-11T15:07:51.003Z"}
+{"level":"info","message":"Message received in sales from 120363042768312992@g.us","timestamp":"2025-10-11T15:07:51.005Z"}
+{"level":"info","message":"Message received in sales from 201096530833-1565295080@g.us","timestamp":"2025-10-11T15:07:51.007Z"}
+{"level":"info","message":"Message received in sales from 201142537220-1564907372@g.us","timestamp":"2025-10-11T15:07:51.009Z"}
+{"level":"info","message":"Message received in sales from 120363027579378554@g.us","timestamp":"2025-10-11T15:07:51.012Z"}
+{"level":"info","message":"Message received in sales from 120363160788824826@g.us","timestamp":"2025-10-11T15:07:51.014Z"}
+{"level":"info","message":"Message received in sales from 201113300159-1563265178@g.us","timestamp":"2025-10-11T15:07:51.016Z"}
+{"level":"info","message":"Message received in sales from 120363046085035064@g.us","timestamp":"2025-10-11T15:07:51.018Z"}
+{"level":"info","message":"Message received in sales from 120363047863878300@g.us","timestamp":"2025-10-11T15:07:51.020Z"}
+{"level":"info","message":"Message received in sales from 201118501246-1561637557@g.us","timestamp":"2025-10-11T15:07:51.022Z"}
+{"level":"info","message":"Message received in sales from 120363027725140627@g.us","timestamp":"2025-10-11T15:07:51.029Z"}
+{"level":"info","message":"Message received in sales from 120363094348845199@g.us","timestamp":"2025-10-11T15:07:51.031Z"}
+{"level":"info","message":"Message received in sales from 120363364150766891@g.us","timestamp":"2025-10-11T15:07:51.033Z"}
+{"level":"info","message":"Message received in sales from 120363343570097283@g.us","timestamp":"2025-10-11T15:07:51.035Z"}
+{"level":"info","message":"Message received in sales from 120363317568859391@g.us","timestamp":"2025-10-11T15:07:51.036Z"}
+{"level":"info","message":"Message received in sales from 201117770749@c.us","timestamp":"2025-10-11T15:08:00.435Z"}
+{"level":"info","message":"QR Code generated for sales (Attempt 1)","timestamp":"2025-10-11T15:08:07.032Z"}
+{"level":"info","message":"sales state changed: UNPAIRED","timestamp":"2025-10-11T15:08:07.042Z"}
+{"level":"info","message":"Session sales status: desconnectedMobile","timestamp":"2025-10-11T15:08:07.155Z"}
+{"level":"info","message":"Session sales status: notLogged","timestamp":"2025-10-11T15:08:09.052Z"}
+{"level":"info","message":"Session sales status: browserClose","timestamp":"2025-10-11T15:08:14.118Z"}
+{"level":"info","message":"Session sales closed","timestamp":"2025-10-11T15:08:14.119Z"}
+{"level":"info","message":"Session sales status: qrReadError","timestamp":"2025-10-11T15:08:14.598Z"}
+{"level":"info","message":"Creating session: support","timestamp":"2025-10-11T15:08:35.059Z"}
+{"level":"info","message":"Creating session: support","timestamp":"2025-10-11T15:08:38.542Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session support: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:08:38.636Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-11T15:08:38.636Z"}
+{"level":"info","message":"Session support status: desconnectedMobile","timestamp":"2025-10-11T15:08:40.674Z"}
+{"level":"info","message":"QR Code generated for support (Attempt 1)","timestamp":"2025-10-11T15:08:41.114Z"}
+{"level":"info","message":"Session support status: notLogged","timestamp":"2025-10-11T15:08:41.167Z"}
+{"level":"info","message":"Session support status: qrReadSuccess","timestamp":"2025-10-11T15:08:52.681Z"}
+{"level":"error","message":"Error getting host for support: client.getHost is not a function","stack":"TypeError: client.getHost is not a function\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:192:35)\n    at async D:\\test\\wppconnect\\api-server\\server.js:387:5","timestamp":"2025-10-11T15:08:53.902Z"}
+{"level":"info","message":"✅ Session support created successfully","timestamp":"2025-10-11T15:08:53.903Z"}
+{"level":"info","message":"Session support status: inChat","timestamp":"2025-10-11T15:08:54.259Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-11T15:08:56.072Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-11T15:08:56.076Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-11T15:08:56.079Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-11T15:08:56.083Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-11T15:08:56.087Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-11T15:08:56.138Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-11T15:08:56.141Z"}
+{"level":"info","message":"Message received in support from 201090283743-1576333895@g.us","timestamp":"2025-10-11T15:09:01.054Z"}
+{"level":"info","message":"Message received in support from 201115885784-1525602880@g.us","timestamp":"2025-10-11T15:09:01.057Z"}
+{"level":"info","message":"Message received in support from 201201730670-1552328286@g.us","timestamp":"2025-10-11T15:09:01.059Z"}
+{"level":"info","message":"Message received in support from 201013324955-1569214540@g.us","timestamp":"2025-10-11T15:09:01.063Z"}
+{"level":"info","message":"Message received in support from 201200422605-1633458639@g.us","timestamp":"2025-10-11T15:09:01.066Z"}
+{"level":"info","message":"Message received in support from 201032962655-1595343783@g.us","timestamp":"2025-10-11T15:09:01.069Z"}
+{"level":"info","message":"Message received in support from 120363047259015963@g.us","timestamp":"2025-10-11T15:09:01.072Z"}
+{"level":"info","message":"Message received in support from 120363152737416085@g.us","timestamp":"2025-10-11T15:09:01.075Z"}
+{"level":"info","message":"Message received in support from 120363385505149898@g.us","timestamp":"2025-10-11T15:09:01.078Z"}
+{"level":"info","message":"Message received in support from 120363316042680013@g.us","timestamp":"2025-10-11T15:09:01.080Z"}
+{"level":"info","message":"Message received in support from 201007816384-1585019509@g.us","timestamp":"2025-10-11T15:09:01.083Z"}
+{"level":"info","message":"Message received in support from 201008454469-1600973354@g.us","timestamp":"2025-10-11T15:09:01.087Z"}
+{"level":"info","message":"Message received in support from 201100778944-1565252245@g.us","timestamp":"2025-10-11T15:09:01.089Z"}
+{"level":"info","message":"Message received in support from 120363045000571365@g.us","timestamp":"2025-10-11T15:09:01.091Z"}
+{"level":"info","message":"Message received in support from 120363159740458914@g.us","timestamp":"2025-10-11T15:09:01.094Z"}
+{"level":"info","message":"Message received in support from 201220763267-1574383580@g.us","timestamp":"2025-10-11T15:09:01.095Z"}
+{"level":"info","message":"Message received in support from 201007816384-1562967010@g.us","timestamp":"2025-10-11T15:09:01.098Z"}
+{"level":"info","message":"Message received in support from 120363027272550285@g.us","timestamp":"2025-10-11T15:09:01.100Z"}
+{"level":"info","message":"Message received in support from 201026846614-1555260725@g.us","timestamp":"2025-10-11T15:09:01.103Z"}
+{"level":"info","message":"Message received in support from 120363315174242352@g.us","timestamp":"2025-10-11T15:09:01.104Z"}
+{"level":"info","message":"Message received in support from 120363295246668369@g.us","timestamp":"2025-10-11T15:09:01.106Z"}
+{"level":"info","message":"Message received in support from 120363043206203179@g.us","timestamp":"2025-10-11T15:09:01.108Z"}
+{"level":"info","message":"Message received in support from 120363200682227672@g.us","timestamp":"2025-10-11T15:09:01.110Z"}
+{"level":"info","message":"Message received in support from 201100778944-1597616898@g.us","timestamp":"2025-10-11T15:09:01.112Z"}
+{"level":"info","message":"Message received in support from 201220763267-1626127784@g.us","timestamp":"2025-10-11T15:09:01.114Z"}
+{"level":"info","message":"Message received in support from 120363042768312992@g.us","timestamp":"2025-10-11T15:09:01.116Z"}
+{"level":"info","message":"Message received in support from 201096530833-1565295080@g.us","timestamp":"2025-10-11T15:09:01.118Z"}
+{"level":"info","message":"Message received in support from 201142537220-1564907372@g.us","timestamp":"2025-10-11T15:09:01.120Z"}
+{"level":"info","message":"Message received in support from 120363027579378554@g.us","timestamp":"2025-10-11T15:09:01.123Z"}
+{"level":"info","message":"Message received in support from 120363160788824826@g.us","timestamp":"2025-10-11T15:09:01.127Z"}
+{"level":"info","message":"Message received in support from 201113300159-1563265178@g.us","timestamp":"2025-10-11T15:09:01.129Z"}
+{"level":"info","message":"Message received in support from 120363027725140627@g.us","timestamp":"2025-10-11T15:09:01.133Z"}
+{"level":"info","message":"Message received in support from 120363094348845199@g.us","timestamp":"2025-10-11T15:09:01.135Z"}
+{"level":"info","message":"Message received in support from 120363046085035064@g.us","timestamp":"2025-10-11T15:09:01.137Z"}
+{"level":"info","message":"Message received in support from 120363364150766891@g.us","timestamp":"2025-10-11T15:09:01.139Z"}
+{"level":"info","message":"Message received in support from 120363047863878300@g.us","timestamp":"2025-10-11T15:09:01.176Z"}
+{"level":"info","message":"Message received in support from 120363343570097283@g.us","timestamp":"2025-10-11T15:09:01.180Z"}
+{"level":"info","message":"Message received in support from 201118501246-1561637557@g.us","timestamp":"2025-10-11T15:09:01.181Z"}
+{"level":"info","message":"Message received in support from 120363317568859391@g.us","timestamp":"2025-10-11T15:09:01.182Z"}
+{"level":"info","message":"Message received in support from 201117770749@c.us","timestamp":"2025-10-11T15:09:45.204Z"}
+{"level":"info","message":"Message received in support from 120363165240010385@g.us","timestamp":"2025-10-11T15:29:40.757Z"}
+{"level":"info","message":"Message received in support from 201228217311@c.us","timestamp":"2025-10-11T15:29:59.827Z"}
+{"level":"info","message":"Message received in support from 120363165240010385@g.us","timestamp":"2025-10-11T15:31:38.868Z"}
+{"level":"info","message":"Message received in support from 120363165240010385@g.us","timestamp":"2025-10-11T15:31:39.941Z"}
+{"level":"info","message":"Message received in support from 120363165240010385@g.us","timestamp":"2025-10-11T15:31:41.051Z"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2025-10-11T15:41:27.036Z"}
+{"level":"info","message":"✅ Database initialized","timestamp":"2025-10-13T18:23:28.588Z"}
+{"level":"info","message":"🚀 WPPConnect Server running on port 3000","timestamp":"2025-10-13T18:23:28.596Z"}
+{"level":"info","message":"📊 API Documentation: http://localhost:3000/health","timestamp":"2025-10-13T18:23:28.596Z"}
+{"level":"info","message":"Creating session: mina","timestamp":"2025-10-13T18:24:25.726Z"}
+{"level":"info","message":"QR Code generated for mina (Attempt 1)","timestamp":"2025-10-13T18:24:32.559Z"}
+{"level":"info","message":"Session mina status: notLogged","timestamp":"2025-10-13T18:24:32.671Z"}
+{"level":"info","message":"Session mina status: desconnectedMobile","timestamp":"2025-10-13T18:24:32.883Z"}
+{"level":"info","message":"Creating session: mina","timestamp":"2025-10-13T18:24:40.983Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session mina: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-13T18:24:41.080Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-13T18:24:41.081Z"}
+{"level":"info","message":"Creating session: mina","timestamp":"2025-10-13T18:24:41.208Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session mina: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-13T18:24:41.277Z"}
+{"cause":{"name":"ProtocolError"},"level":"error","message":"Error creating session: Protocol error (Target.setDiscoverTargets): Target closed","name":"TargetCloseError","stack":"TargetCloseError: Protocol error (Target.setDiscoverTargets): Target closed\n    at CallbackRegistry.clear (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\common\\CallbackRegistry.js:81:36)\n    at #onClose (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\cdp\\Connection.js:179:25)\n    at Socket.<anonymous> (D:\\test\\wppconnect\\node_modules\\puppeteer-core\\lib\\cjs\\puppeteer\\node\\PipeTransport.js:29:30)\n    at Socket.emit (node:events:530:35)\n    at Pipe.<anonymous> (node:net:346:12)","timestamp":"2025-10-13T18:24:41.277Z"}
+{"level":"info","message":"QR Code generated for mina (Attempt 2)","timestamp":"2025-10-13T18:25:31.891Z"}
+{"level":"info","message":"QR Code generated for mina (Attempt 3)","timestamp":"2025-10-13T18:25:51.906Z"}
+{"level":"info","message":"QR Code generated for mina (Attempt 4)","timestamp":"2025-10-13T18:26:11.906Z"}
+{"level":"info","message":"QR Code generated for mina (Attempt 5)","timestamp":"2025-10-13T18:26:31.906Z"}
+{"level":"info","message":"QR Code generated for mina (Attempt 6)","timestamp":"2025-10-13T18:26:51.915Z"}
+{"level":"info","message":"Session mina status: qrReadSuccess","timestamp":"2025-10-13T18:27:26.707Z"}
+{"level":"error","message":"Error getting host for mina: client.getHost is not a function","stack":"TypeError: client.getHost is not a function\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:192:35)\n    at async D:\\test\\wppconnect\\api-server\\server.js:387:5","timestamp":"2025-10-13T18:27:27.931Z"}
+{"level":"info","message":"✅ Session mina created successfully","timestamp":"2025-10-13T18:27:27.932Z"}
+{"level":"info","message":"mina state changed: PAIRING","timestamp":"2025-10-13T18:27:28.199Z"}
+{"level":"info","message":"mina state changed: CONNECTED","timestamp":"2025-10-13T18:27:28.202Z"}
+{"level":"info","message":"Session mina status: inChat","timestamp":"2025-10-13T18:27:29.787Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.867Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.873Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.881Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.884Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.886Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.888Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.891Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.894Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.897Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.900Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.903Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.905Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.908Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.910Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.913Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.915Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.917Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.920Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.922Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.925Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.926Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.934Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.936Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.939Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.940Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.942Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.945Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.946Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.948Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.950Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.952Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.958Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.962Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.965Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.967Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.970Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.973Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.975Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.978Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.980Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.983Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.987Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.992Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.995Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.996Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:40.999Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.001Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.003Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.004Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.006Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.008Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.011Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.012Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.014Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.016Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.020Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.022Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.025Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.027Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.030Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.032Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.034Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.037Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.038Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.040Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.044Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.046Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.049Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.051Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.053Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.056Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.059Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.062Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.063Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.066Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.067Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.070Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.072Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.074Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.076Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.080Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.081Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.084Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.086Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.090Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.092Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.095Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.096Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.098Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.101Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.103Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.104Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:27:41.106Z"}
+{"level":"info","message":"Message received in mina from 201060411162-1617043776@g.us","timestamp":"2025-10-13T18:27:46.138Z"}
+{"level":"info","message":"Message received in mina from 201128259192-1563343954@g.us","timestamp":"2025-10-13T18:27:46.142Z"}
+{"level":"info","message":"Message received in mina from 201117116036-1550180592@g.us","timestamp":"2025-10-13T18:27:46.144Z"}
+{"level":"info","message":"Message received in mina from 201117116036-1605891794@g.us","timestamp":"2025-10-13T18:27:46.148Z"}
+{"level":"info","message":"Message received in mina from 201000328526-1458768946@g.us","timestamp":"2025-10-13T18:27:46.152Z"}
+{"level":"info","message":"Message received in mina from 120363040588810625@g.us","timestamp":"2025-10-13T18:27:46.154Z"}
+{"level":"info","message":"Message received in mina from 120363031577598371@g.us","timestamp":"2025-10-13T18:27:46.157Z"}
+{"level":"info","message":"Message received in mina from 120363389505297251@g.us","timestamp":"2025-10-13T18:27:46.161Z"}
+{"level":"info","message":"Message received in mina from 201020341628@c.us","timestamp":"2025-10-13T18:28:04.749Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:37.662Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:38.489Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:38.531Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:38.569Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:39.172Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:39.219Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:39.756Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:39.790Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:41.552Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:41.603Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:41.639Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:41.673Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:41.720Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:41.752Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:41.782Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:42.185Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:42.213Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:42.450Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:42.708Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:42.947Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:43.236Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:43.445Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:43.814Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:28:44.028Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:29:49.667Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:31:31.344Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:31:31.375Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:31:31.405Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:31:31.433Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:31:31.464Z"}
+{"level":"info","message":"mina state changed: OPENING","timestamp":"2025-10-13T18:31:42.458Z"}
+{"level":"info","message":"mina state changed: PAIRING","timestamp":"2025-10-13T18:46:13.858Z"}
+{"level":"info","message":"mina state changed: CONNECTED","timestamp":"2025-10-13T18:46:13.860Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:14.878Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:14.948Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.332Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.457Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.515Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.569Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.599Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.620Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.650Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.668Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.691Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.720Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.738Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.753Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.774Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.791Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.808Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.836Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.869Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.884Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.913Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.946Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:17.970Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:18.009Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:18.040Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:18.074Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:18.123Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.108Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.156Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.189Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.215Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.854Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.882Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.936Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.960Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.975Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:20.991Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:21.024Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:21.055Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:21.073Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:21.114Z"}
+{"level":"info","message":"Message received in mina from 201201811661-1567555645@g.us","timestamp":"2025-10-13T18:46:21.183Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T18:46:21.269Z"}
+{"level":"info","message":"mina state changed: OPENING","timestamp":"2025-10-13T18:55:02.819Z"}
+{"level":"info","message":"mina state changed: PAIRING","timestamp":"2025-10-13T18:55:04.868Z"}
+{"level":"info","message":"mina state changed: CONNECTED","timestamp":"2025-10-13T18:55:04.870Z"}
+{"level":"info","message":"Message received in mina from 201228217311@c.us","timestamp":"2025-10-13T18:56:02.782Z"}
+{"level":"info","message":"Message received in mina from 201228217311@c.us","timestamp":"2025-10-13T18:56:10.787Z"}
+{"level":"info","message":"Message received in mina from 201228217311@c.us","timestamp":"2025-10-13T18:56:35.433Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T19:01:18.134Z"}
+{"level":"info","message":"Message received in mina from status@broadcast","timestamp":"2025-10-13T19:05:29.445Z"}
+{"level":"info","message":"mina state changed: OPENING","timestamp":"2025-10-13T19:07:54.100Z"}
+{"level":"info","message":"✅ Database initialized","timestamp":"2025-10-17T14:28:19.218Z"}
+{"level":"info","message":"🚀 WPPConnect Server running on port 3000","timestamp":"2025-10-17T14:28:19.227Z"}
+{"level":"info","message":"📊 API Documentation: http://localhost:3000/health","timestamp":"2025-10-17T14:28:19.228Z"}
+{"level":"info","message":"Creating session: momen","timestamp":"2025-10-17T14:28:52.135Z"}
+{"level":"info","message":"Session momen status: desconnectedMobile","timestamp":"2025-10-17T14:28:58.375Z"}
+{"level":"info","message":"QR Code generated for momen (Attempt 1)","timestamp":"2025-10-17T14:28:58.552Z"}
+{"level":"info","message":"Session momen status: notLogged","timestamp":"2025-10-17T14:28:58.687Z"}
+{"level":"info","message":"Session momen status: qrReadSuccess","timestamp":"2025-10-17T14:29:22.989Z"}
+{"level":"error","message":"Error getting host for momen: client.getHost is not a function","stack":"TypeError: client.getHost is not a function\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:192:35)\n    at async D:\\test\\wppconnect\\api-server\\server.js:387:5","timestamp":"2025-10-17T14:29:24.193Z"}
+{"level":"info","message":"✅ Session momen created successfully","timestamp":"2025-10-17T14:29:24.194Z"}
+{"level":"info","message":"Session momen status: inChat","timestamp":"2025-10-17T14:29:25.798Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.602Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.607Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.611Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.617Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.618Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.620Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.622Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.624Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:29:29.626Z"}
+{"level":"info","message":"Message received in momen from 201090283743-1576333895@g.us","timestamp":"2025-10-17T14:29:35.715Z"}
+{"level":"info","message":"Message received in momen from 201115885784-1525602880@g.us","timestamp":"2025-10-17T14:29:35.716Z"}
+{"level":"info","message":"Message received in momen from 201201730670-1552328286@g.us","timestamp":"2025-10-17T14:29:35.719Z"}
+{"level":"info","message":"Message received in momen from 201013324955-1569214540@g.us","timestamp":"2025-10-17T14:29:35.721Z"}
+{"level":"info","message":"Message received in momen from 201200422605-1633458639@g.us","timestamp":"2025-10-17T14:29:35.723Z"}
+{"level":"info","message":"Message received in momen from 201032962655-1595343783@g.us","timestamp":"2025-10-17T14:29:35.725Z"}
+{"level":"info","message":"Message received in momen from 120363047259015963@g.us","timestamp":"2025-10-17T14:29:35.728Z"}
+{"level":"info","message":"Message received in momen from 120363152737416085@g.us","timestamp":"2025-10-17T14:29:35.730Z"}
+{"level":"info","message":"Message received in momen from 120363385505149898@g.us","timestamp":"2025-10-17T14:29:35.733Z"}
+{"level":"info","message":"Message received in momen from 120363316042680013@g.us","timestamp":"2025-10-17T14:29:35.735Z"}
+{"level":"info","message":"Message received in momen from 201007816384-1585019509@g.us","timestamp":"2025-10-17T14:29:35.739Z"}
+{"level":"info","message":"Message received in momen from 201008454469-1600973354@g.us","timestamp":"2025-10-17T14:29:35.741Z"}
+{"level":"info","message":"Message received in momen from 201100778944-1565252245@g.us","timestamp":"2025-10-17T14:29:35.745Z"}
+{"level":"info","message":"Message received in momen from 120363045000571365@g.us","timestamp":"2025-10-17T14:29:35.748Z"}
+{"level":"info","message":"Message received in momen from 120363159740458914@g.us","timestamp":"2025-10-17T14:29:35.751Z"}
+{"level":"info","message":"Message received in momen from 201220763267-1574383580@g.us","timestamp":"2025-10-17T14:29:35.754Z"}
+{"level":"info","message":"Message received in momen from 201007816384-1562967010@g.us","timestamp":"2025-10-17T14:29:35.755Z"}
+{"level":"info","message":"Message received in momen from 120363027272550285@g.us","timestamp":"2025-10-17T14:29:35.758Z"}
+{"level":"info","message":"Message received in momen from 201026846614-1555260725@g.us","timestamp":"2025-10-17T14:29:35.760Z"}
+{"level":"info","message":"Message received in momen from 120363315174242352@g.us","timestamp":"2025-10-17T14:29:35.762Z"}
+{"level":"info","message":"Message received in momen from 120363295246668369@g.us","timestamp":"2025-10-17T14:29:35.764Z"}
+{"level":"info","message":"Message received in momen from 120363043206203179@g.us","timestamp":"2025-10-17T14:29:35.774Z"}
+{"level":"info","message":"Message received in momen from 120363200682227672@g.us","timestamp":"2025-10-17T14:29:35.775Z"}
+{"level":"info","message":"Message received in momen from 201100778944-1597616898@g.us","timestamp":"2025-10-17T14:29:35.776Z"}
+{"level":"info","message":"Message received in momen from 201220763267-1626127784@g.us","timestamp":"2025-10-17T14:29:35.777Z"}
+{"level":"info","message":"Message received in momen from 120363042768312992@g.us","timestamp":"2025-10-17T14:29:35.778Z"}
+{"level":"info","message":"Message received in momen from 201096530833-1565295080@g.us","timestamp":"2025-10-17T14:29:35.779Z"}
+{"level":"info","message":"Message received in momen from 201142537220-1564907372@g.us","timestamp":"2025-10-17T14:29:35.780Z"}
+{"level":"info","message":"Message received in momen from 120363027579378554@g.us","timestamp":"2025-10-17T14:29:35.784Z"}
+{"level":"info","message":"Message received in momen from 120363086999165495@g.us","timestamp":"2025-10-17T14:29:35.786Z"}
+{"level":"info","message":"Message received in momen from 120363160788824826@g.us","timestamp":"2025-10-17T14:29:35.788Z"}
+{"level":"info","message":"Message received in momen from 201113300159-1563265178@g.us","timestamp":"2025-10-17T14:29:35.790Z"}
+{"level":"info","message":"Message received in momen from 120363046085035064@g.us","timestamp":"2025-10-17T14:29:35.792Z"}
+{"level":"info","message":"Message received in momen from 120363047863878300@g.us","timestamp":"2025-10-17T14:29:35.794Z"}
+{"level":"info","message":"Message received in momen from 201118501246-1561637557@g.us","timestamp":"2025-10-17T14:29:35.796Z"}
+{"level":"info","message":"Message received in momen from 120363027725140627@g.us","timestamp":"2025-10-17T14:29:35.804Z"}
+{"level":"info","message":"Message received in momen from 120363094348845199@g.us","timestamp":"2025-10-17T14:29:35.805Z"}
+{"level":"info","message":"Message received in momen from 120363364150766891@g.us","timestamp":"2025-10-17T14:29:35.808Z"}
+{"level":"info","message":"Message received in momen from 120363343570097283@g.us","timestamp":"2025-10-17T14:29:35.810Z"}
+{"level":"info","message":"Message received in momen from 120363317568859391@g.us","timestamp":"2025-10-17T14:29:35.812Z"}
+{"level":"info","message":"Message received in momen from 201117770749@c.us","timestamp":"2025-10-17T14:29:47.762Z"}
+{"level":"info","message":"Message received in momen from status@broadcast","timestamp":"2025-10-17T14:32:40.896Z"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2025-10-17T14:34:07.075Z"}
+{"level":"info","message":"✅ Database initialized","timestamp":"2025-10-17T14:34:09.583Z"}
+{"level":"info","message":"🚀 WPPConnect Server running on port 3000","timestamp":"2025-10-17T14:34:09.590Z"}
+{"level":"info","message":"📊 API Documentation: http://localhost:3000/health","timestamp":"2025-10-17T14:34:09.591Z"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2025-10-17T15:37:51.798Z"}
+{"level":"info","message":"✅ Database initialized with all tables","timestamp":"2025-10-17T15:40:22.752Z"}
+{"level":"info","message":"🚀 Enhanced WPPConnect Server running on port 3000","timestamp":"2025-10-17T15:40:22.762Z"}
+{"level":"info","message":"📊 Features enabled: Templates, Auto-Responder, Business Hours, Scheduled Messages","timestamp":"2025-10-17T15:40:22.762Z"}
+{"level":"info","message":"🌐 Dashboard: http://localhost:3000","timestamp":"2025-10-17T15:40:22.763Z"}
+{"level":"info","message":"Creating session: support","timestamp":"2025-10-17T15:43:05.929Z"}
+{"level":"info","message":"Session support status: isLogged","timestamp":"2025-10-17T15:43:10.561Z"}
+{"level":"error","message":"Error getting host for support: client.getHost is not a function","stack":"TypeError: client.getHost is not a function\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:416:35)\n    at async D:\\test\\wppconnect\\api-server\\server.js:731:5","timestamp":"2025-10-17T15:43:11.773Z"}
+{"level":"info","message":"✅ Session support created successfully","timestamp":"2025-10-17T15:43:11.775Z"}
+{"level":"info","message":"support state changed: PAIRING","timestamp":"2025-10-17T15:43:12.840Z"}
+{"level":"info","message":"support state changed: CONNECTED","timestamp":"2025-10-17T15:43:12.841Z"}
+{"level":"info","message":"support state changed: PAIRING","timestamp":"2025-10-17T15:43:20.827Z"}
+{"level":"info","message":"support state changed: UNPAIRED","timestamp":"2025-10-17T15:43:21.183Z"}
+{"level":"info","message":"QR Code generated for support (Attempt 1)","timestamp":"2025-10-17T15:43:21.297Z"}
+{"level":"info","message":"Session support status: desconnectedMobile","timestamp":"2025-10-17T15:43:21.385Z"}
+{"level":"info","message":"Session support status: notLogged","timestamp":"2025-10-17T15:43:22.856Z"}
+{"level":"info","message":"QR Code generated for support (Attempt 2)","timestamp":"2025-10-17T15:44:21.258Z"}
+{"level":"info","message":"Session support status: qrReadSuccess","timestamp":"2025-10-17T15:44:39.820Z"}
+{"level":"info","message":"support state changed: OPENING","timestamp":"2025-10-17T15:44:40.567Z"}
+{"level":"info","message":"support state changed: PAIRING","timestamp":"2025-10-17T15:44:44.785Z"}
+{"level":"info","message":"support state changed: CONNECTED","timestamp":"2025-10-17T15:44:44.786Z"}
+{"level":"info","message":"Session support status: inChat","timestamp":"2025-10-17T15:44:56.317Z"}
+{"level":"info","message":"support state changed: OPENING","timestamp":"2025-10-17T15:44:59.165Z"}
+{"level":"info","message":"support state changed: PAIRING","timestamp":"2025-10-17T15:45:04.168Z"}
+{"level":"info","message":"support state changed: CONNECTED","timestamp":"2025-10-17T15:45:04.169Z"}
+{"level":"info","message":"Session support status: inChat","timestamp":"2025-10-17T15:45:04.881Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.454Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.455Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.457Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.458Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.460Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.460Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.464Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.465Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.468Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.469Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.471Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.472Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.476Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.477Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.480Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.480Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.485Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.486Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:05.489Z"}
+{"level":"info","message":"Message received in support from status@broadcast","timestamp":"2025-10-17T15:45:05.490Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.775Z"}
+{"level":"info","message":"Message received in support from 201090283743-1576333895@g.us","timestamp":"2025-10-17T15:45:37.776Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.789Z"}
+{"level":"info","message":"Message received in support from 201115885784-1525602880@g.us","timestamp":"2025-10-17T15:45:37.789Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.791Z"}
+{"level":"info","message":"Message received in support from 201201730670-1552328286@g.us","timestamp":"2025-10-17T15:45:37.791Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.793Z"}
+{"level":"info","message":"Message received in support from 201013324955-1569214540@g.us","timestamp":"2025-10-17T15:45:37.793Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.795Z"}
+{"level":"info","message":"Message received in support from 201200422605-1633458639@g.us","timestamp":"2025-10-17T15:45:37.795Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.797Z"}
+{"level":"info","message":"Message received in support from 201032962655-1595343783@g.us","timestamp":"2025-10-17T15:45:37.797Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.799Z"}
+{"level":"info","message":"Message received in support from 120363047259015963@g.us","timestamp":"2025-10-17T15:45:37.799Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.802Z"}
+{"level":"info","message":"Message received in support from 120363152737416085@g.us","timestamp":"2025-10-17T15:45:37.802Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.805Z"}
+{"level":"info","message":"Message received in support from 120363385505149898@g.us","timestamp":"2025-10-17T15:45:37.806Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.809Z"}
+{"level":"info","message":"Message received in support from 120363316042680013@g.us","timestamp":"2025-10-17T15:45:37.809Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.812Z"}
+{"level":"info","message":"Message received in support from 201007816384-1585019509@g.us","timestamp":"2025-10-17T15:45:37.812Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.815Z"}
+{"level":"info","message":"Message received in support from 201008454469-1600973354@g.us","timestamp":"2025-10-17T15:45:37.816Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.819Z"}
+{"level":"info","message":"Message received in support from 201100778944-1565252245@g.us","timestamp":"2025-10-17T15:45:37.819Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.822Z"}
+{"level":"info","message":"Message received in support from 120363045000571365@g.us","timestamp":"2025-10-17T15:45:37.823Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.825Z"}
+{"level":"info","message":"Message received in support from 120363159740458914@g.us","timestamp":"2025-10-17T15:45:37.825Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.828Z"}
+{"level":"info","message":"Message received in support from 201220763267-1574383580@g.us","timestamp":"2025-10-17T15:45:37.828Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.831Z"}
+{"level":"info","message":"Message received in support from 201007816384-1562967010@g.us","timestamp":"2025-10-17T15:45:37.832Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.833Z"}
+{"level":"info","message":"Message received in support from 120363027272550285@g.us","timestamp":"2025-10-17T15:45:37.833Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.836Z"}
+{"level":"info","message":"Message received in support from 201026846614-1555260725@g.us","timestamp":"2025-10-17T15:45:37.836Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.839Z"}
+{"level":"info","message":"Message received in support from 120363315174242352@g.us","timestamp":"2025-10-17T15:45:37.839Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.841Z"}
+{"level":"info","message":"Message received in support from 120363295246668369@g.us","timestamp":"2025-10-17T15:45:37.842Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.844Z"}
+{"level":"info","message":"Message received in support from 120363043206203179@g.us","timestamp":"2025-10-17T15:45:37.844Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.847Z"}
+{"level":"info","message":"Message received in support from 120363200682227672@g.us","timestamp":"2025-10-17T15:45:37.847Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.849Z"}
+{"level":"info","message":"Message received in support from 201100778944-1597616898@g.us","timestamp":"2025-10-17T15:45:37.850Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.852Z"}
+{"level":"info","message":"Message received in support from 201220763267-1626127784@g.us","timestamp":"2025-10-17T15:45:37.852Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.855Z"}
+{"level":"info","message":"Message received in support from 120363042768312992@g.us","timestamp":"2025-10-17T15:45:37.855Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.858Z"}
+{"level":"info","message":"Message received in support from 201096530833-1565295080@g.us","timestamp":"2025-10-17T15:45:37.858Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.859Z"}
+{"level":"info","message":"Message received in support from 201142537220-1564907372@g.us","timestamp":"2025-10-17T15:45:37.860Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.862Z"}
+{"level":"info","message":"Message received in support from 120363027579378554@g.us","timestamp":"2025-10-17T15:45:37.863Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.865Z"}
+{"level":"info","message":"Message received in support from 120363086999165495@g.us","timestamp":"2025-10-17T15:45:37.866Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.867Z"}
+{"level":"info","message":"Message received in support from 120363160788824826@g.us","timestamp":"2025-10-17T15:45:37.868Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.869Z"}
+{"level":"info","message":"Message received in support from 201113300159-1563265178@g.us","timestamp":"2025-10-17T15:45:37.870Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.873Z"}
+{"level":"info","message":"Message received in support from 120363046085035064@g.us","timestamp":"2025-10-17T15:45:37.873Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.875Z"}
+{"level":"info","message":"Message received in support from 120363047863878300@g.us","timestamp":"2025-10-17T15:45:37.875Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.877Z"}
+{"level":"info","message":"Message received in support from 201118501246-1561637557@g.us","timestamp":"2025-10-17T15:45:37.878Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.885Z"}
+{"level":"info","message":"Message received in support from 120363027725140627@g.us","timestamp":"2025-10-17T15:45:37.886Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.888Z"}
+{"level":"info","message":"Message received in support from 120363094348845199@g.us","timestamp":"2025-10-17T15:45:37.888Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.891Z"}
+{"level":"info","message":"Message received in support from 120363364150766891@g.us","timestamp":"2025-10-17T15:45:37.891Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.893Z"}
+{"level":"info","message":"Message received in support from 120363343570097283@g.us","timestamp":"2025-10-17T15:45:37.893Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:45:37.895Z"}
+{"level":"info","message":"Message received in support from 120363317568859391@g.us","timestamp":"2025-10-17T15:45:37.895Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T15:46:39.643Z"}
+{"level":"info","message":"Message received in support from 201117770749@c.us","timestamp":"2025-10-17T15:46:39.644Z"}
+{"level":"info","message":"support state changed: OPENING","timestamp":"2025-10-17T16:00:58.642Z"}
+{"level":"info","message":"support state changed: PAIRING","timestamp":"2025-10-17T16:02:35.026Z"}
+{"level":"info","message":"support state changed: CONNECTED","timestamp":"2025-10-17T16:02:35.028Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T16:06:42.454Z"}
+{"level":"info","message":"Message received in support from 120363402757314870@g.us","timestamp":"2025-10-17T16:06:42.455Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T16:21:37.896Z"}
+{"level":"info","message":"Message received in support from 201288510061@c.us","timestamp":"2025-10-17T16:21:37.897Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T16:25:21.363Z"}
+{"level":"info","message":"Message received in support from 201288510061@c.us","timestamp":"2025-10-17T16:25:21.363Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error saving contact: no such column: is_new","stack":"SqliteError: no such column: is_new\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at SessionManager.saveContact (D:\\test\\wppconnect\\api-server\\server.js:600:27)\n    at EventEmitter.<anonymous> (D:\\test\\wppconnect\\api-server\\server.js:452:30)\n    at EventEmitter.emit (node:events:518:28)\n    at D:\\test\\wppconnect\\node_modules\\@wppconnect-team\\wppconnect\\dist\\api\\layers\\listener.layer.js:154:87","timestamp":"2025-10-17T16:28:32.738Z"}
+{"level":"info","message":"Message received in support from 201118501246-1561637557@g.us","timestamp":"2025-10-17T16:28:32.739Z"}
+{"level":"error","message":"Error creating session: Session already exists","stack":"Error: Session already exists\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:355:13)\n    at D:\\test\\wppconnect\\api-server\\server.js:731:26\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\test\\wppconnect\\node_modules\\router\\index.js:582:12)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\index.js:291:5)","timestamp":"2025-10-17T16:35:52.823Z"}
+{"level":"error","message":"Error creating session: Session already exists","stack":"Error: Session already exists\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:355:13)\n    at D:\\test\\wppconnect\\api-server\\server.js:731:26\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\test\\wppconnect\\node_modules\\router\\index.js:582:12)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\index.js:291:5)","timestamp":"2025-10-17T16:35:53.671Z"}
+{"level":"error","message":"Error creating session: Session already exists","stack":"Error: Session already exists\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:355:13)\n    at D:\\test\\wppconnect\\api-server\\server.js:731:26\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\test\\wppconnect\\node_modules\\router\\index.js:582:12)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\index.js:291:5)","timestamp":"2025-10-17T16:35:54.759Z"}
+{"level":"error","message":"Error creating session: Session already exists","stack":"Error: Session already exists\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:355:13)\n    at D:\\test\\wppconnect\\api-server\\server.js:731:26\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\test\\wppconnect\\node_modules\\router\\index.js:582:12)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\index.js:291:5)","timestamp":"2025-10-17T16:35:56.041Z"}
+{"level":"error","message":"Error creating session: Session already exists","stack":"Error: Session already exists\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:355:13)\n    at D:\\test\\wppconnect\\api-server\\server.js:731:26\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\test\\wppconnect\\node_modules\\router\\index.js:582:12)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\index.js:291:5)","timestamp":"2025-10-17T16:35:56.233Z"}
+{"level":"error","message":"Error creating session: Session already exists","stack":"Error: Session already exists\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:355:13)\n    at D:\\test\\wppconnect\\api-server\\server.js:731:26\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\test\\wppconnect\\node_modules\\router\\index.js:582:12)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\index.js:291:5)","timestamp":"2025-10-17T16:35:56.875Z"}
+{"level":"error","message":"Error creating session: Session already exists","stack":"Error: Session already exists\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:355:13)\n    at D:\\test\\wppconnect\\api-server\\server.js:731:26\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at processParams (D:\\test\\wppconnect\\node_modules\\router\\index.js:582:12)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\index.js:291:5)","timestamp":"2025-10-17T16:35:57.051Z"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2025-10-17T16:41:06.228Z"}
+{"level":"info","message":"✅ Database initialized with all tables","timestamp":"2025-10-17T16:57:52.221Z"}
+{"level":"info","message":"🚀 Ultimate WPPConnect Server running on port 3000","timestamp":"2025-10-17T16:57:52.231Z"}
+{"level":"info","message":"📊 Features: Analytics, Webhooks, Teams, CRM, Real-time Notifications","timestamp":"2025-10-17T16:57:52.231Z"}
+{"level":"info","message":"🌐 Dashboard: http://localhost:3000","timestamp":"2025-10-17T16:57:52.231Z"}
+{"level":"info","message":"🔌 WebSocket: ws://localhost:3000","timestamp":"2025-10-17T16:57:52.232Z"}
+{"level":"info","message":"Client connected: qFwVAl6I7B_-O2BYAAAB","timestamp":"2025-10-17T16:57:55.215Z"}
+{"level":"info","message":"Client disconnected: qFwVAl6I7B_-O2BYAAAB","timestamp":"2025-10-17T16:58:05.582Z"}
+{"level":"info","message":"Client connected: XDJudLEFchWsJ-hDAAAD","timestamp":"2025-10-17T16:58:05.619Z"}
+{"level":"info","message":"Client disconnected: XDJudLEFchWsJ-hDAAAD","timestamp":"2025-10-17T16:58:06.621Z"}
+{"level":"info","message":"Client connected: NV4Q86Jv9wM3ja7jAAAF","timestamp":"2025-10-17T16:58:06.649Z"}
+{"level":"info","message":"Client NV4Q86Jv9wM3ja7jAAAF subscribed to mina","timestamp":"2025-10-17T16:58:13.189Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error getting agent performance: no such column: c.rating","stack":"SqliteError: no such column: c.rating\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at D:\\test\\wppconnect\\api-server\\server.js:996:23\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at param (D:\\test\\wppconnect\\node_modules\\router\\index.js:600:14)\n    at param (D:\\test\\wppconnect\\node_modules\\router\\index.js:610:14)","timestamp":"2025-10-17T16:58:13.220Z"}
+{"level":"info","message":"Client NV4Q86Jv9wM3ja7jAAAF subscribed to support","timestamp":"2025-10-17T16:58:19.101Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error getting agent performance: no such column: c.rating","stack":"SqliteError: no such column: c.rating\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at D:\\test\\wppconnect\\api-server\\server.js:996:23\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at param (D:\\test\\wppconnect\\node_modules\\router\\index.js:600:14)\n    at param (D:\\test\\wppconnect\\node_modules\\router\\index.js:610:14)","timestamp":"2025-10-17T16:58:19.115Z"}
+{"level":"info","message":"Creating session: support","timestamp":"2025-10-17T16:58:44.184Z"}
+{"level":"info","message":"Session support status: isLogged","timestamp":"2025-10-17T16:58:49.580Z"}
+{"level":"info","message":"Session support status: inChat","timestamp":"2025-10-17T16:58:50.080Z"}
+{"level":"error","message":"Error getting host for support: client.getHost is not a function","stack":"TypeError: client.getHost is not a function\n    at SessionManager.createSession (D:\\test\\wppconnect\\api-server\\server.js:634:35)\n    at async D:\\test\\wppconnect\\api-server\\server.js:925:5","timestamp":"2025-10-17T16:58:50.804Z"}
+{"level":"info","message":"✅ Session support created successfully","timestamp":"2025-10-17T16:58:50.805Z"}
+{"level":"info","message":"Session support status: browserClose","timestamp":"2025-10-17T17:02:02.696Z"}
+{"level":"info","message":"Session support closed","timestamp":"2025-10-17T17:02:02.697Z"}
+{"level":"info","message":"Client disconnected: NV4Q86Jv9wM3ja7jAAAF","timestamp":"2025-10-17T17:02:07.122Z"}
+{"level":"info","message":"Client connected: ry-1E1qEpUXQlResAAAH","timestamp":"2025-10-17T17:02:07.161Z"}
+{"level":"info","message":"Client ry-1E1qEpUXQlResAAAH subscribed to mina","timestamp":"2025-10-17T17:03:29.429Z"}
+{"code":"SQLITE_ERROR","level":"error","message":"Error getting agent performance: no such column: c.rating","stack":"SqliteError: no such column: c.rating\n    at Database.prepare (D:\\test\\wppconnect\\node_modules\\better-sqlite3\\lib\\methods\\wrappers.js:5:21)\n    at D:\\test\\wppconnect\\api-server\\server.js:996:23\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (D:\\test\\wppconnect\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (D:\\test\\wppconnect\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (D:\\test\\wppconnect\\node_modules\\router\\lib\\layer.js:152:17)\n    at D:\\test\\wppconnect\\node_modules\\router\\index.js:295:15\n    at param (D:\\test\\wppconnect\\node_modules\\router\\index.js:600:14)\n    at param (D:\\test\\wppconnect\\node_modules\\router\\index.js:610:14)","timestamp":"2025-10-17T17:03:29.452Z"}
+{"level":"info","message":"Client disconnected: ry-1E1qEpUXQlResAAAH","timestamp":"2025-10-17T17:04:43.055Z"}
+{"level":"info","message":"Client connected: 9bzLbFyxUU9G47dSAAAJ","timestamp":"2025-10-17T17:04:44.212Z"}
+{"level":"info","message":"Client disconnected: 9bzLbFyxUU9G47dSAAAJ","timestamp":"2025-10-17T17:05:52.104Z"}
+{"level":"info","message":"Client connected: WBOQRj7jWzZcNhl6AAAL","timestamp":"2025-10-17T17:05:53.222Z"}
+{"level":"info","message":"Client disconnected: WBOQRj7jWzZcNhl6AAAL","timestamp":"2025-10-17T17:05:53.845Z"}
+{"level":"info","message":"Client connected: uMIWLX4JPuI_E6cdAAAN","timestamp":"2025-10-17T17:05:55.214Z"}
+{"level":"info","message":"Client disconnected: uMIWLX4JPuI_E6cdAAAN","timestamp":"2025-10-17T17:06:58.040Z"}
+{"level":"info","message":"Client connected: dFcxNcp8PsW3oMY0AAAP","timestamp":"2025-10-17T17:40:00.029Z"}
+{"level":"info","message":"Client disconnected: dFcxNcp8PsW3oMY0AAAP","timestamp":"2025-10-17T17:40:04.658Z"}
+{"level":"info","message":"Client connected: aoIFyddht11zVSojAAAR","timestamp":"2025-10-17T17:43:08.463Z"}
+{"level":"info","message":"Client disconnected: aoIFyddht11zVSojAAAR","timestamp":"2025-10-17T17:43:13.243Z"}
+{"level":"info","message":"Client connected: 50YjMV-Pfm2YZdIAAAAT","timestamp":"2025-10-17T21:51:58.994Z"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2025-10-17T22:41:51.814Z"}
