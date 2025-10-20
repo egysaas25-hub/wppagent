@@ -215,4 +215,23 @@ export class WebSocketService {
   public getConnectedClientsCount(): number {
     return this.io.engine.clientsCount;
   }
+
+  /**
+   * Close WebSocket server
+   */
+  public close(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      logger.info('Closing WebSocket server...');
+
+      this.io.close((err) => {
+        if (err) {
+          logger.error('Error closing WebSocket server', { error: err.message });
+          reject(err);
+        } else {
+          logger.info('WebSocket server closed successfully');
+          resolve();
+        }
+      });
+    });
+  }
 }

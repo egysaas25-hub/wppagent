@@ -5,7 +5,6 @@
 006.png
 api-docs
 app.js
-app.ts
 app2.js
 assets
 dist.zip
@@ -14,7 +13,6 @@ gohan.jpg
 node_modules
 session
 session-*
-src/app.ts
 tokens
 yarn.lock
 package-lock.json
