@@ -1,6 +1,8 @@
 import { Server as SocketIOServer } from 'socket.io';
 import { Server as HTTPServer } from 'http';
 import SessionManager from './whatsapp-session.manager';
+import presenceService from './presence.service';
+import { AnalyticsService } from './analytics.service';
 import logger from '../config/logger';
 import jwt from 'jsonwebtoken';
 import config from '../config/environment';
@@ -15,12 +17,16 @@ export class WebSocketService {
         credentials: true,
       },
       path: '/socket.io/',
+      pingTimeout: 60000,
+      pingInterval: 25000,
+      transports: ['websocket', 'polling'],
     });
 
     this.setupMiddleware();
     this.setupConnectionHandlers();
     this.setupSessionManagerListeners();
-    
+    this.setupPresenceListeners();
+
     logger.info('WebSocket service initialized');
   }
 
@@ -52,19 +58,22 @@ export class WebSocketService {
    */
   private setupConnectionHandlers() {
     this.io.on('connection', (socket) => {
-      logger.info('WebSocket client connected', { 
+      logger.info('WebSocket client connected', {
         userId: socket.data.user.id,
         socketId: socket.id,
       });
 
+      // Setup enhanced handlers (presence, analytics)
+      this.setupEnhancedHandlers(socket);
+
       // Join session room
       socket.on('join-session', (sessionName: string) => {
         socket.join(`session:${sessionName}`);
-        logger.info('Client joined session room', { 
-          sessionName, 
-          userId: socket.data.user.id 
+        logger.info('Client joined session room', {
+          sessionName,
+          userId: socket.data.user.id
         });
-        
+
         // Send current session status
         const isActive = SessionManager.isSessionActive(sessionName);
         socket.emit('session-status', { sessionName, isActive });
@@ -73,9 +82,9 @@ export class WebSocketService {
       // Leave session room
       socket.on('leave-session', (sessionName: string) => {
         socket.leave(`session:${sessionName}`);
-        logger.info('Client left session room', { 
-          sessionName, 
-          userId: socket.data.user.id 
+        logger.info('Client left session room', {
+          sessionName,
+          userId: socket.data.user.id
         });
       });
 
@@ -85,15 +94,8 @@ export class WebSocketService {
         socket.emit('active-sessions', activeSessions);
       });
 
-      socket.on('disconnect', () => {
-        logger.info('WebSocket client disconnected', { 
-          userId: socket.data.user.id,
-          socketId: socket.id,
-        });
-      });
-
       socket.on('error', (error) => {
-        logger.error('WebSocket error', { 
+        logger.error('WebSocket error', {
           error: error.message,
           userId: socket.data.user.id,
         });
@@ -217,11 +219,124 @@ export class WebSocketService {
   }
 
   /**
+   * Setup presence service listeners
+   */
+  private setupPresenceListeners() {
+    presenceService.on('presence:online', (data) => {
+      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
+    });
+
+    presenceService.on('presence:offline', (data) => {
+      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
+    });
+
+    presenceService.on('presence:status', (data) => {
+      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
+    });
+  }
+
+  /**
+   * Broadcast to specific tenant
+   */
+  private broadcastToTenant(tenantId: string, event: string, data: any) {
+    this.io.to(`tenant:${tenantId}`).emit(event, data);
+  }
+
+  /**
+   * Enhanced connection handlers with presence and analytics
+   */
+  private setupEnhancedHandlers(socket: any) {
+    const user = socket.data.user;
+    const tenantId = user.tenant_id;
+
+    // Join tenant room
+    socket.join(`tenant:${tenantId}`);
+
+    // Set user online
+    presenceService.setOnline(user.id, tenantId, socket.id, {
+      username: user.name,
+      email: user.email,
+    });
+
+    // Handle status updates
+    socket.on('presence:status', (status: 'online' | 'away' | 'busy') => {
+      presenceService.updateStatus(user.id, status);
+    });
+
+    // Handle typing indicators
+    socket.on('typing:start', (data: { session_name: string; chat_id: string }) => {
+      socket.to(`session:${data.session_name}`).emit('typing:indicator', {
+        user_id: user.id,
+        user_name: user.name,
+        chat_id: data.chat_id,
+        typing: true,
+      });
+    });
+
+    socket.on('typing:stop', (data: { session_name: string; chat_id: string }) => {
+      socket.to(`session:${data.session_name}`).emit('typing:indicator', {
+        user_id: user.id,
+        user_name: user.name,
+        chat_id: data.chat_id,
+        typing: false,
+      });
+    });
+
+    // Handle real-time analytics request
+    socket.on('analytics:subscribe', () => {
+      socket.join(`analytics:${tenantId}`);
+
+      // Send initial dashboard data
+      const metrics = AnalyticsService.getDashboardMetrics(tenantId);
+      socket.emit('analytics:dashboard', metrics);
+    });
+
+    socket.on('analytics:unsubscribe', () => {
+      socket.leave(`analytics:${tenantId}`);
+    });
+
+    // Get online users
+    socket.on('presence:get-online', () => {
+      const onlineUsers = presenceService.getOnlineUsers(tenantId);
+      socket.emit('presence:online-users', onlineUsers);
+    });
+
+    // Disconnect handler
+    socket.on('disconnect', () => {
+      presenceService.setOffline(socket.id);
+
+      // Track analytics event
+      if (tenantId) {
+        AnalyticsService.trackEvent({
+          tenant_id: tenantId,
+          event_type: 'user_disconnected',
+          event_data: {
+            user_id: user.id,
+            socket_id: socket.id,
+          },
+          timestamp: Date.now(),
+        });
+      }
+    });
+  }
+
+  /**
+   * Broadcast analytics update to tenant
+   */
+  public broadcastAnalyticsUpdate(tenantId: string): void {
+    const metrics = AnalyticsService.getDashboardMetrics(tenantId);
+    this.io.to(`analytics:${tenantId}`).emit('analytics:update', metrics);
+  }
+
+  /**
    * Close WebSocket server
    */
   public close(): Promise<void> {
     return new Promise((resolve, reject) => {
       logger.info('Closing WebSocket server...');
+
+      // Disconnect all clients
+      this.io.disconnectSockets();
 
       this.io.close((err) => {
         if (err) {
