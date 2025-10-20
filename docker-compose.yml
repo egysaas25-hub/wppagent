@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  wppagent:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      # Persist data outside container
+      - ./data:/app/data
+      - ./tokens:/app/tokens
+      # Optional: live code reload (development)
+      - .:/app:cached
+    environment:
+      - NODE_ENV=development
+      - DB_PATH=/app/data/whatsapp.db
+    restart: unless-stopped
+    # Optional: auto-restart on code changes
+    stdin_open: true
+    tty: true
+
+  # Optional: Separate database service
+  # db:
+  #   image: sqlite:latest
+  #   volumes:
+  #     - ./data:/data
