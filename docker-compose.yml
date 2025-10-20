@@ -1,26 +1,152 @@
 version: '3.8'
 
 services:
-  wppagent:
-    build: .
+  # Development service
+  wppagent-dev:
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile
+    container_name: wppagent-dev
     ports:
       - "3000:3000"
     volumes:
       # Persist data outside container
       - ./data:/app/data
       - ./tokens:/app/tokens
-      # Optional: live code reload (development)
+      - ./logs:/app/logs
+      # Live code reload for development
       - .:/app:cached
+      # Don't override node_modules
+      - /app/node_modules
     environment:
       - NODE_ENV=development
+      - PORT=3000
       - DB_PATH=/app/data/whatsapp.db
+      - LOG_LEVEL=debug
+      - JWT_SECRET=${JWT_SECRET:-your-super-secret-jwt-key-min-32-chars-long}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      - CORS_ORIGIN=http://localhost:3000,http://localhost:3001
     restart: unless-stopped
-    # Optional: auto-restart on code changes
     stdin_open: true
     tty: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - wppagent-network
+    # Resource limits for development
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
 
-  # Optional: Separate database service
-  # db:
-  #   image: sqlite:latest
-  #   volumes:
-  #     - ./data:/data
+  # Production service
+  wppagent-prod:
+    build:
+      context: .
+      target: production
+      dockerfile: Dockerfile
+    container_name: wppagent-prod
+    ports:
+      - "3000:3000"
+    volumes:
+      # Persist data outside container
+      - wppagent-data:/app/data
+      - wppagent-tokens:/app/tokens
+      - wppagent-logs:/app/logs
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_PATH=/app/data/whatsapp.db
+      - LOG_LEVEL=info
+      - JWT_SECRET=${JWT_SECRET}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - JWT_EXPIRES_IN=7d
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:3000}
+      - RATE_LIMIT_WINDOW=900000
+      - RATE_LIMIT_MAX=100
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - wppagent-network
+    # Resource limits for production
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    user: "1001:1001"
+    profiles:
+      - production
+
+  # Nginx reverse proxy (optional for production)
+  nginx:
+    image: nginx:alpine
+    container_name: wppagent-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    depends_on:
+      - wppagent-prod
+    restart: always
+    networks:
+      - wppagent-network
+    profiles:
+      - production
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: wppagent-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: always
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    networks:
+      - wppagent-network
+    profiles:
+      - production
+
+networks:
+  wppagent-network:
+    driver: bridge
+
+volumes:
+  wppagent-data:
+    driver: local
+  wppagent-tokens:
+    driver: local
+  wppagent-logs:
+    driver: local
+  redis-data:
+    driver: local
