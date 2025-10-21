@@ -1,3 +1,4 @@
+import Database from 'better-sqlite3';
 import db from '../config/database';
 import logger from '../config/logger';
 
@@ -5,16 +6,17 @@ import logger from '../config/logger';
  * Database migration system for multi-tenancy support
  */
 
-export function runMigrations(): void {
+export function runMigrations(database?: Database.Database): void {
+  const targetDb = database || db;
   logger.info('Running database migrations...');
 
   // Check if migrations table exists
-  const migrationsTableExists = db
+  const migrationsTableExists = targetDb
     .prepare(`SELECT name FROM sqlite_master WHERE type='table' AND name='migrations'`)
     .get();
 
   if (!migrationsTableExists) {
-    db.exec(`
+    targetDb.exec(`
       CREATE TABLE migrations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT UNIQUE NOT NULL,
@@ -25,14 +27,14 @@ export function runMigrations(): void {
 
   // Migration 001: Add multi-tenancy support
   const migration001 = 'add_multi_tenancy_support';
-  const migration001Exists = db
+  const migration001Exists = targetDb
     .prepare('SELECT * FROM migrations WHERE name = ?')
     .get(migration001);
 
   if (!migration001Exists) {
     logger.info('Running migration: add_multi_tenancy_support');
 
-    db.exec(`
+    targetDb.exec(`
       -- Create tenants table
       CREATE TABLE IF NOT EXISTS tenants (
         id TEXT PRIMARY KEY,
@@ -109,20 +111,20 @@ export function runMigrations(): void {
     `);
 
     // Record migration
-    db.prepare('INSERT INTO migrations (name) VALUES (?)').run(migration001);
+    targetDb.prepare('INSERT INTO migrations (name) VALUES (?)').run(migration001);
     logger.info('Migration completed: add_multi_tenancy_support');
   }
 
   // Migration 002: Add real-time presence tracking
   const migration002 = 'add_presence_tracking';
-  const migration002Exists = db
+  const migration002Exists = targetDb
     .prepare('SELECT * FROM migrations WHERE name = ?')
     .get(migration002);
 
   if (!migration002Exists) {
     logger.info('Running migration: add_presence_tracking');
 
-    db.exec(`
+    targetDb.exec(`
       -- Create online_users table for presence tracking
       CREATE TABLE IF NOT EXISTS online_users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -158,7 +160,7 @@ export function runMigrations(): void {
     `);
 
     // Record migration
-    db.prepare('INSERT INTO migrations (name) VALUES (?)').run(migration002);
+    targetDb.prepare('INSERT INTO migrations (name) VALUES (?)').run(migration002);
     logger.info('Migration completed: add_presence_tracking');
   }
 
