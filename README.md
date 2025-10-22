@@ -100,3 +100,223 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with WPPConnect. If not, see <https://www.gnu.org/licenses/>.
 # wppagent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+API Testing Guide
+Test 1: Health Check 🏥
+Purpose: Verify server is running
+
+bash
+curl http://localhost:3000/health
+✅ Expected Response:
+
+json
+{
+  "status": "healthy",
+  "timestamp": "2024-12-20T10:30:00.000Z",
+  "uptime": 15.5,
+  "environment": "development"
+}
+Test 2: User Registration 👤
+Purpose: Create admin user account
+
+bash
+curl -X POST http://localhost:3000/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@test.com",
+    "password": "Admin123!",
+    "name": "Admin User",
+    "role": "admin"
+  }'
+✅ Expected Response:
+
+json
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": "c10660a8-3d99-4fb2-8fd3-8039b7819175",
+      "email": "admin@test.com",
+      "name": "Admin User",
+      "role": "admin"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  },
+  "message": "User registered successfully"
+}
+📝 Save Token:
+
+bash
+TOKEN="<paste-your-token-here>"
+Test 3: User Login 🔐
+bash
+curl -X POST http://localhost:3000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "admin@test.com",
+    "password": "Admin123!"
+  }'
+Test 4: Get Current User 👨‍💼
+bash
+curl -X GET http://localhost:3000/api/v1/auth/me \
+  -H "Authorization: Bearer $TOKEN"
+✅ Expected Response:
+
+json
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": "c10660a8-3d99-4fb2-8fd3-8039b7819175",
+      "email": "admin@test.com",
+      "name": "Admin User",
+      "role": "admin"
+    }
+  }
+}
+Test 5: Create Session 📱
+bash
+curl -X POST http://localhost:3000/api/v1/sessions \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sessionName": "test-session",
+    "autoReconnect": true
+  }'
+✅ Expected Response:
+
+json
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "session_name": "test-session",
+    "status": "disconnected",
+    "auto_reconnect": true
+  },
+  "message": "Session created successfully"
+}
+Test 6: Start Session 🚀
+bash
+curl -X POST http://localhost:3000/api/v1/sessions/test-session/start \
+  -H "Authorization: Bearer $TOKEN"
+✅ Expected Response:
+
+json
+{
+  "success": true,
+  "data": null,
+  "message": "Session started successfully"
+}
+⏱️ Wait 5-10 seconds
+
+Test 7: Get QR Code 📷
+bash
+curl -X GET http://localhost:3000/api/v1/sessions/test-session/qr \
+  -H "Authorization: Bearer $TOKEN"
+✅ Expected Response:
+
+json
+{
+  "success": true,
+  "data": {
+    "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA..."
+  }
+}
+View QR Code:
+
+Copy base64 string
+
+Open browser console (F12)
+
+Paste:
+
+javascript
+let img = document.createElement('img');
+img.src = 'data:image/png;base64,<paste-here>';
+img.style.width = '300px';
+document.body.appendChild(img);
+Test 8: List Sessions 📋
+bash
+curl -X GET http://localhost:3000/api/v1/sessions \
+  -H "Authorization: Bearer $TOKEN"
+Test 9: Get Session Details 🔍
+bash
+curl -X GET http://localhost:3000/api/v1/sessions/test-session \
+  -H "Authorization: Bearer $TOKEN"
+Test 10: Get Session Stats 📊
+bash
+curl -X GET http://localhost:3000/api/v1/sessions/test-session/stats \
+  -H "Authorization: Bearer $TOKEN"
+✅ Expected Response:
+
+json
+{
+  "success": true,
+  "data": {
+    "messages_sent": 5,
+    "messages_received": 12,
+    "total_contacts": 8,
+    "total_conversations": 8,
+    "open_conversations": 3
+  }
+}
+Test 11: Send Message 💬
+Prerequisites: Session must be connected (scan QR first)
+
+bash
+curl -X POST http://localhost:3000/api/v1/sessions/test-session/messages \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "5511999999999@c.us",
+    "message": "Hello from WPPConnect Agent! 🚀"
+  }'
+Phone Number Format:
+
+Format: [CountryCode][Number]@c.us
+
+Brazil: 5511999999999@c.us
+
+USA: 14155552671@c.us
+
+Egypt: 201234567890@c.us
+
+Test 12: Get Messages 📬
+bash
+curl -X GET "http://localhost:3000/api/v1/sessions/test-session/messages?page=1&limit=10" \
+  -H "Authorization: Bearer $TOKEN"
+Test 13: Search Messages 🔎
+bash
+curl -X GET "http://localhost:3000/api/v1/sessions/test-session/messages/search?q=hello&page=1&limit=10" \
+  -H "Authorization: Bearer $TOKEN"
+Test 14: Get Unread Count 📩
+bash
+curl -X GET http://localhost:3000/api/v1/sessions/test-session/messages/unread \
+  -H "Authorization: Bearer $TOKEN"
+Test 15: Stop Session 🛑
+bash
+curl -X POST http://localhost:3000/api/v1/sessions/test-session/stop \
+  -H "Authorization: Bearer $TOKEN"
+Test 16: Delete Session 🗑️
+bash
+curl -X DELETE http://localhost:3000/api/v1/sessions/test-session \
+  -H "Authorization: Bearer $TOKEN"

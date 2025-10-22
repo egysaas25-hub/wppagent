@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - WPPConnect Agent</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">📱</span>
+                <span class="brand-text">WPPConnect</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="sessions.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Sessions</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">✉️</span>
+                    <span class="nav-text">Messages</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Admin</div>
+                        <div class="user-role" id="userRole">admin</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p class="subtitle">Overview of your WhatsApp operations</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='sessions.html'">
+                        + New Session
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        📱
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalSessions">0</div>
+                        <div class="stat-label">Total Sessions</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                        ✅
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="activeSessions">0</div>
+                        <div class="stat-label">Active Sessions</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        💬
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalMessages">0</div>
+                        <div class="stat-label">Messages Today</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        👥
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalContacts">0</div>
+                        <div class="stat-label">Total Contacts</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Sessions -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Sessions</h2>
+                    <a href="sessions.html" class="btn btn-text">View All →</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Session Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentSessions">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="loading-spinner"></div>
+                                        Loading...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    
+    <script src="js/app.js"></script>
+    <script>
+        // Load dashboard data
+        document.addEventListener('DOMContentLoaded', async () => {
+            checkAuth();
+            loadUserInfo();
+            await loadDashboardStats();
+            await loadRecentSessions();
+            
+            // Refresh every 30 seconds
+            setInterval(loadDashboardStats, 30000);
+        });
+        
+        async function loadDashboardStats() {
+            try {
+                const sessions = await apiCall('/sessions');
+                
+                document.getElementById('totalSessions').textContent = sessions.total || 0;
+                
+                const active = sessions.items ? sessions.items.filter(s => s.status === 'connected').length : 0;
+                document.getElementById('activeSessions').textContent = active;
+                
+                // Calculate total messages and contacts
+                let totalMessages = 0;
+                let totalContacts = 0;
+                
+                if (sessions.items) {
+                    for (const session of sessions.items) {
+                        try {
+                            const stats = await apiCall(`/sessions/${session.session_name}/stats`);
+                            totalMessages += (stats.messages_sent || 0) + (stats.messages_received || 0);
+                            totalContacts += stats.total_contacts || 0;
+                        } catch (e) {
+                            console.error('Error loading session stats:', e);
+                        }
+                    }
+                }
+                
+                document.getElementById('totalMessages').textContent = totalMessages;
+                document.getElementById('totalContacts').textContent = totalContacts;
+                
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+                showToast('Failed to load dashboard stats', 'error');
+            }
+        }
+        
+        async function loadRecentSessions() {
+            try {
+                const response = await apiCall('/sessions?limit=5');
+                const tbody = document.getElementById('recentSessions');
+                
+                if (!response.items || response.items.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="5" class="text-center empty-state">
+                                <div class="empty-icon">📭</div>
+                                <p>No sessions yet</p>
+                                <button class="btn btn-primary btn-sm" onclick="window.location.href='sessions.html'">
+                                    Create First Session
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                tbody.innerHTML = response.items.map(session => `
+                    <tr>
+                        <td><strong>${session.session_name}</strong></td>
+                        <td>${session.phone_number || '-'}</td>
+                        <td><span class="badge badge-${getStatusClass(session.status)}">${session.status}</span></td>
+                        <td>${formatDate(session.created_at)}</td>
+                        <td>
+                            <button class="btn btn-sm btn-text" onclick="window.location.href='messages.html?session=${session.session_name}'">
+                                View →
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error loading sessions:', error);
+                document.getElementById('recentSessions').innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center text-error">
+                            Failed to load sessions
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+        
+        function getStatusClass(status) {
+            const statusMap = {
+                'connected': 'success',
+                'qr_code': 'warning',
+                'connecting': 'info',
+                'disconnected': 'default',
+                'error': 'danger'
+            };
+            return statusMap[status] || 'default';
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            if (days === 0) return 'Today';
+            if (days === 1) return 'Yesterday';
+            if (days < 7) return `${days} days ago`;
+            return date.toLocaleDateString();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessions - WPPConnect Agent</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">📱</span>
+                <span class="brand-text">WPPConnect</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="sessions.html" class="nav-item active">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Sessions</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">✉️</span>
+                    <span class="nav-text">Messages</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Admin</div>
+                        <div class="user-role" id="userRole">admin</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>WhatsApp Sessions</h1>
+                    <p class="subtitle">Manage your WhatsApp connections</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="openCreateModal()">
+                        + Create Session
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Sessions Grid -->
+            <div class="sessions-grid" id="sessionsGrid">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading sessions...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Create Session Modal -->
+    <div class="modal" id="createModal">
+        <div class="modal-overlay" onclick="closeCreateModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Session</h3>
+                <button class="modal-close" onclick="closeCreateModal()">×</button>
+            </div>
+            <form id="createSessionForm">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label>Session Name</label>
+                        <input type="text" id="sessionName" required placeholder="my-session" pattern="[a-zA-Z0-9_-]+">
+                        <small>Only letters, numbers, hyphens and underscores</small>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="autoReconnect" checked>
+                            <span>Auto Reconnect</span>
+                        </label>
+                        <small>Automatically reconnect if session disconnects</small>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeCreateModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Create Session</span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- QR Code Modal -->
+    <div class="modal" id="qrModal">
+        <div class="modal-overlay" onclick="closeQRModal()"></div>
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3>Scan QR Code</h3>
+                <button class="modal-close" onclick="closeQRModal()">×</button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="qrContainer">
+                    <div class="loading-spinner"></div>
+                    <p>Generating QR Code...</p>
+                </div>
+                <p class="qr-instructions">
+                    Open WhatsApp on your phone → Settings → Linked Devices → Link a Device
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    
+    <script src="js/app.js"></script>
+    <script>
+        let socket;
+        let currentQRSession = null;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadUserInfo();
+            loadSessions();
+            initWebSocket();
+            
+            // Setup create form
+            document.getElementById('createSessionForm').addEventListener('submit', handleCreateSession);
+            
+            // Refresh every 30 seconds
+            setInterval(loadSessions, 30000);
+        });
+        
+        function initWebSocket() {
+            const token = localStorage.getItem('token');
+            socket = io('http://localhost:3000', {
+                auth: { token }
+            });
+            
+            socket.on('connect', () => {
+                console.log('WebSocket connected');
+            });
+            
+            socket.on('qr', (data) => {
+                if (currentQRSession === data.sessionName) {
+                    displayQR(data.qr, data.attempt);
+                }
+            });
+            
+            socket.on('connected', (data) => {
+                showToast(`Session ${data.sessionName} connected!`, 'success');
+                closeQRModal();
+                loadSessions();
+            });
+            
+            socket.on('disconnected', (data) => {
+                showToast(`Session ${data.sessionName} disconnected`, 'warning');
+                loadSessions();
+            });
+        }
+        
+        async function loadSessions() {
+            try {
+                const response = await apiCall('/sessions');
+                const grid = document.getElementById('sessionsGrid');
+                
+                if (!response.items || response.items.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state-large">
+                            <div class="empty-icon">📭</div>
+                            <h3>No sessions yet</h3>
+                            <p>Create your first WhatsApp session to get started</p>
+                            <button class="btn btn-primary" onclick="openCreateModal()">
+                                + Create First Session
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                grid.innerHTML = response.items.map(session => `
+                    <div class="session-card">
+                        <div class="session-header">
+                            <div class="session-status status-${session.status}"></div>
+                            <h3>${session.session_name}</h3>
+                            <span class="badge badge-${getStatusClass(session.status)}">${session.status}</span>
+                        </div>
+                        
+                        <div class="session-info">
+                            <div class="info-item">
+                                <span class="info-label">Phone:</span>
+                                <span class="info-value">${session.phone_number || 'Not connected'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Created:</span>
+                                <span class="info-value">${formatDate(session.created_at)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Auto Reconnect:</span>
+                                <span class="info-value">${session.auto_reconnect ? '✅ Yes' : '❌ No'}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="session-actions">
+                            ${getSessionActions(session)}
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error loading sessions:', error);
+                showToast('Failed to load sessions', 'error');
+            }
+        }
+        
+        function getSessionActions(session) {
+            if (session.status === 'disconnected') {
+                return `
+                    <button class="btn btn-primary btn-sm" onclick="startSession('${session.session_name}')">
+                        Start
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteSession('${session.session_name}')">
+                        Delete
+                    </button>
+                `;
+            } else if (session.status === 'qr_code') {
+                return `
+                    <button class="btn btn-primary btn-sm" onclick="showQR('${session.session_name}')">
+                        Show QR
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="stopSession('${session.session_name}')">
+                        Stop
+                    </button>
+                `;
+            } else if (session.status === 'connected') {
+                return `
+                    <button class="btn btn-success btn-sm" onclick="window.location.href='messages.html?session=${session.session_name}'">
+                        Messages
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="stopSession('${session.session_name}')">
+                        Stop
+                    </button>
+                `;
+            }
+            return `
+                <button class="btn btn-secondary btn-sm" disabled>
+                    ${session.status}
+                </button>
+            `;
+        }
+        
+        function openCreateModal() {
+            document.getElementById('createModal').classList.add('active');
+        }
+        
+        function closeCreateModal() {
+            document.getElementById('createModal').classList.remove('active');
+            document.getElementById('createSessionForm').reset();
+        }
+        
+        async function handleCreateSession(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            const btnText = btn.querySelector('.btn-text');
+            const btnLoading = btn.querySelector('.btn-loading');
+            
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'block';
+            btn.disabled = true;
+            
+            try {
+                await apiCall('/sessions', 'POST', {
+                    sessionName: document.getElementById('sessionName').value,
+                    autoReconnect: document.getElementById('autoReconnect').checked
+                });
+                
+                showToast('Session created successfully!', 'success');
+                closeCreateModal();
+                loadSessions();
+                
+            } catch (error) {
+                showToast(error.message || 'Failed to create session', 'error');
+            } finally {
+                btnText.style.display = 'block';
+                btnLoading.style.display = 'none';
+                btn.disabled = false;
+            }
+        }
+        
+        async function startSession(sessionName) {
+            try {
+                await apiCall(`/sessions/${sessionName}/start`, 'POST');
+                showToast('Session starting...', 'info');
+                
+                // Open QR modal
+                currentQRSession = sessionName;
+                document.getElementById('qrModal').classList.add('active');
+                
+                // Join WebSocket room
+                socket.emit('join-session', sessionName);
+                
+                setTimeout(loadSessions, 2000);
+                
+            } catch (error) {
+                showToast(error.message || 'Failed to start session', 'error');
+            }
+        }
+        
+        async function showQR(sessionName) {
+            try {
+                currentQRSession = sessionName;
+                document.getElementById('qrModal').classList.add('active');
+                
+                socket.emit('join-session', sessionName);
+                
+                const response = await apiCall(`/sessions/${sessionName}/qr`);
+                if (response.qr_code) {
+                    displayQR(response.qr_code);
+                }
+                
+            } catch (error) {
+                showToast(error.message || 'Failed to get QR code', 'error');
+                closeQRModal();
+            }
+        }
+        
+        function displayQR(qrCode, attempt = 1) {
+            document.getElementById('qrContainer').innerHTML = `
+                <img src="${qrCode}" alt="QR Code" class="qr-image">
+                <p class="qr-attempt">Attempt: ${attempt}</p>
+            `;
+        }
+        
+        function closeQRModal() {
+            document.getElementById('qrModal').classList.remove('active');
+            if (currentQRSession) {
+                socket.emit('leave-session', currentQRSession);
+                currentQRSession = null;
+            }
+        }
+        
+        async function stopSession(sessionName) {
+            try {
+                await apiCall(`/sessions/${sessionName}/stop`, 'POST');
+                showToast('Session stopped', 'success');
+                loadSessions();
+            } catch (error) {
+                showToast(error.message || 'Failed to stop session', 'error');
+            }
+        }
+        
+        async function deleteSession(sessionName) {
+            if (!confirm(`Are you sure you want to delete "${sessionName}"?`)) return;
+            
+            try {
+                await apiCall(`/sessions/${sessionName}`, 'DELETE');
+                showToast('Session deleted', 'success');
+                loadSessions();
+            } catch (error) {
+                showToast(error.message || 'Failed to delete session', 'error');
+            }
+        }
+        
+        function getStatusClass(status) {
+            const statusMap = {
+                'connected': 'success',
+                'qr_code': 'warning',
+                'connecting': 'info',
+                'disconnected': 'default',
+                'error': 'danger'
+            };
+            return statusMap[status] || 'default';
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString();
+        }
+    </script>
+</body>
+</html>
