@@ -28,6 +28,7 @@ export interface UserPayload {
   email: string;
   name: string;
   role: UserRole;
+  tenant_id?: string;
 }
 
 export interface CreateUserDTO {
