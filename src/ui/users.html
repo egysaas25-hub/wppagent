@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - WPPConnect Agent</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">📱</span>
+                <span class="brand-text">WPPConnect</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="sessions.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Sessions</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">✉️</span>
+                    <span class="nav-text">Messages</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+                <a href="backups.html" class="nav-item">
+                    <span class="nav-icon">💾</span>
+                    <span class="nav-text">Backups</span>
+                </a>
+                <a href="users.html" class="nav-item active">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Users</span>
+                </a>
+                <a href="tenants.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span class="nav-text">Tenants</span>
+                </a>
+                <a href="health.html" class="nav-item">
+                    <span class="nav-icon">🏥</span>
+                    <span class="nav-text">Health</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Admin</div>
+                        <div class="user-role" id="userRole">admin</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>User Management</h1>
+                    <p class="subtitle">Manage user accounts and permissions</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="loadUsers()">
+                        🔄 Refresh
+                    </button>
+                    <button class="btn btn-primary" onclick="openCreateUserModal()">
+                        + Create User
+                    </button>
+                </div>
+            </header>
+
+            <!-- User Stats -->
+            <div class="stats-grid grid-4">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        👥
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalUsers">0</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                        🔑
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="adminUsers">0</div>
+                        <div class="stat-label">Administrators</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        👤
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="regularUsers">0</div>
+                        <div class="stat-label">Regular Users</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        ✅
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="activeUsers">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>All Users</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchUsers" placeholder="Search users..." onkeyup="filterUsers()">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Tenant</th>
+                                    <th>Sessions</th>
+                                    <th>Last Login</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTable">
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        <div class="loading-spinner"></div>
+                                        Loading users...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create/Edit User Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-overlay" onclick="closeUserModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="userModalTitle">Create New User</h3>
+                <button class="modal-close" onclick="closeUserModal()">×</button>
+            </div>
+            <form id="userForm">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label>Email *</label>
+                        <input type="email" id="userEmail" required placeholder="user@example.com">
+                    </div>
+
+                    <div class="input-group" id="passwordGroup">
+                        <label>Password *</label>
+                        <input type="password" id="userPassword" required placeholder="Enter password" minlength="6">
+                        <small>Minimum 6 characters</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Role *</label>
+                        <select id="userRole" required class="input-select">
+                            <option value="user">User</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Tenant (Optional)</label>
+                        <select id="userTenant" class="input-select">
+                            <option value="">No Tenant</option>
+                        </select>
+                    </div>
+
+                    <input type="hidden" id="userId">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeUserModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Save User</span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal" id="changePasswordModal">
+        <div class="modal-overlay" onclick="closeChangePasswordModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Change Password</h3>
+                <button class="modal-close" onclick="closeChangePasswordModal()">×</button>
+            </div>
+            <form id="changePasswordForm">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label>New Password *</label>
+                        <input type="password" id="newPassword" required placeholder="Enter new password" minlength="6">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Confirm Password *</label>
+                        <input type="password" id="confirmPassword" required placeholder="Confirm new password" minlength="6">
+                    </div>
+
+                    <input type="hidden" id="changePasswordUserId">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeChangePasswordModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        Change Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        let allUsers = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadUserInfo();
+            checkAdminRole();
+            loadUsers();
+            loadTenants();
+
+            // Setup forms
+            document.getElementById('userForm').addEventListener('submit', handleUserSubmit);
+            document.getElementById('changePasswordForm').addEventListener('submit', handleChangePassword);
+        });
+
+        function checkAdminRole() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            if (user.role !== 'admin') {
+                showToast('Only administrators can access this page', 'error');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+            }
+        }
+
+        async function loadUsers() {
+            try {
+                const response = await apiCall('/users');
+                allUsers = response.users || [];
+
+                updateUserStats(allUsers);
+                renderUsers(allUsers);
+
+            } catch (error) {
+                console.error('Error loading users:', error);
+                showToast('Failed to load users', 'error');
+                document.getElementById('usersTable').innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center text-error">
+                            Failed to load users
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        async function loadTenants() {
+            try {
+                const response = await apiCall('/tenants');
+                const tenantSelect = document.getElementById('userTenant');
+
+                if (response.tenants && response.tenants.length > 0) {
+                    const options = response.tenants.map(t =>
+                        `<option value="${t.tenant_id}">${t.tenant_name}</option>`
+                    ).join('');
+                    tenantSelect.innerHTML = '<option value="">No Tenant</option>' + options;
+                }
+
+            } catch (error) {
+                console.error('Error loading tenants:', error);
+            }
+        }
+
+        function updateUserStats(users) {
+            const adminUsers = users.filter(u => u.role === 'admin').length;
+            const regularUsers = users.filter(u => u.role === 'user').length;
+            const activeUsers = users.filter(u => u.is_active).length;
+
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('adminUsers').textContent = adminUsers;
+            document.getElementById('regularUsers').textContent = regularUsers;
+            document.getElementById('activeUsers').textContent = activeUsers;
+        }
+
+        function renderUsers(users) {
+            const tbody = document.getElementById('usersTable');
+
+            if (!users || users.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center empty-state">
+                            <div class="empty-icon">👥</div>
+                            <p>No users found</p>
+                            <button class="btn btn-primary btn-sm" onclick="openCreateUserModal()">
+                                Create First User
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td><strong>${user.email}</strong></td>
+                    <td><span class="badge badge-${user.role === 'admin' ? 'danger' : 'info'}">${user.role}</span></td>
+                    <td>${user.tenant_name || '-'}</td>
+                    <td>${user.session_count || 0}</td>
+                    <td>${formatRelativeTime(user.last_login)}</td>
+                    <td>${formatDate(user.created_at)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" onclick='editUser(${JSON.stringify(user).replace(/'/g, "&apos;")})'>
+                            ✏️ Edit
+                        </button>
+                        <button class="btn btn-sm btn-info" onclick="changePassword(${user.user_id})">
+                            🔑 Password
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteUser(${user.user_id})">
+                            🗑️ Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterUsers() {
+            const searchTerm = document.getElementById('searchUsers').value.toLowerCase();
+            const filtered = allUsers.filter(user =>
+                user.email.toLowerCase().includes(searchTerm) ||
+                user.role.toLowerCase().includes(searchTerm) ||
+                (user.tenant_name && user.tenant_name.toLowerCase().includes(searchTerm))
+            );
+            renderUsers(filtered);
+        }
+
+        function openCreateUserModal() {
+            document.getElementById('userModalTitle').textContent = 'Create New User';
+            document.getElementById('userForm').reset();
+            document.getElementById('userId').value = '';
+            document.getElementById('passwordGroup').style.display = 'block';
+            document.getElementById('userPassword').required = true;
+            document.getElementById('userModal').classList.add('active');
+        }
+
+        function editUser(user) {
+            document.getElementById('userModalTitle').textContent = 'Edit User';
+            document.getElementById('userId').value = user.user_id;
+            document.getElementById('userEmail').value = user.email;
+            document.getElementById('userRole').value = user.role;
+            document.getElementById('userTenant').value = user.tenant_id || '';
+            document.getElementById('passwordGroup').style.display = 'none';
+            document.getElementById('userPassword').required = false;
+            document.getElementById('userModal').classList.add('active');
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').classList.remove('active');
+            document.getElementById('userForm').reset();
+        }
+
+        async function handleUserSubmit(e) {
+            e.preventDefault();
+
+            const btn = e.target.querySelector('button[type="submit"]');
+            const btnText = btn.querySelector('.btn-text');
+            const btnLoading = btn.querySelector('.btn-loading');
+
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'block';
+            btn.disabled = true;
+
+            try {
+                const userId = document.getElementById('userId').value;
+                const userData = {
+                    email: document.getElementById('userEmail').value,
+                    role: document.getElementById('userRole').value,
+                    tenant_id: document.getElementById('userTenant').value || null
+                };
+
+                if (!userId) {
+                    // Creating new user - include password
+                    userData.password = document.getElementById('userPassword').value;
+                }
+
+                if (userId) {
+                    // Update existing user
+                    await apiCall(`/users/${userId}`, 'PUT', userData);
+                    showToast('User updated successfully!', 'success');
+                } else {
+                    // Create new user
+                    await apiCall('/users', 'POST', userData);
+                    showToast('User created successfully!', 'success');
+                }
+
+                closeUserModal();
+                loadUsers();
+
+            } catch (error) {
+                showToast(error.message || 'Failed to save user', 'error');
+            } finally {
+                btnText.style.display = 'block';
+                btnLoading.style.display = 'none';
+                btn.disabled = false;
+            }
+        }
+
+        function changePassword(userId) {
+            document.getElementById('changePasswordUserId').value = userId;
+            document.getElementById('changePasswordForm').reset();
+            document.getElementById('changePasswordModal').classList.add('active');
+        }
+
+        function closeChangePasswordModal() {
+            document.getElementById('changePasswordModal').classList.remove('active');
+            document.getElementById('changePasswordForm').reset();
+        }
+
+        async function handleChangePassword(e) {
+            e.preventDefault();
+
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                showToast('Passwords do not match', 'error');
+                return;
+            }
+
+            const userId = document.getElementById('changePasswordUserId').value;
+
+            try {
+                await apiCall(`/users/${userId}/change-password`, 'POST', {
+                    new_password: newPassword
+                });
+
+                showToast('Password changed successfully!', 'success');
+                closeChangePasswordModal();
+
+            } catch (error) {
+                showToast(error.message || 'Failed to change password', 'error');
+            }
+        }
+
+        async function deleteUser(userId) {
+            if (!confirmAction('Are you sure you want to delete this user? This action cannot be undone.')) {
+                return;
+            }
+
+            try {
+                await apiCall(`/users/${userId}`, 'DELETE');
+                showToast('User deleted successfully', 'success');
+                loadUsers();
+
+            } catch (error) {
+                showToast(error.message || 'Failed to delete user', 'error');
+            }
+        }
+    </script>
+</body>
+</html>

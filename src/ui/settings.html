@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - WPPConnect Agent</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">📱</span>
+                <span class="brand-text">WPPConnect</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="sessions.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Sessions</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">✉️</span>
+                    <span class="nav-text">Messages</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+                <a href="backups.html" class="nav-item">
+                    <span class="nav-icon">💾</span>
+                    <span class="nav-text">Backups</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Users</span>
+                </a>
+                <a href="tenants.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span class="nav-text">Tenants</span>
+                </a>
+                <a href="health.html" class="nav-item">
+                    <span class="nav-icon">🏥</span>
+                    <span class="nav-text">Health</span>
+                </a>
+                <a href="settings.html" class="nav-item active">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Admin</div>
+                        <div class="user-role" id="userRole">admin</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>Settings</h1>
+                    <p class="subtitle">Configure your account and preferences</p>
+                </div>
+            </header>
+
+            <!-- Settings Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('profile')">Profile</button>
+                <button class="tab-btn" onclick="switchTab('security')">Security</button>
+                <button class="tab-btn" onclick="switchTab('notifications')">Notifications</button>
+                <button class="tab-btn" onclick="switchTab('system')">System</button>
+            </div>
+
+            <!-- Profile Settings -->
+            <div id="profileTab" class="tab-content active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Profile Information</h2>
+                        <p class="subtitle">Update your account details</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="profileForm">
+                            <div class="grid-2">
+                                <div class="input-group">
+                                    <label>Email</label>
+                                    <input type="email" id="profileEmail" readonly>
+                                    <small>Contact admin to change email</small>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Role</label>
+                                    <input type="text" id="profileRole" readonly>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Display Name</label>
+                                <input type="text" id="profileName" placeholder="Your display name">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div id="securityTab" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Change Password</h2>
+                        <p class="subtitle">Update your password to keep your account secure</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="passwordForm">
+                            <div class="input-group">
+                                <label>Current Password</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label>New Password</label>
+                                <input type="password" id="newPassword" required minlength="6">
+                                <small>Minimum 6 characters</small>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" id="confirmPassword" required minlength="6">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    Change Password
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>API Token</h2>
+                        <p class="subtitle">Use this token for API authentication</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="token-display">
+                            <code id="apiToken">••••••••••••••••••••••••••••••••</code>
+                            <button class="btn btn-secondary btn-sm" onclick="toggleToken()">
+                                👁️ Show
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="copyToken()">
+                                📋 Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Settings -->
+            <div id="notificationsTab" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Notification Preferences</h2>
+                        <p class="subtitle">Choose what notifications you want to receive</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="notificationsForm">
+                            <div class="settings-section">
+                                <h3>Session Notifications</h3>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="notifySessionConnected" checked>
+                                        <span>Session connected</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="notifySessionDisconnected" checked>
+                                        <span>Session disconnected</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="notifySessionError" checked>
+                                        <span>Session errors</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>Message Notifications</h3>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="notifyNewMessage">
+                                        <span>New messages received</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="notifyMessageFailed" checked>
+                                        <span>Failed message delivery</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>System Notifications</h3>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="notifyBackupComplete" checked>
+                                        <span>Backup completed</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="notifySystemHealth" checked>
+                                        <span>System health warnings</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    Save Preferences
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Settings -->
+            <div id="systemTab" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>System Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Version:</span>
+                                <span class="info-value">1.0.0</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Environment:</span>
+                                <span class="info-value" id="systemEnv">Production</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Database:</span>
+                                <span class="info-value" id="systemDb">SQLite</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Uptime:</span>
+                                <span class="info-value" id="systemUptime">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Application Settings</h2>
+                        <p class="subtitle">Configure application behavior</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="systemForm">
+                            <div class="input-group">
+                                <label>Auto-refresh Interval (seconds)</label>
+                                <input type="number" id="refreshInterval" value="30" min="10" max="300">
+                                <small>How often to refresh data automatically</small>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Session Timeout (minutes)</label>
+                                <input type="number" id="sessionTimeout" value="60" min="15" max="480">
+                                <small>Inactivity timeout before auto-logout</small>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Theme</label>
+                                <select id="theme" class="input-select">
+                                    <option value="dark" selected>Dark</option>
+                                    <option value="light">Light</option>
+                                    <option value="auto">Auto</option>
+                                </select>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="enableSounds" checked>
+                                    <span>Enable notification sounds</span>
+                                </label>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    Save Settings
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Danger Zone</h2>
+                        <p class="subtitle">Irreversible actions</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="danger-actions">
+                            <button class="btn btn-danger" onclick="clearCache()">
+                                🗑️ Clear Cache
+                            </button>
+                            <button class="btn btn-danger" onclick="resetSettings()">
+                                ⚠️ Reset Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        let tokenVisible = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadUserInfo();
+            loadSettings();
+
+            // Setup forms
+            document.getElementById('profileForm').addEventListener('submit', handleProfileUpdate);
+            document.getElementById('passwordForm').addEventListener('submit', handlePasswordChange);
+            document.getElementById('notificationsForm').addEventListener('submit', handleNotificationsUpdate);
+            document.getElementById('systemForm').addEventListener('submit', handleSystemUpdate);
+        });
+
+        function loadSettings() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+            // Profile tab
+            document.getElementById('profileEmail').value = user.email || '';
+            document.getElementById('profileRole').value = user.role || '';
+
+            // Load saved preferences from localStorage
+            const prefs = JSON.parse(localStorage.getItem('preferences') || '{}');
+            document.getElementById('refreshInterval').value = prefs.refreshInterval || 30;
+            document.getElementById('sessionTimeout').value = prefs.sessionTimeout || 60;
+            document.getElementById('theme').value = prefs.theme || 'dark';
+            document.getElementById('enableSounds').checked = prefs.enableSounds !== false;
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.add('active');
+
+            // Activate button
+            event.target.classList.add('active');
+        }
+
+        async function handleProfileUpdate(e) {
+            e.preventDefault();
+
+            try {
+                const displayName = document.getElementById('profileName').value;
+
+                // Save to localStorage (in real app would call API)
+                const user = JSON.parse(localStorage.getItem('user') || '{}');
+                user.displayName = displayName;
+                localStorage.setItem('user', JSON.stringify(user));
+
+                showToast('Profile updated successfully!', 'success');
+
+            } catch (error) {
+                showToast('Failed to update profile', 'error');
+            }
+        }
+
+        async function handlePasswordChange(e) {
+            e.preventDefault();
+
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                showToast('Passwords do not match', 'error');
+                return;
+            }
+
+            try {
+                await apiCall('/auth/change-password', 'POST', {
+                    current_password: currentPassword,
+                    new_password: newPassword
+                });
+
+                showToast('Password changed successfully!', 'success');
+                document.getElementById('passwordForm').reset();
+
+            } catch (error) {
+                showToast(error.message || 'Failed to change password', 'error');
+            }
+        }
+
+        function handleNotificationsUpdate(e) {
+            e.preventDefault();
+
+            const notificationPrefs = {
+                sessionConnected: document.getElementById('notifySessionConnected').checked,
+                sessionDisconnected: document.getElementById('notifySessionDisconnected').checked,
+                sessionError: document.getElementById('notifySessionError').checked,
+                newMessage: document.getElementById('notifyNewMessage').checked,
+                messageFailed: document.getElementById('notifyMessageFailed').checked,
+                backupComplete: document.getElementById('notifyBackupComplete').checked,
+                systemHealth: document.getElementById('notifySystemHealth').checked
+            };
+
+            localStorage.setItem('notificationPrefs', JSON.stringify(notificationPrefs));
+            showToast('Notification preferences saved!', 'success');
+        }
+
+        function handleSystemUpdate(e) {
+            e.preventDefault();
+
+            const systemPrefs = {
+                refreshInterval: parseInt(document.getElementById('refreshInterval').value),
+                sessionTimeout: parseInt(document.getElementById('sessionTimeout').value),
+                theme: document.getElementById('theme').value,
+                enableSounds: document.getElementById('enableSounds').checked
+            };
+
+            localStorage.setItem('preferences', JSON.stringify(systemPrefs));
+            showToast('System settings saved!', 'success');
+        }
+
+        function toggleToken() {
+            const tokenEl = document.getElementById('apiToken');
+            const btn = event.target;
+
+            if (tokenVisible) {
+                tokenEl.textContent = '••••••••••••••••••••••••••••••••';
+                btn.textContent = '👁️ Show';
+                tokenVisible = false;
+            } else {
+                const token = localStorage.getItem('token');
+                tokenEl.textContent = token || 'No token available';
+                btn.textContent = '🙈 Hide';
+                tokenVisible = true;
+            }
+        }
+
+        function copyToken() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                copyToClipboard(token);
+            } else {
+                showToast('No token available', 'error');
+            }
+        }
+
+        function clearCache() {
+            if (!confirmAction('Are you sure you want to clear the cache? This will log you out.')) {
+                return;
+            }
+
+            localStorage.clear();
+            showToast('Cache cleared. Redirecting to login...', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+
+        function resetSettings() {
+            if (!confirmAction('Are you sure you want to reset all settings to defaults?')) {
+                return;
+            }
+
+            localStorage.removeItem('preferences');
+            localStorage.removeItem('notificationPrefs');
+            showToast('Settings reset to defaults', 'success');
+            loadSettings();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitor - WPPConnect Agent</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">📱</span>
+                <span class="brand-text">WPPConnect</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="sessions.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Sessions</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">✉️</span>
+                    <span class="nav-text">Messages</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+                <a href="backups.html" class="nav-item">
+                    <span class="nav-icon">💾</span>
+                    <span class="nav-text">Backups</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Users</span>
+                </a>
+                <a href="tenants.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span class="nav-text">Tenants</span>
+                </a>
+                <a href="health.html" class="nav-item active">
+                    <span class="nav-icon">🏥</span>
+                    <span class="nav-text">Health</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Admin</div>
+                        <div class="user-role" id="userRole">admin</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>System Health Monitor</h1>
+                    <p class="subtitle">Real-time system status and diagnostics</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="loadHealth()">
+                        🔄 Refresh
+                    </button>
+                </div>
+            </header>
+
+            <!-- Overall Health Status -->
+            <div class="health-status-card">
+                <div class="health-icon" id="healthIcon">
+                    <div class="pulse"></div>
+                    💚
+                </div>
+                <div class="health-info">
+                    <h2 id="healthStatus">System Healthy</h2>
+                    <p id="healthMessage">All systems operational</p>
+                </div>
+                <div class="health-timestamp">
+                    Last checked: <span id="lastCheck">-</span>
+                </div>
+            </div>
+
+            <!-- Health Metrics -->
+            <div class="stats-grid grid-4">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        🖥️
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="cpuUsage">0%</div>
+                        <div class="stat-label">CPU Usage</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                        💾
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="memoryUsage">0%</div>
+                        <div class="stat-label">Memory Usage</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        💿
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="diskUsage">0%</div>
+                        <div class="stat-label">Disk Usage</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        ⏱️
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="uptime">0h</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Status -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Service Status</h2>
+                    <p class="subtitle">Status of core services</p>
+                </div>
+                <div class="card-body">
+                    <div class="services-grid" id="servicesGrid">
+                        <div class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <p>Loading services...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database Health -->
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Database Health</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Connection</span>
+                                <span class="badge badge-success" id="dbStatus">Connected</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Type</span>
+                                <span id="dbType">SQLite</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Size</span>
+                                <span id="dbSize">0 MB</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Tables</span>
+                                <span id="dbTables">0</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Query Performance</span>
+                                <span id="dbPerformance">0ms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Network Health</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">API Status</span>
+                                <span class="badge badge-success" id="apiStatus">Online</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">WebSocket</span>
+                                <span class="badge badge-success" id="wsStatus">Connected</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Latency</span>
+                                <span id="latency">0ms</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Active Connections</span>
+                                <span id="activeConnections">0</span>
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="health-item-header">
+                                <span class="health-item-label">Requests/min</span>
+                                <span id="requestRate">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Logs -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Errors</h2>
+                    <p class="subtitle">Latest system errors and warnings</p>
+                </div>
+                <div class="card-body">
+                    <div class="error-log" id="errorLog">
+                        <div class="empty-state">
+                            <div class="empty-icon">✅</div>
+                            <p>No recent errors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadUserInfo();
+            loadHealth();
+
+            // Auto-refresh every 10 seconds
+            setInterval(loadHealth, 10000);
+        });
+
+        async function loadHealth() {
+            try {
+                const health = await apiCall('/health');
+
+                // Update overall status
+                updateOverallStatus(health);
+
+                // Update metrics
+                updateMetrics(health);
+
+                // Update services
+                updateServices(health);
+
+                // Update database health
+                updateDatabase(health);
+
+                // Update network health
+                updateNetwork(health);
+
+                // Update error log
+                updateErrorLog(health);
+
+                // Update timestamp
+                document.getElementById('lastCheck').textContent = new Date().toLocaleTimeString();
+
+            } catch (error) {
+                console.error('Error loading health data:', error);
+                showSystemUnhealthy('Failed to connect to health endpoint');
+            }
+        }
+
+        function updateOverallStatus(health) {
+            const healthIcon = document.getElementById('healthIcon');
+            const healthStatus = document.getElementById('healthStatus');
+            const healthMessage = document.getElementById('healthMessage');
+
+            if (health.status === 'healthy') {
+                healthIcon.innerHTML = '<div class="pulse"></div>💚';
+                healthStatus.textContent = 'System Healthy';
+                healthMessage.textContent = 'All systems operational';
+                healthIcon.className = 'health-icon healthy';
+            } else if (health.status === 'degraded') {
+                healthIcon.innerHTML = '⚠️';
+                healthStatus.textContent = 'System Degraded';
+                healthMessage.textContent = health.message || 'Some services experiencing issues';
+                healthIcon.className = 'health-icon warning';
+            } else {
+                healthIcon.innerHTML = '❌';
+                healthStatus.textContent = 'System Unhealthy';
+                healthMessage.textContent = health.message || 'Critical issues detected';
+                healthIcon.className = 'health-icon error';
+            }
+        }
+
+        function updateMetrics(health) {
+            document.getElementById('cpuUsage').textContent = (health.cpu_usage || 0).toFixed(1) + '%';
+            document.getElementById('memoryUsage').textContent = (health.memory_usage || 0).toFixed(1) + '%';
+            document.getElementById('diskUsage').textContent = (health.disk_usage || 0).toFixed(1) + '%';
+            document.getElementById('uptime').textContent = formatUptime(health.uptime || 0);
+        }
+
+        function updateServices(health) {
+            const servicesGrid = document.getElementById('servicesGrid');
+
+            const services = [
+                { name: 'API Server', status: health.api_status || 'healthy', icon: '🌐' },
+                { name: 'Database', status: health.database_status || 'healthy', icon: '💾' },
+                { name: 'WebSocket', status: health.websocket_status || 'healthy', icon: '🔌' },
+                { name: 'WhatsApp Client', status: health.whatsapp_status || 'healthy', icon: '📱' },
+                { name: 'Message Queue', status: health.queue_status || 'healthy', icon: '📬' },
+                { name: 'File Storage', status: health.storage_status || 'healthy', icon: '📁' }
+            ];
+
+            servicesGrid.innerHTML = services.map(service => `
+                <div class="service-card">
+                    <div class="service-icon">${service.icon}</div>
+                    <div class="service-info">
+                        <div class="service-name">${service.name}</div>
+                        <span class="badge badge-${getServiceBadgeClass(service.status)}">${service.status}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateDatabase(health) {
+            const db = health.database || {};
+
+            document.getElementById('dbStatus').textContent = db.connected ? 'Connected' : 'Disconnected';
+            document.getElementById('dbStatus').className = `badge badge-${db.connected ? 'success' : 'danger'}`;
+            document.getElementById('dbType').textContent = db.type || 'SQLite';
+            document.getElementById('dbSize').textContent = formatBytes(db.size || 0);
+            document.getElementById('dbTables').textContent = db.tables || 0;
+            document.getElementById('dbPerformance').textContent = (db.query_time || 0).toFixed(1) + 'ms';
+        }
+
+        function updateNetwork(health) {
+            const network = health.network || {};
+
+            document.getElementById('apiStatus').textContent = network.api_online ? 'Online' : 'Offline';
+            document.getElementById('apiStatus').className = `badge badge-${network.api_online ? 'success' : 'danger'}`;
+
+            document.getElementById('wsStatus').textContent = network.websocket_connected ? 'Connected' : 'Disconnected';
+            document.getElementById('wsStatus').className = `badge badge-${network.websocket_connected ? 'success' : 'danger'}`;
+
+            document.getElementById('latency').textContent = (network.latency || 0).toFixed(0) + 'ms';
+            document.getElementById('activeConnections').textContent = network.active_connections || 0;
+            document.getElementById('requestRate').textContent = network.request_rate || 0;
+        }
+
+        function updateErrorLog(health) {
+            const errorLog = document.getElementById('errorLog');
+            const errors = health.recent_errors || [];
+
+            if (errors.length === 0) {
+                errorLog.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">✅</div>
+                        <p>No recent errors</p>
+                    </div>
+                `;
+                return;
+            }
+
+            errorLog.innerHTML = errors.map(error => `
+                <div class="error-item ${error.level || 'error'}">
+                    <div class="error-icon">${getErrorIcon(error.level)}</div>
+                    <div class="error-content">
+                        <div class="error-message">${error.message}</div>
+                        <div class="error-details">${error.details || ''}</div>
+                    </div>
+                    <div class="error-time">${formatRelativeTime(error.timestamp)}</div>
+                </div>
+            `).join('');
+        }
+
+        function showSystemUnhealthy(message) {
+            const healthIcon = document.getElementById('healthIcon');
+            const healthStatus = document.getElementById('healthStatus');
+            const healthMessage = document.getElementById('healthMessage');
+
+            healthIcon.innerHTML = '❌';
+            healthStatus.textContent = 'System Unavailable';
+            healthMessage.textContent = message;
+            healthIcon.className = 'health-icon error';
+
+            // Set all metrics to error state
+            document.getElementById('cpuUsage').textContent = 'N/A';
+            document.getElementById('memoryUsage').textContent = 'N/A';
+            document.getElementById('diskUsage').textContent = 'N/A';
+            document.getElementById('uptime').textContent = 'N/A';
+        }
+
+        function getServiceBadgeClass(status) {
+            const statusMap = {
+                'healthy': 'success',
+                'degraded': 'warning',
+                'unhealthy': 'danger',
+                'unknown': 'default'
+            };
+            return statusMap[status] || 'default';
+        }
+
+        function getErrorIcon(level) {
+            const iconMap = {
+                'error': '❌',
+                'warning': '⚠️',
+                'info': 'ℹ️'
+            };
+            return iconMap[level] || '❌';
+        }
+
+        function formatUptime(seconds) {
+            if (!seconds) return '0h';
+
+            const hours = Math.floor(seconds / 3600);
+            const days = Math.floor(hours / 24);
+
+            if (days > 0) {
+                return `${days}d ${hours % 24}h`;
+            }
+            if (hours > 0) {
+                return `${hours}h ${Math.floor((seconds % 3600) / 60)}m`;
+            }
+            return `${Math.floor(seconds / 60)}m`;
+        }
+    </script>
+</body>
+</html>

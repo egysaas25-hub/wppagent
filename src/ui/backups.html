@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backups - WPPConnect Agent</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-icon">📱</span>
+                <span class="brand-text">WPPConnect</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="sessions.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Sessions</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">✉️</span>
+                    <span class="nav-text">Messages</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+                <a href="backups.html" class="nav-item active">
+                    <span class="nav-icon">💾</span>
+                    <span class="nav-text">Backups</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Users</span>
+                </a>
+                <a href="tenants.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span class="nav-text">Tenants</span>
+                </a>
+                <a href="health.html" class="nav-item">
+                    <span class="nav-icon">🏥</span>
+                    <span class="nav-text">Health</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Admin</div>
+                        <div class="user-role" id="userRole">admin</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>Backup Management</h1>
+                    <p class="subtitle">Manage and restore database backups</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="loadBackups()">
+                        🔄 Refresh
+                    </button>
+                    <button class="btn btn-primary" onclick="createBackup()">
+                        + Create Backup
+                    </button>
+                </div>
+            </header>
+
+            <!-- Backup Stats -->
+            <div class="stats-grid grid-3">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        💾
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalBackups">0</div>
+                        <div class="stat-label">Total Backups</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                        📊
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalSize">0 MB</div>
+                        <div class="stat-label">Total Size</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        🕒
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="lastBackup">Never</div>
+                        <div class="stat-label">Last Backup</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backups Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Backup History</h2>
+                    <p class="subtitle">All database backups</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Backup Name</th>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="backupsTable">
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        <div class="loading-spinner"></div>
+                                        Loading backups...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Backup Modal -->
+    <div class="modal" id="createBackupModal">
+        <div class="modal-overlay" onclick="closeCreateBackupModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Backup</h3>
+                <button class="modal-close" onclick="closeCreateBackupModal()">×</button>
+            </div>
+            <form id="createBackupForm">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label>Backup Name (Optional)</label>
+                        <input type="text" id="backupName" placeholder="my-backup">
+                        <small>Leave empty for automatic naming</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Backup Type</label>
+                        <select id="backupType" class="input-select">
+                            <option value="full">Full Backup</option>
+                            <option value="incremental">Incremental Backup</option>
+                            <option value="differential">Differential Backup</option>
+                        </select>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="compressBackup" checked>
+                            <span>Compress backup file</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeCreateBackupModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Create Backup</span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Restore Confirmation Modal -->
+    <div class="modal" id="restoreModal">
+        <div class="modal-overlay" onclick="closeRestoreModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Restore Backup</h3>
+                <button class="modal-close" onclick="closeRestoreModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <strong>Warning!</strong> Restoring this backup will replace all current data. This action cannot be undone.
+                </div>
+                <p>Are you sure you want to restore backup: <strong id="restoreBackupName"></strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeRestoreModal()">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="confirmRestore()">
+                    Restore Backup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        let currentRestoreBackup = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            loadUserInfo();
+            loadBackups();
+
+            // Setup form
+            document.getElementById('createBackupForm').addEventListener('submit', handleCreateBackup);
+        });
+
+        async function loadBackups() {
+            try {
+                const response = await apiCall('/backups');
+                const tbody = document.getElementById('backupsTable');
+
+                if (!response.backups || response.backups.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="text-center empty-state">
+                                <div class="empty-icon">💾</div>
+                                <p>No backups found</p>
+                                <button class="btn btn-primary btn-sm" onclick="createBackup()">
+                                    Create First Backup
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    updateBackupStats(0, 0, null);
+                    return;
+                }
+
+                // Update stats
+                const totalSize = response.backups.reduce((sum, b) => sum + (b.size || 0), 0);
+                const lastBackup = response.backups[0]?.created_at;
+                updateBackupStats(response.backups.length, totalSize, lastBackup);
+
+                // Render table
+                tbody.innerHTML = response.backups.map(backup => `
+                    <tr>
+                        <td>
+                            <strong>${backup.backup_name || backup.filename}</strong>
+                            ${backup.description ? `<br><small>${backup.description}</small>` : ''}
+                        </td>
+                        <td><span class="badge badge-info">${backup.type || 'full'}</span></td>
+                        <td>${formatBytes(backup.size || 0)}</td>
+                        <td>${formatDate(backup.created_at)}</td>
+                        <td><span class="badge badge-${backup.status === 'completed' ? 'success' : 'warning'}">${backup.status || 'completed'}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="downloadBackup('${backup.backup_name || backup.filename}')">
+                                📥 Download
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="restoreBackup('${backup.backup_name || backup.filename}')">
+                                ♻️ Restore
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteBackup('${backup.backup_name || backup.filename}')">
+                                🗑️ Delete
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+
+            } catch (error) {
+                console.error('Error loading backups:', error);
+                showToast('Failed to load backups', 'error');
+                document.getElementById('backupsTable').innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center text-error">
+                            Failed to load backups
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function updateBackupStats(count, size, lastBackup) {
+            document.getElementById('totalBackups').textContent = count;
+            document.getElementById('totalSize').textContent = formatBytes(size);
+            document.getElementById('lastBackup').textContent = lastBackup ? formatRelativeTime(lastBackup) : 'Never';
+        }
+
+        function createBackup() {
+            document.getElementById('createBackupModal').classList.add('active');
+        }
+
+        function closeCreateBackupModal() {
+            document.getElementById('createBackupModal').classList.remove('active');
+            document.getElementById('createBackupForm').reset();
+        }
+
+        async function handleCreateBackup(e) {
+            e.preventDefault();
+
+            const btn = e.target.querySelector('button[type="submit"]');
+            const btnText = btn.querySelector('.btn-text');
+            const btnLoading = btn.querySelector('.btn-loading');
+
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'block';
+            btn.disabled = true;
+
+            try {
+                const backupData = {
+                    backupName: document.getElementById('backupName').value || undefined,
+                    type: document.getElementById('backupType').value,
+                    compress: document.getElementById('compressBackup').checked
+                };
+
+                await apiCall('/backups', 'POST', backupData);
+
+                showToast('Backup created successfully!', 'success');
+                closeCreateBackupModal();
+                loadBackups();
+
+            } catch (error) {
+                showToast(error.message || 'Failed to create backup', 'error');
+            } finally {
+                btnText.style.display = 'block';
+                btnLoading.style.display = 'none';
+                btn.disabled = false;
+            }
+        }
+
+        function restoreBackup(backupName) {
+            currentRestoreBackup = backupName;
+            document.getElementById('restoreBackupName').textContent = backupName;
+            document.getElementById('restoreModal').classList.add('active');
+        }
+
+        function closeRestoreModal() {
+            document.getElementById('restoreModal').classList.remove('active');
+            currentRestoreBackup = null;
+        }
+
+        async function confirmRestore() {
+            if (!currentRestoreBackup) return;
+
+            try {
+                showToast('Restoring backup...', 'info');
+                closeRestoreModal();
+
+                await apiCall(`/backups/${currentRestoreBackup}/restore`, 'POST');
+
+                showToast('Backup restored successfully!', 'success');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+
+            } catch (error) {
+                showToast(error.message || 'Failed to restore backup', 'error');
+            }
+        }
+
+        async function downloadBackup(backupName) {
+            try {
+                showToast('Preparing download...', 'info');
+
+                const token = localStorage.getItem('token');
+                const url = `http://localhost:3000/api/backups/${backupName}/download`;
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Download failed');
+                }
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = backupName;
+                a.click();
+
+                showToast('Download started', 'success');
+
+            } catch (error) {
+                showToast(error.message || 'Failed to download backup', 'error');
+            }
+        }
+
+        async function deleteBackup(backupName) {
+            if (!confirmAction(`Are you sure you want to delete backup "${backupName}"?`)) {
+                return;
+            }
+
+            try {
+                await apiCall(`/backups/${backupName}`, 'DELETE');
+                showToast('Backup deleted successfully', 'success');
+                loadBackups();
+
+            } catch (error) {
+                showToast(error.message || 'Failed to delete backup', 'error');
+            }
+        }
+    </script>
+</body>
+</html>
