@@ -2,6 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
+import path from 'path';
 import config from './config/environment';
 import logger from './config/logger';
 import routes from './routes';
@@ -19,9 +20,10 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'"],
-      imgSrc: ["'self'", 'data:', 'https:'],
+      styleSrc: ["'self'", "'unsafe-inline'", 'https://cdn.jsdelivr.net'],
+      scriptSrc: ["'self'", "'unsafe-inline'", 'https://cdn.socket.io', 'https://cdn.jsdelivr.net'],
+      imgSrc: ["'self'", 'data:', 'https:', 'blob:'],
+      connectSrc: ["'self'", 'ws:', 'wss:'],
     },
   },
   hsts: {
@@ -50,11 +52,21 @@ app.use(addRequestId);
 app.use(httpLogger);
 app.use(logRequestDetails);
 
+// Serve static files from UI directory
+const uiPath = path.join(__dirname, '../src/ui');
+app.use(express.static(uiPath));
+
+// Serve index.html for root path
+app.get('/', (req: Request, res: Response) => {
+  res.sendFile(path.join(uiPath, 'index.html'));
+});
+
 // Rate limiting
 app.use('/api', apiLimiter);
 
 // API routes
 app.use('/api/v1', routes);
+app.use('/api', routes);
 
 // Health check endpoint (before rate limiting)
 app.get('/health', (req: Request, res: Response) => {
