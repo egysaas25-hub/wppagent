@@ -2,14 +2,26 @@ import app from './app';
 import config from './config/environment';
 import logger from './config/logger';
 import db from './config/database';
+import { runMigrations } from './config/migrations';
 import SessionManager from './services/whatsapp-session.manager';
 import { WebSocketService } from './services/websocket.service';
 import healthService from './services/health.service';
+import { BackupService } from './services/backup.service';
+import presenceService from './services/presence.service';
 import { MemoryMonitor, resourceCleaner } from './utils/memory.utils';
 import { optimizeDatabase, applyPerformanceOptimizations } from './utils/database.utils';
 
 const PORT = config.port;
 let isShuttingDown = false;
+
+// Run database migrations
+try {
+  runMigrations();
+  logger.info('✅ Database migrations completed');
+} catch (error: any) {
+  logger.error('Database migration failed', { error: error.message });
+  process.exit(1);
+}
 
 // Initialize memory monitor
 const memoryMonitor = new MemoryMonitor();
@@ -76,6 +88,19 @@ const server = app.listen(PORT, async () => {
     memoryMonitor.stop();
   });
   logger.info('✅ Memory monitoring started');
+
+  // Start presence service cleanup
+  resourceCleaner.register('presence-service', () => {
+    presenceService.stopCleanupInterval();
+  });
+  logger.info('✅ Presence tracking initialized');
+
+  // Schedule automated backups (daily)
+  const backupInterval = BackupService.scheduleAutomatedBackups();
+  resourceCleaner.register('backup-scheduler', () => {
+    clearInterval(backupInterval);
+  });
+  logger.info('✅ Automated backup scheduler started');
 
   // Periodic database optimization (every 6 hours)
   const dbOptimizationInterval = setInterval(() => {

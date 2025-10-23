@@ -16,3 +16,11 @@ session-*
 tokens
 yarn.lock
 package-lock.json
+
+# Logs
+logs/
+*.log
+
+# Test coverage
+coverage/
+.nyc_output/
