@@ -4,8 +4,21 @@ import { authenticate, authorize } from '../middleware/auth.middleware';
 import { sessionValidators } from '../middleware/validators.middleware';
 import { sessionLimiter } from '../middleware/rateLimiter.middleware';
 import { UserRole } from '../types';
+import { 
+  tenantContext, 
+  requireTenant, 
+  filterByTenant,
+  checkSessionLimit 
+} from '../middleware/tenant.middleware';
 
 const router = Router();
+
+
+router.use(authenticate);
+router.use(tenantContext);
+router.use(requireTenant);
+router.use(filterByTenant);
+
 
 /**
  * @route   POST /sessions
@@ -17,6 +30,7 @@ router.post(
   authenticate,
   authorize(UserRole.ADMIN, UserRole.AGENT),
   sessionLimiter,
+  checkSessionLimit,
   sessionValidators.create,
   SessionController.create
 );

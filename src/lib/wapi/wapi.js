@@ -123,6 +123,7 @@ import {
 } from './serializers';
 import { getBusinessProfilesProducts, getOrderbyMsg } from './business';
 import { storeObjects } from './store/store-objects';
+import 'regenerator-runtime/runtime';
 
 const readyPromise = new Promise((resolve) => {
   if (WPP.isReady) {

@@ -1,12 +1,16 @@
 import { Router, Request, Response } from 'express';
 import { AnalyticsService } from '../services/analytics.service';
 import { authenticate } from '../middleware/auth.middleware';
-import { requireTenant } from '../middleware/tenant.middleware';
+import { requireTenant, tenantContext } from '../middleware/tenant.middleware';
 import { asyncHandler } from '../middleware/errorHandler.middleware';
 import { param, query } from 'express-validator';
 import { validate } from '../middleware/validators.middleware';
 
 const router = Router();
+
+router.use(authenticate);
+router.use(tenantContext);
+router.use(requireTenant);
 
 // All analytics routes require authentication and tenant context
 router.use(authenticate);

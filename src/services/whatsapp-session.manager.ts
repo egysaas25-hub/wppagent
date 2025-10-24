@@ -4,6 +4,7 @@ import SessionService from './session.service';
 import MessageService from './message.service';
 import ContactModel from '../models/contact.model';
 import ConversationModel from '../models/conversation.model';
+import { TenantModel } from '../models/tenant.model';
 import { SessionStatus, CreateMessageDTO, MessageType } from '../types';
 import logger from '../config/logger';
 import { EventEmitter } from 'events';
@@ -14,15 +15,39 @@ interface ActiveSession {
   status: SessionStatus;
 }
 
-// Custom database token store
+interface DeviceId {
+  user?: string;
+  _serialized?: string;
+}
+
+interface HostDevice {
+  id?: DeviceId;
+}
+
+interface Message {
+  id: string;
+  chatId: string | DeviceId;
+  from: string;
+  fromMe: boolean;
+  sender?: { id: string | DeviceId };
+  body?: string;
+  type: string;
+  timestamp?: number;
+  ack?: number;
+}
+
+interface Contact {
+  id: string | DeviceId;
+  name?: string;
+  pushname?: string;
+  isGroup?: boolean;
+}
+
 const createDatabaseTokenStore = (): TokenStore => ({
   async getToken(sessionName: string) {
     try {
       const session = SessionService.getByName(sessionName);
-      // Use the token field with proper type checking
       if (session && session.token && session.token_iv && session.token_auth_tag) {
-        // The token is encrypted in DB, but getByName returns SessionWithDecryptedToken
-        // which has decrypted_token property
         const sessionWithToken = session as any;
         if (sessionWithToken.decrypted_token) {
           return JSON.parse(sessionWithToken.decrypted_token);
@@ -34,18 +59,31 @@ const createDatabaseTokenStore = (): TokenStore => ({
     return null;
   },
 
-  async saveToken(sessionName: string, tokenData: any) {
+  async listTokens(): Promise<string[]> {
+    try {
+      const { sessions } = SessionService.getAll({});
+      return sessions
+        .filter((s: any) => !!(s.token || s.decrypted_token))
+        .map((s: any) => s.session_name);
+    } catch (error: any) {
+      logger.error('Error listing tokens from database', { error });
+      return [];
+    }
+  },
+
+  async setToken(sessionName: string, tokenData: any): Promise<boolean> {
     try {
       SessionService.saveToken(sessionName, JSON.stringify(tokenData));
       logger.debug('Token saved to database', { sessionName });
+      return true;
     } catch (error: any) {
       logger.error('Error saving token to database', { sessionName, error });
+      return false;
     }
   },
 
   async removeToken(sessionName: string) {
     try {
-      // Set token fields to empty
       SessionService.saveToken(sessionName, '');
       logger.debug('Token removed from database', { sessionName });
       return true;
@@ -63,6 +101,35 @@ class WhatsAppSessionManager extends EventEmitter {
   constructor() {
     super();
     this.databaseTokenStore = createDatabaseTokenStore();
+    // Start periodic cleanup
+    setInterval(() => this.cleanupStaleSessions(), 30 * 60 * 1000); // Every 30 minutes
+  }
+
+  /**
+   * Check tenant session limit
+   */
+  private async checkSessionLimit(tenantId: string): Promise<boolean> {
+    try {
+      const tenant = TenantModel.findById(tenantId);
+      if (!tenant) {
+        logger.error('Tenant not found for session limit check', { tenantId });
+        return false;
+      }
+
+      const activeSessions = Array.from(this.sessions.values()).filter(
+        (session) => SessionService.getByName(session.client.session)?.tenant_id === tenantId
+      ).length;
+
+      if (activeSessions >= tenant.max_sessions) {
+        logger.warn('Tenant session limit reached', { tenantId, max_sessions: tenant.max_sessions });
+        return false;
+      }
+
+      return true;
+    } catch (error: any) {
+      logger.error('Error checking session limit', { tenantId, error: error.message });
+      return false;
+    }
   }
 
   /**
@@ -72,6 +139,19 @@ class WhatsAppSessionManager extends EventEmitter {
     if (this.sessions.has(sessionName)) {
       logger.warn('Session already running', { sessionName });
       return;
+    }
+
+    const session = SessionService.getByName(sessionName);
+    if (!session || !session.tenant_id) {
+      logger.error('Session or tenant not found', { sessionName });
+      throw new Error('Session or tenant not found');
+    }
+
+    // Check tenant session limit
+    const canStart = await this.checkSessionLimit(session.tenant_id);
+    if (!canStart) {
+      logger.error('Cannot start session: tenant session limit reached', { sessionName });
+      throw new Error('Tenant session limit reached');
     }
 
     logger.info('Starting WhatsApp session', { sessionName });
@@ -89,15 +169,15 @@ class WhatsAppSessionManager extends EventEmitter {
         logQR: false,
         tokenStore: this.databaseTokenStore,
         folderNameToken: './tokens',
-        
+
         // QR Code callback
         catchQR: (base64Qr, asciiQR, attempt, urlCode) => {
           logger.info('QR Code received', { sessionName, attempt });
-          
+
           // Save QR to database
           SessionService.saveQRCode(sessionName, base64Qr);
           SessionService.updateStatus(sessionName, SessionStatus.QR_CODE);
-          
+
           // Emit event for WebSocket broadcasting
           this.emit('qr', { sessionName, qr: base64Qr, attempt });
         },
@@ -105,7 +185,7 @@ class WhatsAppSessionManager extends EventEmitter {
         // Status callback
         statusFind: (status, session) => {
           logger.info('Status changed', { sessionName, status });
-          
+
           switch (status) {
             case 'autocloseCalled':
             case 'desconnectedMobile':
@@ -119,7 +199,7 @@ class WhatsAppSessionManager extends EventEmitter {
               this.emit('connected', { sessionName });
               break;
           }
-          
+
           this.emit('status', { sessionName, status });
         },
 
@@ -138,7 +218,7 @@ class WhatsAppSessionManager extends EventEmitter {
 
       // Get and save phone number
       try {
-        const hostDevice = await client.getHostDevice();
+        const hostDevice = await client.getHostDevice() as HostDevice;
         if (hostDevice?.id?.user) {
           SessionService.updatePhoneNumber(
             sessionName,
@@ -170,7 +250,7 @@ class WhatsAppSessionManager extends EventEmitter {
    */
   async stopSession(sessionName: string): Promise<void> {
     const session = this.sessions.get(sessionName);
-    
+
     if (!session) {
       logger.warn('Session not found', { sessionName });
       return;
@@ -182,7 +262,7 @@ class WhatsAppSessionManager extends EventEmitter {
       await session.client.close();
       this.sessions.delete(sessionName);
       SessionService.updateStatus(sessionName, SessionStatus.DISCONNECTED);
-      
+
       logger.info('Session stopped', { sessionName });
     } catch (error: any) {
       logger.error('Error stopping session', {
@@ -207,7 +287,7 @@ class WhatsAppSessionManager extends EventEmitter {
   }
 
   /**
-   * Send text message
+   * Send text message with proper error handling
    */
   async sendMessage(
     sessionName: string,
@@ -215,39 +295,52 @@ class WhatsAppSessionManager extends EventEmitter {
     message: string
   ): Promise<any> {
     const client = this.getSession(sessionName);
-    
+
     if (!client) {
       throw new Error('Session not active');
     }
 
     logger.info('Sending message', { sessionName, to });
 
-    const result = await client.sendText(to, message);
-
-    // Save to database
     try {
-      const hostDevice = await client.getHostDevice();
-      const messageData: CreateMessageDTO = {
-        sessionName,
-        messageId: result.id,
-        chatId: to,
-        fromMe: true,
-        sender: hostDevice?.id?.user || '',
-        body: message,
-        type: MessageType.TEXT,
-        timestamp: result.t || Date.now(),
-        ack: result.ack || 0,
-      };
+      const result = await client.sendText(to, message);
 
-      MessageService.save(messageData);
+      // Save to database with error handling
+      try {
+        const hostDevice = await client.getHostDevice() as HostDevice;
+        const messageData: CreateMessageDTO = {
+          sessionName,
+          messageId: result.id,
+          chatId: to,
+          fromMe: true,
+          sender: hostDevice?.id?.user || '',
+          body: message,
+          type: MessageType.TEXT,
+          timestamp: result.t || Date.now(),
+          ack: result.ack || 0,
+        };
+
+        MessageService.save(messageData);
+      } catch (dbError: any) {
+        // Log but don't throw - message was sent
+        logger.error('Failed to save sent message to database', {
+          sessionName,
+          error: dbError.message,
+          stack: dbError.stack,
+        });
+      }
+
+      return result;
     } catch (error: any) {
-      logger.error('Failed to save sent message to database', { 
-        sessionName, 
-        error: error.message 
+      // Proper error logging and re-throw
+      logger.error('Failed to send message', {
+        sessionName,
+        to,
+        error: error.message,
+        stack: error.stack,
       });
+      throw error;
     }
-
-    return result;
   }
 
   /**
@@ -261,7 +354,7 @@ class WhatsAppSessionManager extends EventEmitter {
     caption?: string
   ): Promise<any> {
     const client = this.getSession(sessionName);
-    
+
     if (!client) {
       throw new Error('Session not active');
     }
@@ -283,7 +376,7 @@ class WhatsAppSessionManager extends EventEmitter {
    */
   private setupMessageListeners(sessionName: string, client: Whatsapp): void {
     // Listen for new messages
-    client.onMessage(async (message) => {
+    client.onMessage(async (message: Message) => {
       logger.debug('New message received', {
         sessionName,
         from: message.from,
@@ -291,17 +384,19 @@ class WhatsAppSessionManager extends EventEmitter {
 
       try {
         // Convert chatId to string
-        const chatId = typeof message.chatId === 'string' 
-          ? message.chatId 
+        const chatId = typeof message.chatId === 'string'
+          ? message.chatId
           : message.chatId._serialized || message.from;
 
         // Save message to database
         const messageData: CreateMessageDTO = {
           sessionName,
           messageId: message.id,
-          chatId: chatId,
+          chatId,
           fromMe: message.fromMe,
-          sender: message.sender?.id || message.from,
+          sender: typeof message.sender?.id === 'string'
+            ? message.sender.id
+            : message.sender?.id.user || message.from,
           body: message.body || '',
           type: message.type as any || MessageType.TEXT,
           timestamp: message.timestamp || Date.now(),
@@ -313,7 +408,7 @@ class WhatsAppSessionManager extends EventEmitter {
         // Update or create conversation
         ConversationModel.upsert({
           sessionName,
-          chatId: chatId,
+          chatId,
           lastMessage: message.body || '',
           lastMessageTime: message.timestamp || Date.now(),
         });
@@ -326,20 +421,20 @@ class WhatsAppSessionManager extends EventEmitter {
         // Save or update contact
         if (!message.fromMe) {
           try {
-            const contact = await client.getContact(message.from);
-            const contactId = typeof contact.id === 'string' 
-              ? contact.id 
-              : (contact.id as any)._serialized || message.from;
+            const contact = await client.getContact(message.from) as Contact;
+            const contactId = typeof contact.id === 'string'
+              ? contact.id
+              : contact.id._serialized || message.from;
             const phoneNumber = typeof contact.id === 'string'
               ? contact.id
-              : (contact.id as any).user || '';
-            
+              : contact.id.user || '';
+
             ContactModel.upsert({
               sessionName,
-              contactId: contactId,
+              contactId,
               name: contact.name || contact.pushname,
               phone: phoneNumber,
-              isGroup: (contact as any).isGroup || false,
+              isGroup: contact.isGroup || false,
             });
           } catch (error: any) {
             logger.error('Failed to fetch contact info', {
@@ -366,9 +461,9 @@ class WhatsAppSessionManager extends EventEmitter {
         MessageService.updateAck(msg.id, msg.ack);
         this.emit('ack', { sessionName, messageId: msg.id, ack: msg.ack });
       } catch (error: any) {
-        logger.error('Error updating ACK', { 
-          sessionName, 
-          error: error.message 
+        logger.error('Error updating ACK', {
+          sessionName,
+          error: error.message,
         });
       }
     });
@@ -385,10 +480,10 @@ class WhatsAppSessionManager extends EventEmitter {
    */
   private handleDisconnection(sessionName: string): void {
     logger.warn('Session disconnected', { sessionName });
-    
+
     this.sessions.delete(sessionName);
     SessionService.updateStatus(sessionName, SessionStatus.DISCONNECTED);
-    
+
     this.emit('disconnected', { sessionName });
 
     // Auto-reconnect logic
@@ -396,7 +491,7 @@ class WhatsAppSessionManager extends EventEmitter {
       const session = SessionService.getByName(sessionName);
       if (session?.auto_reconnect) {
         logger.info('Auto-reconnect enabled, restarting session', { sessionName });
-        
+
         setTimeout(() => {
           this.startSession(sessionName).catch((error: any) => {
             logger.error('Auto-reconnect failed', {
@@ -429,13 +524,13 @@ class WhatsAppSessionManager extends EventEmitter {
           logger.info('Auto-starting session', {
             sessionName: session.session_name,
           });
-          
+
           // Reset status first
           SessionService.updateStatus(
-            session.session_name, 
+            session.session_name,
             SessionStatus.DISCONNECTED
           );
-          
+
           // Start session
           try {
             await this.startSession(session.session_name);
@@ -453,16 +548,53 @@ class WhatsAppSessionManager extends EventEmitter {
   }
 
   /**
+   * Cleanup stale sessions
+   */
+  private async cleanupStaleSessions(): Promise<void> {
+    logger.info('Cleaning up stale sessions...');
+
+    try {
+      const sessionNames = Array.from(this.sessions.keys());
+
+      for (const sessionName of sessionNames) {
+        const session = SessionService.getByName(sessionName);
+        if (!session || !session.tenant_id) continue;
+
+        const tenant = TenantModel.findById(session.tenant_id);
+        if (!tenant) {
+          await this.stopSession(sessionName);
+          continue;
+        }
+
+        // Check if tenant has exceeded session limit
+        const activeSessions = Array.from(this.sessions.values()).filter(
+          (s) => SessionService.getByName(s.client.session)?.tenant_id === session.tenant_id
+        ).length;
+
+        if (activeSessions > tenant.max_sessions) {
+          logger.warn('Stopping session due to tenant limit', { sessionName, tenantId: session.tenant_id });
+          await this.stopSession(sessionName);
+        }
+      }
+    } catch (error: any) {
+      logger.error('Error during session cleanup', { error: error.message });
+    }
+  }
+
+  /**
    * Cleanup all sessions
    */
   async cleanup(): Promise<void> {
     logger.info('Cleaning up all sessions...');
-    
+
     const sessionNames = Array.from(this.sessions.keys());
-    
+
     for (const sessionName of sessionNames) {
       await this.stopSession(sessionName);
     }
+
+    // Clear sessions map
+    this.sessions.clear();
   }
 }
 

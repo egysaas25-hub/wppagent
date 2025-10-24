@@ -5,8 +5,12 @@ import { asyncHandler } from '../middleware/errorHandler.middleware';
 import { param, query, body } from 'express-validator';
 import { validate } from '../middleware/validators.middleware';
 import { NotFoundError } from '../utils/errors';
+import { tenantContext } from '../middleware/tenant.middleware';
 
 const router = Router();
+
+router.use(authenticate);
+router.use(tenantContext);
 
 // All backup routes require authentication
 router.use(authenticate);

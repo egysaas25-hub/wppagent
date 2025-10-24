@@ -56,8 +56,8 @@ export function tenantContext(req: Request, res: Response, next: NextFunction): 
     }
 
     // Method 3: Use authenticated user's tenant
-    if (!tenant && req.user?.tenant_id) {
-      tenant = TenantModel.findById(req.user.tenant_id);
+    if (!tenant && (req as any).user?.tenant_id) {
+      tenant = TenantModel.findById((req as any).user.tenant_id);
     }
 
     if (tenant) {
@@ -92,6 +92,7 @@ export function tenantContext(req: Request, res: Response, next: NextFunction): 
  */
 export function requireTenant(req: Request, res: Response, next: NextFunction): void {
   if (!req.tenant) {
+    logger.warn('Tenant context missing', { url: req.originalUrl, userId: (req as any).user?.id });
     throw new AuthenticationError('Tenant context required');
   }
   next();

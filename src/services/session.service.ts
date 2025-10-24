@@ -9,19 +9,28 @@ import {
   PaginationQuery,
   SessionStatus
 } from '../types';
+import { tenantContext } from '../middleware/tenant.middleware';
 
 class SessionService {
   /**
    * Create a new session
    */
-  static create(sessionData: CreateSessionDTO): Session {
-    logger.info('Creating new session', { sessionName: sessionData.sessionName });
+  static create(sessionData: CreateSessionDTO & { tenantId?: string }): Session {
+    logger.info('Creating new session', { 
+      sessionName: sessionData.sessionName,
+      tenantId: sessionData.tenantId, // ✅ Log tenant
+    });
 
-    const session = SessionModel.create(sessionData);
+    // ✅ Ensure tenant_id is included
+    const session = SessionModel.create({
+      ...sessionData,
+      tenantId: sessionData.tenantId,
+    });
 
     logger.info('Session created successfully', { 
       sessionName: session.session_name,
-      id: session.id 
+      id: session.id,
+      tenantId: session.tenant_id,
     });
 
     return session;
@@ -46,8 +55,11 @@ class SessionService {
   static getAll(options: PaginationQuery & { 
     status?: SessionStatus; 
     createdBy?: string;
+    tenantId?: string;
   }): { sessions: Session[]; total: number } {
-    return SessionModel.findAll(options);
+    return SessionModel.findAll({...options,
+      tenantId: options.tenantId,
+    });
   }
 
   /**

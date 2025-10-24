@@ -41,40 +41,48 @@ export class PresenceService extends EventEmitter {
    * Set user online
    */
   setOnline(userId: string, tenantId: string, socketId: string, metadata?: any): void {
-    try {
-      // Check if user already has an online record
-      const existing = db
-        .prepare('SELECT * FROM online_users WHERE user_id = ? AND socket_id = ?')
-        .get(userId, socketId) as OnlineUser | undefined;
+  try {
+    const existing = db
+      .prepare('SELECT * FROM online_users WHERE user_id = ? AND socket_id = ?')
+      .get(userId, socketId) as OnlineUser | undefined;
 
-      if (existing) {
-        // Update existing record
-        db.prepare(`
-          UPDATE online_users
-          SET status = 'online', last_seen = CURRENT_TIMESTAMP, metadata = ?
-          WHERE id = ?
-        `).run(metadata ? JSON.stringify(metadata) : null, existing.id);
-      } else {
-        // Insert new record
-        db.prepare(`
-          INSERT INTO online_users (user_id, tenant_id, socket_id, status, metadata)
-          VALUES (?, ?, ?, 'online', ?)
-        `).run(userId, tenantId, socketId, metadata ? JSON.stringify(metadata) : null);
-      }
-
-      logger.debug('User set online', { userId, socketId });
-
-      // Emit presence update
-      this.emit('presence:online', {
-        user_id: userId,
-        tenant_id: tenantId,
-        status: 'online',
-        socket_id: socketId,
-      });
-    } catch (error: any) {
-      logger.error('Failed to set user online', { error: error.message });
+    if (existing) {
+      // ✅ Update with tenant_id
+      db.prepare(`
+        UPDATE online_users
+        SET status = 'online', last_seen = CURRENT_TIMESTAMP, metadata = ?, tenant_id = ?
+        WHERE id = ?
+      `).run(
+        metadata ? JSON.stringify(metadata) : null,
+        tenantId,
+        existing.id
+      );
+    } else {
+      // ✅ Insert with tenant_id (already correct in your code)
+      db.prepare(`
+        INSERT INTO online_users (user_id, tenant_id, socket_id, status, metadata)
+        VALUES (?, ?, ?, 'online', ?)
+      `).run(userId, tenantId, socketId, metadata ? JSON.stringify(metadata) : null);
     }
+
+    logger.debug('User set online', { userId, tenantId, socketId });
+
+    this.emit('presence:online', {
+      user_id: userId,
+      tenant_id: tenantId,
+      status: 'online',
+      socket_id: socketId,
+    });
+  } catch (error: any) {
+    logger.error('Failed to set user online', { 
+      error: error.message,
+      userId,
+      tenantId,
+      socketId,
+      stack: error.stack
+    });
   }
+}
 
   /**
    * Set user offline

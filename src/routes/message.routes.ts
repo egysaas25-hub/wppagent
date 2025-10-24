@@ -4,9 +4,14 @@ import { authenticate, authorize } from '../middleware/auth.middleware';
 import { messageValidators } from '../middleware/validators.middleware';
 import { messageLimiter } from '../middleware/rateLimiter.middleware';
 import { UserRole } from '../types';
+import { filterByTenant, requireTenant, tenantContext } from '../middleware/tenant.middleware';
 
 const router = Router();
 
+router.use(authenticate);
+router.use(tenantContext);
+router.use(requireTenant);
+router.use(filterByTenant);
 /**
  * @route   GET /sessions/:sessionName/messages
  * @desc    Get messages

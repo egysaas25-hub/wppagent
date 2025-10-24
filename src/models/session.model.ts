@@ -16,7 +16,7 @@ class SessionModel {
    * Create a new session
    */
   static create(sessionData: CreateSessionDTO): Session {
-    const { sessionName, createdBy, autoReconnect = true } = sessionData;
+    const { sessionName, createdBy, autoReconnect = true, tenantId } = sessionData;
 
     const existing = this.findByName(sessionName);
     if (existing) {
@@ -24,11 +24,15 @@ class SessionModel {
     }
 
     db.prepare(`
-      INSERT INTO sessions (session_name, created_by, auto_reconnect, status)
-      VALUES (?, ?, ?, ?)
-    `).run(sessionName, createdBy, autoReconnect ? 1 : 0, SessionStatus.DISCONNECTED);
+      INSERT INTO sessions (session_name, created_by, auto_reconnect, status, tenant_id)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(sessionName, createdBy, autoReconnect ? 1 : 0, SessionStatus.DISCONNECTED, tenantId);
 
-    return this.findByName(sessionName)!;
+    const session = this.findByName(sessionName);
+    if (!session) {
+      throw new Error('Failed to create session');
+    }
+    return session;
   }
 
   /**
@@ -38,8 +42,9 @@ class SessionModel {
     const session = db.prepare(`
       SELECT 
         id, session_name, phone_number, status, qr_code,
+        qr_code_iv, qr_code_auth_tag,
         token, token_iv, token_auth_tag,
-        auto_reconnect, created_by, created_at, updated_at
+        auto_reconnect, created_by, created_at, updated_at, tenant_id
       FROM sessions
       WHERE session_name = ?
     `).get(sessionName) as any;
@@ -68,21 +73,30 @@ class SessionModel {
   /**
    * Get all sessions
    */
-  static findAll(options: PaginationQuery & { 
-    status?: SessionStatus; 
+  static findAll(options: PaginationQuery & {
+    status?: SessionStatus;
     createdBy?: string;
+    tenantId?: string;
   }): { sessions: Session[]; total: number } {
-    const { page = 1, limit = 50, status, createdBy } = options;
+    const { page = 1, limit = 50, status, createdBy, tenantId } = options;
     const offset = (page - 1) * limit;
-    
+
     let query = `
       SELECT 
         id, session_name, phone_number, status, 
-        auto_reconnect, created_by, created_at, updated_at
+        qr_code, qr_code_iv, qr_code_auth_tag,
+        token, token_iv, token_auth_tag,
+        auto_reconnect, created_by, created_at, updated_at, tenant_id
       FROM sessions 
       WHERE 1=1
     `;
     const params: any[] = [];
+
+    // Filter by tenant
+    if (tenantId) {
+      query += ' AND tenant_id = ?';
+      params.push(tenantId);
+    }
 
     if (status) {
       query += ' AND status = ?';
@@ -97,14 +111,32 @@ class SessionModel {
     query += ' ORDER BY created_at DESC LIMIT ? OFFSET ?';
     params.push(limit, offset);
 
-    const sessions = db.prepare(query).all(...params) as any[];
+    const sessions = db.prepare(query).all(...params) as Session[];
 
-    // Convert auto_reconnect to boolean
-    sessions.forEach(s => s.auto_reconnect = Boolean(s.auto_reconnect));
+    // Decrypt qr_code and token fields
+    const decryptedSessions = sessions.map(s => {
+      const qrCode = s.qr_code && s.qr_code_iv && s.qr_code_auth_tag
+        ? Encryption.decrypt(s.qr_code, s.qr_code_iv, s.qr_code_auth_tag)
+        : null;
+      const token = s.token && s.token_iv && s.token_auth_tag
+        ? Encryption.decrypt(s.token, s.token_iv, s.token_auth_tag)
+        : null;
+      return {
+        ...s,
+        auto_reconnect: Boolean(s.auto_reconnect),
+        qr_code: qrCode,
+        token,
+      };
+    });
 
-    // Get total count
-    let countQuery = 'SELECT COUNT(*) as total FROM sessions WHERE 1=1';
+    // Get total count with same filters
+    let countQuery = 'SELECT COUNT(*) as count FROM sessions WHERE 1=1';
     const countParams: any[] = [];
+
+    if (tenantId) {
+      countQuery += ' AND tenant_id = ?';
+      countParams.push(tenantId);
+    }
 
     if (status) {
       countQuery += ' AND status = ?';
@@ -116,9 +148,12 @@ class SessionModel {
       countParams.push(createdBy);
     }
 
-    const { total } = db.prepare(countQuery).get(...countParams) as { total: number };
+    const { count } = db.prepare(countQuery).get(...countParams) as { count: number };
 
-    return { sessions: sessions as Session[], total };
+    return {
+      sessions: decryptedSessions as Session[],
+      total: count,
+    };
   }
 
   /**
@@ -135,7 +170,11 @@ class SessionModel {
       throw new NotFoundError('Session');
     }
 
-    return this.findByName(sessionName)!;
+    const session = this.findByName(sessionName);
+    if (!session) {
+      throw new NotFoundError('Session');
+    }
+    return session;
   }
 
   /**
@@ -148,7 +187,11 @@ class SessionModel {
       WHERE session_name = ?
     `).run(phoneNumber, sessionName);
 
-    return this.findByName(sessionName)!;
+    const session = this.findByName(sessionName);
+    if (!session) {
+      throw new NotFoundError('Session');
+    }
+    return session;
   }
 
   /**
@@ -176,20 +219,43 @@ class SessionModel {
       sessionName
     );
 
-    return this.findByName(sessionName)!;
+    const session = this.findByName(sessionName);
+    if (!session) {
+      throw new NotFoundError('Session');
+    }
+    return session;
   }
 
   /**
    * Save QR code
    */
   static saveQRCode(sessionName: string, qrCode: string): Session {
+    const encrypted = Encryption.encrypt(qrCode);
+
+    if (!encrypted) {
+      throw new Error('Failed to encrypt QR code');
+    }
+
     db.prepare(`
       UPDATE sessions
-      SET qr_code = ?, updated_at = CURRENT_TIMESTAMP
+      SET 
+        qr_code = ?,
+        qr_code_iv = ?,
+        qr_code_auth_tag = ?,
+        updated_at = CURRENT_TIMESTAMP
       WHERE session_name = ?
-    `).run(qrCode, sessionName);
+    `).run(
+      encrypted.encrypted,
+      encrypted.iv,
+      encrypted.authTag,
+      sessionName
+    );
 
-    return this.findByName(sessionName)!;
+    const session = this.findByName(sessionName);
+    if (!session) {
+      throw new NotFoundError('Session');
+    }
+    return session;
   }
 
   /**
@@ -222,7 +288,11 @@ class SessionModel {
       WHERE session_name = ?
     `).run(...params);
 
-    return this.findByName(sessionName)!;
+    const updatedSession = this.findByName(sessionName);
+    if (!updatedSession) {
+      throw new NotFoundError('Session');
+    }
+    return updatedSession;
   }
 
   /**
@@ -233,9 +303,9 @@ class SessionModel {
     db.prepare('DELETE FROM messages WHERE session_name = ?').run(sessionName);
     db.prepare('DELETE FROM conversations WHERE session_name = ?').run(sessionName);
     db.prepare('DELETE FROM contacts WHERE session_name = ?').run(sessionName);
-    
+
     const result = db.prepare('DELETE FROM sessions WHERE session_name = ?').run(sessionName);
-    
+
     return result.changes > 0;
   }
 

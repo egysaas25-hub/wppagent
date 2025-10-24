@@ -1,34 +1,38 @@
+export enum SessionStatus {
+  DISCONNECTED = 'disconnected',
+  CONNECTING = 'connecting',
+  QR_CODE = 'qr_code',
+  CONNECTED = 'connected',
+  ERROR = 'error',
+}
+
 export interface Session {
   id: number;
   session_name: string;
-  phone_number: string | null;
+  phone_number?: string;
   status: SessionStatus;
-  qr_code: string | null;
-  token: string | null;
-  token_iv: string | null;
-  token_auth_tag: string | null;
+  qr_code?: string;
+  qr_code_iv?: string;
+  qr_code_auth_tag?: string;
+  token?: string;
+  token_iv?: string;
+  token_auth_tag?: string;
   auto_reconnect: boolean;
   created_by: string;
   created_at: string;
   updated_at: string;
+  tenant_id: string;
 }
 
 export interface SessionWithDecryptedToken extends Session {
   decrypted_token?: string | null;
 }
 
-export enum SessionStatus {
-  DISCONNECTED = 'disconnected',
-  CONNECTING = 'connecting',
-  CONNECTED = 'connected',
-  QR_CODE = 'qr_code',
-  ERROR = 'error',
-}
-
 export interface CreateSessionDTO {
   sessionName: string;
   createdBy: string;
   autoReconnect?: boolean;
+  tenantId: string;
 }
 
 export interface UpdateSessionDTO {
@@ -41,10 +45,4 @@ export interface SessionStats {
   total_contacts: number;
   total_conversations: number;
   open_conversations: number;
-}
-
-export interface EncryptedData {
-  encrypted: string;
-  iv: string;
-  authTag: string;
 }

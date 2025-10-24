@@ -9,6 +9,7 @@ import config from '../config/environment';
 
 export class WebSocketService {
   private io: SocketIOServer;
+  private activeConnections: Map<string, Set<string>> = new Map(); // Track connections by userId
 
   constructor(httpServer: HTTPServer) {
     this.io = new SocketIOServer(httpServer, {
@@ -20,12 +21,19 @@ export class WebSocketService {
       pingTimeout: 60000,
       pingInterval: 25000,
       transports: ['websocket', 'polling'],
+      maxHttpBufferSize: 1e6, // Limit buffer size to 1MB
+      connectTimeout: 45000,
     });
 
     this.setupMiddleware();
     this.setupConnectionHandlers();
     this.setupSessionManagerListeners();
     this.setupPresenceListeners();
+
+    // Clean up stale connections periodically
+    setInterval(() => {
+      this.cleanupStaleConnections();
+    }, 5 * 60 * 1000); // Every 5 minutes
 
     logger.info('WebSocket service initialized');
   }
@@ -36,7 +44,7 @@ export class WebSocketService {
   private setupMiddleware() {
     this.io.use((socket, next) => {
       const token = socket.handshake.auth.token;
-      
+
       if (!token) {
         return next(new Error('Authentication required'));
       }
@@ -46,7 +54,7 @@ export class WebSocketService {
         socket.data.user = decoded;
         logger.debug('WebSocket authenticated', { userId: decoded.id });
         next();
-      } catch (error) {
+      } catch (error: any) {
         logger.warn('WebSocket authentication failed', { error: error.message });
         next(new Error('Invalid token'));
       }
@@ -54,16 +62,25 @@ export class WebSocketService {
   }
 
   /**
-   * Setup connection handlers
+   * Setup connection handlers with proper cleanup
    */
   private setupConnectionHandlers() {
     this.io.on('connection', (socket) => {
+      const userId = socket.data.user.id;
+      const tenantId = socket.data.user.tenant_id;
+
       logger.info('WebSocket client connected', {
-        userId: socket.data.user.id,
+        userId,
         socketId: socket.id,
+        tenantId,
       });
 
-      // Setup enhanced handlers (presence, analytics)
+      // Track connection
+      if (!this.activeConnections.has(userId)) {
+        this.activeConnections.set(userId, new Set());
+      }
+      this.activeConnections.get(userId)!.add(socket.id);
+
       this.setupEnhancedHandlers(socket);
 
       // Join session room
@@ -71,10 +88,9 @@ export class WebSocketService {
         socket.join(`session:${sessionName}`);
         logger.info('Client joined session room', {
           sessionName,
-          userId: socket.data.user.id
+          userId,
         });
 
-        // Send current session status
         const isActive = SessionManager.isSessionActive(sessionName);
         socket.emit('session-status', { sessionName, isActive });
       });
@@ -84,7 +100,7 @@ export class WebSocketService {
         socket.leave(`session:${sessionName}`);
         logger.info('Client left session room', {
           sessionName,
-          userId: socket.data.user.id
+          userId,
         });
       });
 
@@ -94,10 +110,54 @@ export class WebSocketService {
         socket.emit('active-sessions', activeSessions);
       });
 
+      // Proper disconnect handling
+      socket.on('disconnect', (reason) => {
+        logger.info('WebSocket client disconnected', {
+          userId,
+          socketId: socket.id,
+          reason,
+        });
+
+        // Clean up presence
+        presenceService.setOffline(socket.id);
+
+        // Remove from active connections
+        const userConnections = this.activeConnections.get(userId);
+        if (userConnections) {
+          userConnections.delete(socket.id);
+          if (userConnections.size === 0) {
+            this.activeConnections.delete(userId);
+          }
+        }
+
+        // Leave all rooms
+        socket.rooms.forEach((room) => {
+          socket.leave(room);
+        });
+
+        // Remove all listeners
+        socket.removeAllListeners();
+
+        // Track analytics event
+        if (tenantId) {
+          AnalyticsService.trackEvent({
+            tenant_id: tenantId,
+            event_type: 'user_disconnected',
+            event_data: {
+              user_id: userId,
+              socket_id: socket.id,
+              reason,
+            },
+            timestamp: Date.now(),
+          });
+        }
+      });
+
       socket.on('error', (error) => {
         logger.error('WebSocket error', {
           error: error.message,
-          userId: socket.data.user.id,
+          userId,
+          socketId: socket.id,
         });
       });
     });
@@ -110,9 +170,9 @@ export class WebSocketService {
     // QR Code generated
     SessionManager.on('qr', ({ sessionName, qr, attempt }) => {
       logger.debug('Broadcasting QR code', { sessionName, attempt });
-      this.io.to(`session:${sessionName}`).emit('qr', { 
+      this.io.to(`session:${sessionName}`).emit('qr', {
         sessionName,
-        qr, 
+        qr,
         attempt,
         timestamp: new Date().toISOString(),
       });
@@ -121,7 +181,7 @@ export class WebSocketService {
     // Status changed
     SessionManager.on('status', ({ sessionName, status }) => {
       logger.debug('Broadcasting status change', { sessionName, status });
-      this.io.to(`session:${sessionName}`).emit('status', { 
+      this.io.to(`session:${sessionName}`).emit('status', {
         sessionName,
         status,
         timestamp: new Date().toISOString(),
@@ -131,7 +191,7 @@ export class WebSocketService {
     // Connected
     SessionManager.on('connected', ({ sessionName }) => {
       logger.info('Broadcasting connection', { sessionName });
-      this.io.to(`session:${sessionName}`).emit('connected', { 
+      this.io.to(`session:${sessionName}`).emit('connected', {
         sessionName,
         timestamp: new Date().toISOString(),
       });
@@ -139,11 +199,11 @@ export class WebSocketService {
 
     // New message received
     SessionManager.on('message', ({ sessionName, message }) => {
-      logger.debug('Broadcasting new message', { 
-        sessionName, 
-        from: message.from 
+      logger.debug('Broadcasting new message', {
+        sessionName,
+        from: message.from,
       });
-      this.io.to(`session:${sessionName}`).emit('message', { 
+      this.io.to(`session:${sessionName}`).emit('message', {
         sessionName,
         message: {
           id: message.id,
@@ -160,7 +220,7 @@ export class WebSocketService {
     // Message ACK update
     SessionManager.on('ack', ({ sessionName, messageId, ack }) => {
       logger.debug('Broadcasting ACK update', { sessionName, messageId, ack });
-      this.io.to(`session:${sessionName}`).emit('ack', { 
+      this.io.to(`session:${sessionName}`).emit('ack', {
         sessionName,
         messageId,
         ack,
@@ -170,7 +230,7 @@ export class WebSocketService {
 
     // Loading screen
     SessionManager.on('loading', ({ sessionName, percent, message }) => {
-      this.io.to(`session:${sessionName}`).emit('loading', { 
+      this.io.to(`session:${sessionName}`).emit('loading', {
         sessionName,
         percent,
         message,
@@ -180,7 +240,7 @@ export class WebSocketService {
     // Disconnected
     SessionManager.on('disconnected', ({ sessionName }) => {
       logger.info('Broadcasting disconnection', { sessionName });
-      this.io.to(`session:${sessionName}`).emit('disconnected', { 
+      this.io.to(`session:${sessionName}`).emit('disconnected', {
         sessionName,
         timestamp: new Date().toISOString(),
       });
@@ -189,11 +249,28 @@ export class WebSocketService {
     // State change
     SessionManager.on('stateChange', ({ sessionName, state }) => {
       logger.debug('Broadcasting state change', { sessionName, state });
-      this.io.to(`session:${sessionName}`).emit('state-change', { 
+      this.io.to(`session:${sessionName}`).emit('state-change', {
         sessionName,
         state,
         timestamp: new Date().toISOString(),
       });
+    });
+  }
+
+  /**
+   * Setup presence service listeners
+   */
+  private setupPresenceListeners() {
+    presenceService.on('presence:online', (data) => {
+      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
+    });
+
+    presenceService.on('presence:offline', (data) => {
+      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
+    });
+
+    presenceService.on('presence:status', (data) => {
+      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
     });
   }
 
@@ -216,23 +293,6 @@ export class WebSocketService {
    */
   public getConnectedClientsCount(): number {
     return this.io.engine.clientsCount;
-  }
-
-  /**
-   * Setup presence service listeners
-   */
-  private setupPresenceListeners() {
-    presenceService.on('presence:online', (data) => {
-      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
-    });
-
-    presenceService.on('presence:offline', (data) => {
-      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
-    });
-
-    presenceService.on('presence:status', (data) => {
-      this.broadcastToTenant(data.tenant_id, 'presence:update', data);
-    });
   }
 
   /**
@@ -300,24 +360,56 @@ export class WebSocketService {
       const onlineUsers = presenceService.getOnlineUsers(tenantId);
       socket.emit('presence:online-users', onlineUsers);
     });
+  }
 
-    // Disconnect handler
-    socket.on('disconnect', () => {
-      presenceService.setOffline(socket.id);
+  /**
+   * Clean up stale connections
+   */
+  private cleanupStaleConnections(): void {
+    try {
+      const connectedSockets = this.io.sockets.sockets;
+      let cleaned = 0;
 
-      // Track analytics event
-      if (tenantId) {
-        AnalyticsService.trackEvent({
-          tenant_id: tenantId,
-          event_type: 'user_disconnected',
-          event_data: {
-            user_id: user.id,
-            socket_id: socket.id,
-          },
-          timestamp: Date.now(),
-        });
+      // Check tracked connections
+      for (const [userId, socketIds] of this.activeConnections.entries()) {
+        for (const socketId of socketIds) {
+          if (!connectedSockets.has(socketId)) {
+            socketIds.delete(socketId);
+            cleaned++;
+          }
+        }
+
+        if (socketIds.size === 0) {
+          this.activeConnections.delete(userId);
+        }
       }
-    });
+
+      if (cleaned > 0) {
+        logger.info('Cleaned up stale socket connections', { count: cleaned });
+      }
+    } catch (error: any) {
+      logger.error('Error cleaning up stale connections', {
+        error: error.message,
+      });
+    }
+  }
+
+  /**
+   * Get active connection statistics
+   */
+  public getConnectionStats(): {
+    totalConnections: number;
+    uniqueUsers: number;
+    roomCount: number;
+  } {
+    const sockets = this.io.sockets.sockets;
+    const rooms = this.io.sockets.adapter.rooms;
+
+    return {
+      totalConnections: sockets.size,
+      uniqueUsers: this.activeConnections.size,
+      roomCount: rooms.size,
+    };
   }
 
   /**
@@ -329,15 +421,25 @@ export class WebSocketService {
   }
 
   /**
-   * Close WebSocket server
+   * Close WebSocket server with proper cleanup
    */
-  public close(): Promise<void> {
+  public async close(): Promise<void> {
     return new Promise((resolve, reject) => {
       logger.info('Closing WebSocket server...');
 
-      // Disconnect all clients
-      this.io.disconnectSockets();
+      // Disconnect all clients gracefully
+      const sockets = Array.from(this.io.sockets.sockets.values());
 
+      sockets.forEach((socket) => {
+        socket.emit('server-shutdown', { message: 'Server is shutting down' });
+        socket.removeAllListeners();
+        socket.disconnect(true);
+      });
+
+      // Clear tracking
+      this.activeConnections.clear();
+
+      // Close server
       this.io.close((err) => {
         if (err) {
           logger.error('Error closing WebSocket server', { error: err.message });
